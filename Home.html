@@ -1,56 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Dessert Recipe Webapp">
-    <meta name="keywords" content="HTML, CSS, JavaScript, GSAP">
-    <meta name="author" content="Naadirah Karim">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="normalize.css" />
-    <link rel="stylesheet" href="Home.css"/>
-    <link rel="shortcut icon" href="/Images/Logo.png">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Dessert Recipe Webapp" />
+  <meta name="keywords" content="HTML, CSS, JavaScript, GSAP" />
+  <meta name="author" content="Naadirah Karim" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Nibby</title>
+  <link rel="stylesheet" href="normalize.css" />
+  <link rel="stylesheet" href="Home.css" />
+  <link rel="shortcut icon" href="Images/Logo.png" type="image/png" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
+
+  <title>Nibbly</title>
 </head>
 <body>
-    <header>
-        <nav id="Navtop">
-        <!-- navigation menu webpages + burger button + logo + heading -->
-        <input type="checkbox" id="check">
-        <label for="check" class="checkbtn">
-            <i class="fas fa-bars"></i>
-        </label>
 
-        <img src="/Images/Logo.png" id="logo" />
-        <label class="logo">Nibbly</label>
+  <!-- Header Navigation -->
+  <header>
+    <nav id="Navtop">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
 
-        <ul >
-            <li id="home"><a href="Home.html" class= "active">Nibbly</a></li>
-            <li id="recipebook"><a href="Recipebook.html">Recipe Book</a></li>
-            <li id="myfavourites"><a href="Myfavourites.html">My Favourites</a></li>
-            <li id="blog"><a href="Blog.html">Blog</a></li>
-            <li id="about"><a href="About.html">About</a></li>
-        </ul>
-        </nav>  
-    </header>
+      <div class="brand">
+        <img src="Images/Logo.png" alt="Nibbly Logo" id="logo" />
+        <h1 class="site-title">Nibbly</h1>
+      </div>
 
-    <main>
-        <!-- JS Display -->
-        <section id="HomePage"></section>
-        
-        <section id="Navigation"></section>
+      <ul>
+        <li><a href="Home.html" class="active">Home</a></li>
+        <li><a href="Recipebook.html">Recipe Book</a></li>
+        <li><a href="Myfavourites.html">My Favourites</a></li>
+        <li><a href="Blog.html">Blog</a></li>
+        <li><a href="About.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    </main>
-    
-    <script src="Home.js"></script>
+  <main>
 
-        <!-- footer -->
-    <footer>
-        <section class="footerbottom">
-            <p>Copyright &copy;2025; Designed by <span class="designer">Naadirah Karim</span> </p>
-        </section>
-    </footer>
-    
+    <!-- Banner -->
+    <section class="banner">
+      <img src="Images/banner.png" alt="Tiny Bites Big Delights Banner">
+      <h2>Tiny Bites, Big Delights</h2>
+    </section>
+
+    <!-- Featured Recipes -->
+    <section class="featured">
+      <h3>Featured Recipes</h3>
+      <div class="recipe-container">
+        <div class="recipe-card">
+          <img src="Images/pavlova.jpg" alt="Pavlova">
+          <p>Pavlova</p>
+        </div>
+        <div class="recipe-card">
+          <img src="Images/brownies.jpg" alt="Brownies">
+          <p>Brownies</p>
+        </div>
+        <div class="recipe-card">
+          <img src="Images/redvelvet.jpg" alt="Red Velvet Cupcakes">
+          <p>Red Velvet Cupcakes</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <section class="footerbottom">
+      <p>Copyright &copy;2025 | Designed by <span class="designer">Naadirah Karim</span></p>
+    </section>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <button id="scrollTopBtn">↑</button>
+
+  <script src="Home.js"></script>
 </body>
 </html>
