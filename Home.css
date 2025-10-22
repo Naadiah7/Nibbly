@@ -77,7 +77,7 @@ body {
 
 .banner h2 {
   position: absolute;
-  top: 40%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   
@@ -85,9 +85,8 @@ body {
   background-color: #E9C4F9;
   color: #000;
   font-family: 'Beth Ellen', cursive;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
-  padding: 10px 100px; /* Adds spacing around the text */
   border-radius: 1rem;
   z-index: 10;
   text-align: center;
