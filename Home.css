@@ -1,3 +1,7 @@
+html{
+    scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Berkshire Swash', cursive;
   margin: 0;
@@ -37,7 +41,7 @@ body {
 #Navtop ul {
   list-style: none;
   display: flex;
-  gap: 40px;
+  gap: 50px;
   margin: 0;
   padding: 0;
 }
@@ -46,16 +50,20 @@ body {
   text-decoration: none;
   color: #000;
   font-size: 20px;
-  transition: color 0.3s ease;
+  padding: 0.5rem 1rem; 
+  border-radius: 0.5rem;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 #Navtop ul li a:hover,
 #Navtop ul li a.active {
-  color: #d58aff;
+  color: #000;
+  background-color: #E9C4F9;
 }
 
 /* Banner */
 .banner {
+  position: relative;
   width: 100%;
   margin: 0 auto;
 }
@@ -64,6 +72,25 @@ body {
   width: 100%;
   height: 170px;
   border-bottom: 2px solid #ccc;
+  display: flex;
+}
+
+.banner h2 {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  display: inline-block; 
+  background-color: #E9C4F9;
+  color: #000;
+  font-family: 'Beth Ellen', cursive;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 100px; /* Adds spacing around the text */
+  border-radius: 1rem;
+  z-index: 10;
+  text-align: center;
 }
 
 /* Featured Recipes */
@@ -72,7 +99,7 @@ body {
 }
 
 .featured h3 {
-  background-color: #e2b8ff;
+  background-color: #E9C4F9;
   display: inline-block;
   padding: 10px 25px;
   border-radius: 10px;
@@ -104,7 +131,7 @@ body {
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  border: 5px solid #d29aff;
+  border: 5px solid #E19CFF;
   object-fit: cover;
 }
 
@@ -122,7 +149,7 @@ footer {
 }
 
 .designer {
-  color: #e2b8ff;
+  color: #E9C4F9;
 }
 
 /* Scroll Button */
