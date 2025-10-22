@@ -73,7 +73,7 @@ body {
 
 .banner img {
   width: 100%;
-  height: 170px;
+  height: 130px;
   border-bottom: 2px solid #ccc;
   display: flex;
 }
@@ -84,13 +84,13 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   
-  width: 98%;
-  padding: 15px;
+  width: 98.7%;
+  padding: 10px;
 
   background-color: #E19CFF;
   color: #000;
   font-family: 'Beth Ellen', cursive;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
   border-radius: 15px;
   z-index: 10;
@@ -99,7 +99,7 @@ body {
 
 /* Featured Recipes */
 .featured {
-  margin: 15px 0;
+  margin: 10px 0;
 }
 
 .featured h3 {
@@ -107,7 +107,7 @@ body {
   display: inline-block;
   padding: 10px 25px;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .recipe-container {
@@ -115,8 +115,8 @@ body {
   justify-content: center;
   gap: 40px;
   flex-wrap: wrap;
-  margin-top: 20px;
-  margin-bottom: 30px;
+  margin-top: 15px;
+  margin-bottom: 20px;
 }
 
 .recipe-card {
@@ -133,23 +133,26 @@ body {
 }
 
 .recipe-card img {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   border: 5px solid #E19CFF;
   object-fit: cover;
 }
 
 .recipe-card p {
-  font-size: 22px;
+  font-size: 20px;
   margin-top: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 /* Footer */
 footer {
   background-color: #555;
   color: white;
-  padding: 10px 0;
+  padding: 2px 0;
   font-size: 17px;
 }
 
