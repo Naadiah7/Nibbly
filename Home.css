@@ -94,7 +94,7 @@ body {
 
 /* Featured Recipes */
 .featured {
-  margin: 50px 0;
+  margin: 15px 0;
 }
 
 .featured h3 {
@@ -111,6 +111,7 @@ body {
   gap: 40px;
   flex-wrap: wrap;
   margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 .recipe-card {
