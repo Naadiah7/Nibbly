@@ -16,7 +16,7 @@ body {
   align-items: center;
   justify-content: space-between;
   background-color: #f6f2ff;
-  padding-right: 30px;
+  padding-right: 200px;
   border-bottom: 2px solid #ccc;
 }
 
@@ -44,7 +44,7 @@ body {
 #Navtop ul {
   list-style: none;
   display: flex;
-  gap: 50px;
+  gap: 20px;
   margin: 0;
   padding: 0;
 }
