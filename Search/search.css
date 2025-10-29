@@ -1,0 +1,45 @@
+html{
+    scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Berkshire Swash', cursive;
+  margin: 0;
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  background-color: #555;
+  color: white;
+  padding: 1px 1px;
+  font-size: 16px;
+  align-items: center;
+  margin: 0;
+  position: relative;
+}
+
+
+
+/* Burger Menu Hidden (for desktop) */
+.checkbtn {
+  display: none;
+}
+
+/*media Queries*/
+@media (max-width: 768px) {
+  #Navtop ul {
+    flex-direction: column;
+    display: none;
+  }
+  #check:checked ~ ul {
+    display: flex;
+  }
+  .checkbtn {
+    display: block;
+    font-size: 30px;
+    cursor: pointer;
+  }
+}
