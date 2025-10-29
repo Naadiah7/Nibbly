@@ -103,6 +103,7 @@ body {
 }
 
 .featured h3 {
+  font-size: 20px;
   background-color: #E9C4F9;
   display: inline-block;
   padding: 10px 25px;
@@ -115,7 +116,7 @@ body {
   justify-content: center;
   gap: 40px;
   flex-wrap: wrap;
-  margin-top: 15px;
+  margin-top: 12px;
   margin-bottom: 20px;
 }
 
@@ -123,13 +124,10 @@ body {
   background-color: #f3f3f3;
   border-radius: 20px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  padding: 15px;
+  /*padding: 15px;*/
   width: 240px;
-  transition: transform 0.2s;
-}
-
-.recipe-card:hover {
-  transform: scale(1.05);
+  padding: 20px 10px;
+  text-align: center;
 }
 
 .recipe-card img {
@@ -138,15 +136,26 @@ body {
   border-radius: 50%;
   border: 5px solid #E19CFF;
   object-fit: cover;
+  margin-bottom: 7px;
 }
 
+/*Recipe Button*/
 .recipe-card p {
+  font-family:'Berkshire Swash', cursive;
   font-size: 20px;
-  margin-top: 10px;
   background-color: #ffffff;
   border-radius: 10px;
-  padding: 10px;
+  padding: 13px;
+  margin: 0 auto;
+  display: inline-block;
+  width: 80%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
+.recipe-btn:hover {
+  transform: scale(1.05);
+}
+
 
 /* Footer */
 footer {
@@ -160,7 +169,7 @@ footer {
   color: #E9C4F9;
 }
 
-/* Scroll Button */
+/* Scroll Button 
 #scrollTopBtn {
   position: fixed;
   bottom: 30px;
@@ -180,7 +189,7 @@ footer {
 
 #scrollTopBtn:hover {
   opacity: 0.8;
-}
+}*/
 
 /* Burger Menu Hidden (for desktop) */
 .checkbtn {

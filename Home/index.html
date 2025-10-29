@@ -9,8 +9,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="stylesheet" href="normalize.css" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="shortcut icon" href="Images/Logo.png" type="image/png" />
+  <link rel="stylesheet" href="/Home/style.css" />
+  <link rel="shortcut icon" href="Images/Logo.png" type="image of logo/png" />
 
   <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Beth+Ellen&display=swap" rel="stylesheet">
 
@@ -21,24 +21,32 @@
 <!-- Header Navigation -->
   <header>
     <nav id="Navtop">
-      <label for="check" class="checkbtn">
+      <!--<label for="check" class="checkbtn">
         <i class="fas fa-bars"></i>
-      </label>
+      </label>-->
 
       <div class="brand">
-        <a href="index.html">
+        <a href="/Home/index.html">
             <img src="Images/Logo.png" alt="Nibbly Logo" id="logo" />
         </a>
         <h1 class="site-title">Nibbly</h1>
       </div>
 
+<!--Navigation Bar-->
       <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="Recipebook.html">Recipe Book</a></li>
-        <li><a href="Myfavourites.html">My Favourites</a></li>
-        <li><a href="Blog.html">Blog</a></li>
-        <li><a href="About.html">About</a></li>
+        <li><a href="/Home/index.html" class="active">Home</a></li>
+        <li><a href="/RecipeBook/Recipebook.html">Recipe Book</a></li>
+        <li><a href="/MyFavourites/Myfavourites.html">My Favourites</a></li>
+        <li><a href="/Blog/Blog.html">Blog</a></li>
+        <li><a href="/About/About.html">About</a></li>
       </ul>
+
+    <!-- Search button -->
+      <div class="search-btn">
+        <button id="searchButton">
+          <img src="Images/search.png" alt="Search" />
+        </button>
+      </div>
     </nav>
   </header>
 
@@ -50,21 +58,27 @@
       <h2>Tiny Bites, Big Delights</h2>
     </section>
 
-    <!-- Featured Recipes -->
+    <!-- Featured Recipes + Recipe Cards + Recipe Title Buttons-->
     <section class="featured">
       <h3>Featured Recipes</h3>
       <div class="recipe-container">
         <div class="recipe-card">
           <img src="Images/pavlova.jpg" alt="Pavlova">
-          <p>Pavlova</p>
+          <a class="recipe-btn" href="">
+            <p>Pavlova</p>
+          </a>
         </div>
         <div class="recipe-card">
           <img src="Images/brownies.jpg" alt="Brownies">
-          <p>Brownies</p>
+          <a class="recipe-btn" href="">
+            <p>Brownies</p>
+          </a>
         </div>
         <div class="recipe-card">
           <img src="Images/redvelvet.jpg" alt="Red Velvet Cupcakes">
-          <p>Red Velvet Cupcakes</p>
+          <a class="recipe-btn" href="">
+            <p>Red Velvet Cupcakes</p>  
+          </a>
         </div>
       </div>
     </section>
@@ -81,6 +95,6 @@
   <!-- Scroll to Top -->
   <button id="scrollTopBtn">↑</button>
 
-  <script src="Index.js"></script>
+  <script src="/Home/app.js"></script>
 </body>
 </html>
