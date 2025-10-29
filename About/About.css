@@ -99,10 +99,9 @@ body {
 }
 
 .banner img {
-  width: 50px;
-  height: 50px;
-  display: flex;
-  
+  width: 45px;
+  height: 45px;
+  display: inline-block;
 }
 
 .banner h2 {
