@@ -2,6 +2,14 @@ html{
     scroll-behavior: smooth;
 }
 
+@font-face {
+  font-family: 'Palatino Linotype';
+  src: url('/fonts/palatinolinotype_roman.woff2') format('woff2'),
+       url('/fonts/palatinolinotype_roman.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   font-family: 'Berkshire Swash', cursive;
   margin: 0;
@@ -122,8 +130,9 @@ body {
 .social-links {
     display: flex;
     justify-content: flex-end;
-    gap: 1px;
-
+    gap: 15px;
+    flex-grow: 1;
+    margin-right: 20px;
 }
 
 .email img{
@@ -133,6 +142,7 @@ body {
   padding: 5px;
   border-radius: 5px;
   box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .instagram img{
@@ -142,6 +152,7 @@ body {
   padding: 5px;
   border-radius: 5px;
   box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .tiktok img{
@@ -151,110 +162,152 @@ body {
   padding: 5px;
   border-radius: 5px;
   box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .email:hover {
-    opacity: 0.8;
-    transform: scale(1.05);
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 .instagram:hover {
-    opacity: 0.8;
-    transform: scale(1.05);
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .tiktok:hover {
-    opacity: 0.8;
-    transform: scale(1.05);
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 
-/* --- About Content Wrapper  --- */
+/* --- About Content --- */
 .about-content{
     display: flex;
     gap: 30px;
-    margin-bottom: 50px;
+    margin: 40px auto;
     align-items: flex-start;
+    max-width: 1200px;
+    padding: 0 20px;
 }
 
 .about-content  .text-block {
     flex-grow: 1;
-    max-width: 65%;
+    max-width: 100%;
+    text-align: left;
 }
 
-.about-contenth3 {
+.about-heading {
     font-size: 28px;
     color: #000;
     font-family: 'Berkshire Swash', cursive;
     margin-top: 0;
+    margin-bottom: 20px;
+    opacity: 0; /* For animation */
 }
 
-.about-content p {
-    font-family: sans-serif; /* Using a non-cursive font for readability */
+.about-text {
+    font-family: 'Palatino Linotype';
     line-height: 1.6;
     font-size: 16px;
     margin-bottom: 20px;
+    opacity: 0; /* For animation */
+    transform: translateY(20px);
 }
 
-.about-contenth4 {
+.offer-heading {
     font-size: 22px;
     color: #000;
     font-family: 'Berkshire Swash', cursive;
     text-decoration: underline;
     margin-top: 30px;
     margin-bottom: 5px;
+    opacity: 0; /* For animation */
 }
-
-
 
 /* --- Subscribe Section --- */
 .subscribe-content {
     display: flex;
     gap: 30px;
     align-items: center;
-    background-color: #f6f2ff; /* Lightest background color from palette for separation */
+    background-color: #B0E1FF;
     padding: 40px 20px;
     border-radius: 15px;
-    margin-bottom: 50px;
+    margin: 40px auto;
+    max-width: 1200px;
+    text-align: left;
 }
 
 .subscribe-content .text-block {
     flex-grow: 1;
 }
 
-.subscribe-content h4 {
+.subscribe-heading {
     font-size: 28px;
     color: #000;
     font-family: 'Berkshire Swash', cursive;
     text-decoration: none;
     margin-top: 0;
+    margin-bottom: 15px;
+    opacity: 0; /* For animation */
 }
 
-.subscribe-content p {
-    font-family: sans-serif;
+.subscribe-text {
+    font-family: 'Palatino Linotype';
     line-height: 1.6;
     font-size: 16px;
     margin-bottom: 25px;
+    opacity: 0; /* For animation */
+    transform: translateY(20px);
+}
+
+/* Subscribe Form */
+.subscribe-form {
+    max-width: 400px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    opacity: 0; /* For animation */
+    transform: translateX(-30px);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #71C9FF;
+    border-radius: 8px;
+    font-family: 'Palatino Linotype';
+    font-size: 16px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #71C9FF;
+    box-shadow: 0 0 8px rgba(113, 201, 255, 0.3);
 }
 
 /* --- Join Button --- */
 .join-btn {
-    background-color: #71C9FF; /* Blue highlight color for button */
+    background-color: #71C9FF;
     color: #000;
     font-family: 'Orelega One', cursive;
-    font-size: 24px;
-    padding: 10px 50px;
+    font-size: 20px;
+    padding: 12px 40px;
     border: 2px solid #000;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
     display: block;
-    width: 200px;
-    margin: 20px auto 0 0; /* Align left under the text block */
+    width: auto;
+    margin: 20px 0 0 0;
     box-shadow: 4px 4px 0px #000;
+    opacity: 0; /* For animation */
+    transform: scale(0.8);
 }
 
 .join-btn:hover {
-    background-color: #E9C4F9; /* Lavender/Pink secondary highlight color on hover */
+    background-color: #B0E1FF;
     transform: translate(1px, 1px);
     box-shadow: 2px 2px 0px #000;
 }
@@ -271,25 +324,35 @@ footer {
 }
 
 /*Scroll Up Button */
-#scrollTopBtn {
+/* Scroll Top Image Button */
+.scroll-top {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background: linear-gradient(135deg, #ffa4ce, #6edf90);
-  color: white;
-  border: none;
-  border-radius: 100%;
-  font-size: 35px;
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   display: none;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  border-radius: 50%;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  transition: opacity 0.3s ease;
 }
 
-#scrollTopBtn:hover {
-  opacity: 0.8;
+.scroll-top:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+
+/* Animation Elements */
+.floating-cookie {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #B0E1FF;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Burger Menu Hidden (for desktop) */
@@ -310,5 +373,31 @@ footer {
     display: block;
     font-size: 30px;
     cursor: pointer;
+  }
+
+  .banner {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .banner img {
+    margin: 10px 0;
+  }
+
+  .social-links {
+    justify-content: center;
+    margin: 10px 0 0 0;
+  }
+
+  .about-content,
+  .subscribe-content {
+    flex-direction: column;
+    padding: 20px 15px;
+  }
+
+  .subscribe-form {
+    max-width: 100%;
   }
 }

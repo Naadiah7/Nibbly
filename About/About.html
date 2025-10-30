@@ -14,6 +14,10 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Beth+Ellen&family=Orelega+One&display=swap" rel="stylesheet">
 
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>  
+    
   <title>Nibbly - About</title>
 </head>
 <body>
@@ -74,30 +78,31 @@
       <!-- About Section - Text -->
     <section class="about-content">
         <div class="text-block">
-            <h3>Tiny Bites, Big Delight</h3>
-            <p>Welcome to Nibbly. Your go-to dessert-only recipe web app! At Nibbly, we believe that the sweetest moments in life come in small, delicious bites. Whether it's a warm muffin fresh from the oven or a perfectly frosted cupcake, every dessert has a story to tell. Our mission is to make baking approachable, fun, easy and endlessly rewarding, no matter your skill level.</p>
-            <h4>What We Offer</h4>
-            <p>A curated collection of sweet recipes, from simple cookies to intricate cakes, complete with video tutorials, user ratings, and a community forum for tips and tricks.</p>
+            <h3 class="about-heading">Tiny Bites, Big Delight</h3>
+            <p class="about-text">Welcome to Nibbly. Your go-to dessert-only recipe web app! At Nibbly, we believe that the sweetest moments in life come in small, delicious bites. Whether it's a warm muffin fresh from the oven or a perfectly frosted cupcake, every dessert has a story to tell. Our mission is to make baking approachable, fun, easy and endlessly rewarding, no matter your skill level.</p>
+            <h4 class="offer-heading">What We Offer</h4>
+            <p class="about-text">A curated collection of sweet recipes, from simple cookies to intricate cakes, complete with video tutorials, user ratings, and a community forum for tips and tricks.</p>
         </div>
-        <div class="image1">
+        <div class="image1"><img src="" alt="">
         </div>
     </section>
         
-      <!-- subscribe Section -->
-        <section class="subscribe-section">
-            <h2>Join the Nibblets Community</h2>
-            <p>Subscribe to save your favorite recipes and get the latest scoop on new recipes</p>
-            <form id="subscribe-form" class="subscribe-form">
+      <!-- Subscribe Section -->
+      <section class="subscribe-content">
+        <div class="text-block">
+            <h4 class="subscribe-heading">Join the Nibblets Community</h4>
+            <p class="subscribe-text">Subscribe to save your favorite recipes and get the latest scoop on new recipes</p>
+            <form class="subscribe-form">
                 <div class="form-group">
-                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <input type="text" placeholder="Your Name" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    <input type="email" placeholder="Your Email" required>
                 </div>
-                <button type="submit" class="btn-primary">Subscribe</button>
+                <button type="submit" class="join-btn">Subscribe</button>
             </form>
-        </section>
-    </div>
+        </div>
+      </section>
   </main>
   
   <!-- Footer -->
@@ -108,7 +113,7 @@
   </footer>
 
   <!-- Scroll to Top -->
-  <button id="scrollTopBtn">↑</button>
+<img src="/Images/up.png" alt="Scroll to top" id="scrollTopBtn" class="scroll-top">
 
     <script src="/About/About.js"></script>
 </body>

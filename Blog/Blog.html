@@ -14,6 +14,10 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Beth+Ellen&display=swap" rel="stylesheet">
 
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>  
+
     <title>Blog</title>
 </head>
 <body>
@@ -39,8 +43,56 @@
         <li><a href="/Blog/Blog.html"class="active">Blog</a></li>
         <li><a href="/About/About.html">About</a></li>
       </ul>
+
+      <!-- Search button -->
+      <div class="search-btn">
+        <a class="searchButton" href="/Search/search.html">
+          <img src="/Images/search.png" alt="Search" />
+        </a>
+      </div>
     </nav>
   </header>
+
+  <main>
+    <!-- Blog Header -->
+    <section class="blog-header">
+      <h2 class="blog-main-title">Nibbly Blog</h2>
+      <p class="blog-subtitle">Tips, tricks, and stories from the world of desserts</p>
+    </section>
+
+    <!-- Blog Posts -->
+    <section class="blog-posts">
+      <article class="blog-post">
+        <div class="blog-date">1 September 2025</div>
+        <h3 class="blog-title">Wake Up to Flavor</h3>
+        <p class="blog-recipe">Easy Cappuccino Muffins Recipe</p>
+        <div class="blog-content">
+          <p>Start your morning with these delightful cappuccino muffins that combine the rich flavor of coffee with soft, moist muffin texture. Perfect for breakfast or as an afternoon pick-me-up.</p>
+          <a href="#" class="read-more-btn">Read More</a>
+        </div>
+      </article>
+
+      <article class="blog-post">
+        <div class="blog-date">8 September 2025</div>
+        <h3 class="blog-title">Classic Indulgence</h3>
+        <p class="blog-recipe">Red Velvet Cupcakes with Cream Cheese Frosting Recipe</p>
+        <div class="blog-content">
+          <p>Discover the secrets to creating perfect red velvet cupcakes with our step-by-step guide. Learn how to achieve that signature velvety texture and rich color.</p>
+          <a href="#" class="read-more-btn">Read More</a>
+        </div>
+      </article>
+
+      <article class="blog-post">
+        <div class="blog-date">15 September 2025</div>
+        <h3 class="blog-title">A Slice of Berry Bliss</h3>
+        <p class="blog-recipe">Creamy Blueberry Cheesecake Recipe</p>
+        <div class="blog-content">
+          <p>Indulge in this creamy blueberry cheesecake that combines a buttery biscuit base with smooth cream cheese filling and fresh blueberry topping. A true crowd-pleaser!</p>
+          <a href="#" class="read-more-btn">Read More</a>
+        </div>
+      </article>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer>
