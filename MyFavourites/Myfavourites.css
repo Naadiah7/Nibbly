@@ -68,7 +68,7 @@ body {
 #Navtop ul li a:hover,
 #Navtop ul li a.active {
   color: #000;
-  background-color: #6EDF90;
+  background-color: #FFC9E2;
 }
 
 /* --- Search Button --- */
@@ -121,7 +121,7 @@ body {
   padding: 20px 13px;
   color: #000;
   font-family: 'Beth Ellen', cursive;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
   text-align: left;
 }
@@ -149,32 +149,45 @@ body {
 footer {
   background-color: #555;
   color: white;
-  padding: 10px 0;
-  font-size: 17px;
+  padding: 1px 1px;
+  font-size: 16px;
+  align-items: center;
+  margin: 0;
+  position: relative;
 }
 
-.designer {
-  color: #E9C4F9;
-}
-
-/* Scroll Button */
-#scrollTopBtn {
+/* Scroll Top Image Button */
+.scroll-top {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background: linear-gradient(135deg, #ffa4ce, #6edf90);
-  color: white;
-  border: none;
-  border-radius: 100%;
-  font-size: 35px;
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   display: none;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  border-radius: 50%;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  transition: opacity 0.3s ease;
 }
 
-#scrollTopBtn:hover {
-  opacity: 0.8;
+.scroll-top:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+
+/* Animation Elements */
+.floating-cookie {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #B1FAC7;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Burger Menu Hidden (for desktop) */
+.checkbtn {
+  display: none;
 }

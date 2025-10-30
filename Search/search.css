@@ -2,6 +2,14 @@ html{
     scroll-behavior: smooth;
 }
 
+@font-face {
+  font-family: 'Palatino Linotype';
+  src: url('/fonts/palatinolinotype_roman.woff2') format('woff2'),
+       url('/fonts/palatinolinotype_roman.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   font-family: 'Berkshire Swash', cursive;
   margin: 0;
@@ -9,6 +17,133 @@ body {
   color: #000;
   text-align: center;
 }
+
+/* Navigation Bar */
+#Navtop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f6f2ff;
+  padding-right: 20px;
+  border-bottom: 2px solid #ccc;
+}
+
+.brand {
+  display: flex;
+  align-items:center;
+  gap: 10px;
+  background-color: #E9C4F9;
+  padding: 4px 20px; 
+}
+
+#logo {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 50% black;
+}
+
+.site-title {
+  font-size: 25px;
+  color: #000;
+}
+
+#Navtop ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+}
+
+#Navtop ul li a {
+  text-decoration: none;
+  color: #000;
+  font-size: 20px;
+  padding: 0.5rem 1rem; 
+  border-radius: 0.5rem;
+  margin: 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#Navtop ul li a:hover,
+#Navtop ul li a.active {
+  color: #000;
+  background-color: #FFC9E2;
+}
+
+/* --- Search Button --- */
+.search-btn {
+  display: flex;
+  align-items: center;
+  margin-left: 0px;
+}
+
+.searchButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.searchButton img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.searchButton:hover img {
+  transform: scale(1.07);
+}
+
+/* Banner */
+.banner {
+  position: relative;
+  display: flex;
+  width: 97.35%;
+  height: 110px;
+  margin: 0 auto;
+  background-color: #FFC9E2;
+  border-radius: 15px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 20px;
+}
+
+.banner img {
+  width: 40px;
+  height: 40px;
+}
+
+.banner h2 {
+  position: static;
+  display: flex;
+  padding: 20px 13px;
+  color: #000;
+  font-family: 'Beth Ellen', cursive;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.banner-subtitle p{
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+  margin-right: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Footer */
 footer {
@@ -21,25 +156,38 @@ footer {
   position: relative;
 }
 
+/* Scroll Top Image Button */
+.scroll-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: none;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
 
+.scroll-top:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+
+/* Animation Elements */
+.floating-cookie {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #B1FAC7;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
 
 /* Burger Menu Hidden (for desktop) */
 .checkbtn {
   display: none;
-}
-
-/*media Queries*/
-@media (max-width: 768px) {
-  #Navtop ul {
-    flex-direction: column;
-    display: none;
-  }
-  #check:checked ~ ul {
-    display: flex;
-  }
-  .checkbtn {
-    display: block;
-    font-size: 30px;
-    cursor: pointer;
-  }
 }
