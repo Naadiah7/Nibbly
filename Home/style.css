@@ -2,6 +2,14 @@ html{
     scroll-behavior: smooth;
 }
 
+/*@font-face {
+  font-family: 'Palatino Linotype';
+  src: url('/fonts/palatinolinotype_roman.woff2') format('woff2'),
+       url('/fonts/palatinolinotype_roman.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}*/
+
 body {
   font-family: 'Berkshire Swash', cursive;
   margin: 0;
@@ -36,7 +44,7 @@ body {
 }
 
 .site-title {
-  font-size: 25px;
+  font-size: 20px;
   color: #000;
 }
 
@@ -93,6 +101,7 @@ body {
   position: relative;
   width: 100%;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .banner img {
@@ -102,7 +111,7 @@ body {
   display: flex;
 }
 
-.banner h2 {
+.banner-title h2 {
   position: absolute;
   top: 37%;
   left: 50%;
@@ -117,7 +126,67 @@ body {
   border-radius: 15px;
   z-index: 5;
   text-align: center;
+  opacity: 0;
 }
+
+/* Individual character styling for letter-by-letter animation */
+.banner-title .char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Floating animation for continuous effect */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.banner-title.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Sparkle effect */
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Bite mark SVG animation */
+.bite-marks {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.bite-mark {
+  position: absolute;
+  opacity: 0;
+}
+
+/* Motion Path SVG - hidden */
+.motion-path {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+}
+
 
 /* Featured Recipes */
 .featured {
@@ -194,7 +263,7 @@ footer {
   position: relative;
 }
 
-/* Scroll Button 
+Scroll Button 
 #scrollTopBtn {
   position: fixed;
   bottom: 30px;
@@ -214,7 +283,7 @@ footer {
 
 #scrollTopBtn:hover {
   opacity: 0.8;
-}*/
+}
 
 /* Burger Menu Hidden (for desktop) */
 .checkbtn {

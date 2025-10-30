@@ -12,7 +12,12 @@
   <link rel="stylesheet" href="/Home/style.css" />
   <link rel="shortcut icon" href="Images/Logo.png" type="image of logo/png" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Beth+Ellen&family=Orelega+One&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Beth+Ellen&family=Orelega+One&display=swap" rel="stylesheet">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/MotionPathPlugin.min.js"></script>
 
   <title>Nibbly</title>
 </head>
@@ -21,10 +26,9 @@
 <!-- Header Navigation -->
   <header>
     <nav id="Navtop">
-      <label for="check" class="checkbtn">
+      <!-- <label for="check" class="checkbtn">
         <i class="fas fa-bars"></i>
-      </label>
-
+      </label>-->
       <div class="brand">
         <a href="/Home/index.html">
             <img src="Images/Logo.png" alt="Nibbly Logo" id="logo" />
@@ -55,34 +59,40 @@
     <!-- Banner -->
     <section class="banner">
       <img src="Images/banner.png" alt="Tiny Bites Big Delights Banner">
-      <h2>Tiny Bites, Big Delights</h2>
+        <!-- SVG Path for Motion Animation -->
+      <svg class="motion-path" width="100%" height="100" viewBox="0 0 1200 100" style="position: absolute; top: 0; left: 0; z-index: 2; opacity: 0;">
+          <path id="titlePath" d="M100,50 Q300,10 500,50 T900,50 T1100,50" fill="transparent" stroke="transparent"/>
+      </svg>
+      <h2 class="banner-title">Tiny Bites, Big Delights</h2>
     </section>
 
     <!-- Featured Recipes + Recipe Cards + Recipe Title Buttons-->
-    <section class="featured">
-      <h3>Featured Recipes</h3>
-      <div class="recipe-container">
-        <div class="recipe-card">
-          <img src="Images/pavlova.jpg" alt="Pavlova">
-          <a class="recipe-btn" href="">
-            <p>Pavlova</p>
-          </a>
-        </div>
-        <div class="recipe-card">
-          <img src="Images/brownies.jpg" alt="Brownies">
-          <a class="recipe-btn" href="">
-            <p>Brownies</p>
-          </a>
-        </div>
-        <div class="recipe-card">
-          <img src="Images/redvelvet.jpg" alt="Red Velvet Cupcakes">
-          <a class="recipe-btn" href="">
-            <p>Red Velvet Cupcakes</p>  
-          </a>
+  <section class="featured">
+    <h2>Featured Recipes</h2>
+    <div class="recipe-container">
+      <div class="recipe-card">
+        <img src="Images/pavlova.jpg" alt="Pavlova dessert with cream and fruits">
+        <div class="recipe-info">
+          <h3>Pavlova</h3>
+          <a class="recipe-btn" href="">View Recipe</a>
         </div>
       </div>
-    </section>
-
+      <div class="recipe-card">
+        <img src="Images/brownies.jpg" alt="Chocolate brownies with nuts">
+        <div class="recipe-info">
+          <h3>Brownies</h3>
+          <a class="recipe-btn" href="">View Recipe</a>
+        </div>
+      </div>
+      <div class="recipe-card">
+        <img src="Images/redvelvet.jpg" alt="Red velvet cupcakes with cream cheese frosting">
+        <div class="recipe-info">
+          <h3>Red Velvet Cupcakes</h3>  
+          <a class="recipe-btn" href="">View Recipe</a>
+        </div>
+      </div>
+    </div>
+  </section>
   </main>
 
   <!-- Footer -->
