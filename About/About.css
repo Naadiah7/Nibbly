@@ -229,7 +229,7 @@ body {
     display: flex;
     gap: 30px;
     align-items: center;
-    background-color: #B0E1FF;
+    background-color: #c8eaff;
     padding: 40px 20px;
     border-radius: 15px;
     margin: 40px auto;
@@ -323,7 +323,6 @@ footer {
   position: relative;
 }
 
-/*Scroll Up Button */
 /* Scroll Top Image Button */
 .scroll-top {
   position: fixed;

@@ -129,65 +129,6 @@ body {
   opacity: 0;
 }
 
-/* Individual character styling for letter-by-letter animation */
-.banner-title .char {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-/* Floating animation for continuous effect */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
-}
-
-.banner-title.floating {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Sparkle effect */
-.sparkle {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: #fff;
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: 0;
-}
-
-/* Bite mark SVG animation */
-.bite-marks {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 3;
-}
-
-.bite-mark {
-  position: absolute;
-  opacity: 0;
-}
-
-/* Motion Path SVG - hidden */
-.motion-path {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  opacity: 0;
-  pointer-events: none;
-}
-
-
 /* Featured Recipes */
 .featured {
   margin: 5px 0;
@@ -263,27 +204,37 @@ footer {
   position: relative;
 }
 
-Scroll Button 
-#scrollTopBtn {
+/* Scroll Top Image Button */
+.scroll-top {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background: linear-gradient(135deg, #ffa4ce, #6edf90);
-  color: white;
-  border: none;
-  border-radius: 100%;
-  font-size: 35px;
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   display: none;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  border-radius: 50%;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  transition: opacity 0.3s ease;
 }
 
-#scrollTopBtn:hover {
-  opacity: 0.8;
+.scroll-top:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.4);
 }
+
+/* Animation Elements */
+.floating-cookie {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #E9C4F9;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
 
 /* Burger Menu Hidden (for desktop) */
 .checkbtn {

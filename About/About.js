@@ -13,30 +13,42 @@ scrollBtn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// GSAP hover animation for the image
+// Subscribe form functionality
 document.addEventListener('DOMContentLoaded', function() {
-  scrollBtn.addEventListener('mouseenter', () => {
-    gsap.to(scrollBtn, {
-      duration: 0.3,
-      scale: 1.1,
-      rotation: 10,
-      ease: "back.out(1.7)"
-    });
-  });
+  const subscribeForm = document.querySelector('.subscribe-form');
   
-  scrollBtn.addEventListener('mouseleave', () => {
-    gsap.to(scrollBtn, {
-      duration: 0.3,
-      scale: 1,
-      rotation: 0,
-      ease: "power2.out"
+  if (subscribeForm) {
+    subscribeForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form inputs
+      const nameInput = this.querySelector('input[type="text"]');
+      const emailInput = this.querySelector('input[type="email"]');
+      
+      // Simple validation
+      if (!nameInput.value.trim() || !emailInput.value.trim()) {
+        alert('Please fill in all fields before subscribing.');
+        return;
+      }
+      
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailInput.value)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+      
+      // Show success message
+      alert('Thank you for subscribing to Nibbly! 🎉\n\nWelcome to the Nibblets community! You\'ll receive updates on new recipes and baking tips.');
+      
+      // Reset form
+      this.reset();
     });
-  });
+  }
 });
 
 // GSAP Animations
 document.addEventListener('DOMContentLoaded', function() {
-  // Register ScrollTrigger plugin
   gsap.registerPlugin(ScrollTrigger);
 
   // Create floating cookies

@@ -1,108 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Dessert Recipe Webapp">
-    <meta name="keywords" content="HTML, CSS, JavaScript, GSAP">
-    <meta name="author" content="Naadirah Karim">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Dessert Recipe Webapp">
+  <meta name="keywords" content="HTML, CSS, JavaScript, GSAP">
+  <meta name="author" content="Naadirah Karim">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="normalize.css" />
-    <link rel="stylesheet" href="/Blog/Blog.css"/>
-    <link rel="shortcut icon" href="/Images/Logo.png">
+  <link rel="stylesheet" href="normalize.css" />
+  <link rel="stylesheet" href="/Blog/Blog.css"/>
+  <link rel="shortcut icon" href="/Images/Logo.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Beth+Ellen&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Beth+Ellen&family=Orelega+One&display=swap" rel="stylesheet">
 
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>  
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>  
 
-    <title>Blog</title>
+  <title>Blog</title>
 </head>
 <body>
 
 <!-- Header Navigation -->
-  <header>
-    <nav id="Navtop">
-      <label for="check" class="checkbtn">
-        <i class="fas fa-bars"></i>
-      </label>
+<header>
+  <nav id="Navtop">
+    <label for="check" class="checkbtn">
+      <i class="fas fa-bars"></i>
+    </label>
 
-      <div class="brand">
-        <a href="/Home/index.html">
-            <img src="Images/Logo.png" alt="Nibbly Logo" id="logo" />
-        </a>
-        <h1 class="site-title">Nibbly - Blogs</h1>
+    <div class="brand">
+      <a href="/Home/index.html">
+          <img src="Images/Logo.png" alt="Nibbly Logo" id="logo" />
+      </a>
+      <h1 class="site-title">Nibbly</h1>
+    </div>
+
+    <ul>
+      <li><a href="/Home/index.html">Home</a></li>
+      <li><a href="/RecipeBook/Recipebook.html">Recipe Book</a></li>
+      <li><a href="/MyFavourites/Myfavourites.html">My Favourites</a></li>
+      <li><a href="/Blog/Blog.html"class="active">Blog</a></li>
+      <li><a href="/About/About.html">About</a></li>
+    </ul>
+
+    <!-- Search button -->
+    <div class="search-btn">
+      <a class="searchButton" href="/Search/search.html">
+        <img src="Images/search.png" alt="Search" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- Banner -->
+  <section class="banner">
+    <h2>Dessert Blogs</h2>
+    <img src="Images/Cheesecake2.png" alt="Pixel Cheesecake">
+    <p class="banner-subtitle">Tips, tricks, and stories from the world of desserts</p>
+  </section>
+
+  <!-- Blog Posts Section -->
+  <section class="blog-content">
+      <div class="text-block">
+          <h3 class="blog-heading">Latest Blog Posts</h3>
+          <p class="blog-intro">Discover the latest tips, tricks, and stories from the world of desserts. From baking techniques to recipe deep dives, our blog has everything you need to elevate your dessert game.</p>
       </div>
+  </section>
 
-      <ul>
-        <li><a href="/Home/index.html">Home</a></li>
-        <li><a href="/RecipeBook/Recipebook.html">Recipe Book</a></li>
-        <li><a href="/MyFavourites/Myfavourites.html">My Favourites</a></li>
-        <li><a href="/Blog/Blog.html"class="active">Blog</a></li>
-        <li><a href="/About/About.html">About</a></li>
-      </ul>
-
-      <!-- Search button -->
-      <div class="search-btn">
-        <a class="searchButton" href="/Search/search.html">
-          <img src="/Images/search.png" alt="Search" />
-        </a>
+  <!-- Blog Posts -->
+  <section class="blog-posts">
+    <article class="blog-post">
+      <div class="blog-date">1 September 2025</div>
+      <h4 class="post-title">Wake Up to Flavor</h4>
+      <p class="post-recipe">Easy Cappuccino Muffins Recipe</p>
+      <div class="post-content">
+        <p>Start your morning with these delightful cappuccino muffins that combine the rich flavor of coffee with soft, moist muffin texture. Perfect for breakfast or as an afternoon pick-me-up.</p>
+        <a href="#" class="read-more-btn">Read More</a>
       </div>
-    </nav>
-  </header>
+    </article>
 
-  <main>
-    <!-- Blog Header -->
-    <section class="blog-header">
-      <h2 class="blog-main-title">Nibbly Blog</h2>
-      <p class="blog-subtitle">Tips, tricks, and stories from the world of desserts</p>
-    </section>
+    <article class="blog-post">
+      <div class="blog-date">8 September 2025</div>
+      <h4 class="post-title">Classic Indulgence</h4>
+      <p class="post-recipe">Red Velvet Cupcakes with Cream Cheese Frosting Recipe</p>
+      <div class="post-content">
+        <p>Discover the secrets to creating perfect red velvet cupcakes with our step-by-step guide. Learn how to achieve that signature velvety texture and rich color.</p>
+        <a href="#" class="read-more-btn">Read More</a>
+      </div>
+    </article>
 
-    <!-- Blog Posts -->
-    <section class="blog-posts">
-      <article class="blog-post">
-        <div class="blog-date">1 September 2025</div>
-        <h3 class="blog-title">Wake Up to Flavor</h3>
-        <p class="blog-recipe">Easy Cappuccino Muffins Recipe</p>
-        <div class="blog-content">
-          <p>Start your morning with these delightful cappuccino muffins that combine the rich flavor of coffee with soft, moist muffin texture. Perfect for breakfast or as an afternoon pick-me-up.</p>
-          <a href="#" class="read-more-btn">Read More</a>
-        </div>
-      </article>
-
-      <article class="blog-post">
-        <div class="blog-date">8 September 2025</div>
-        <h3 class="blog-title">Classic Indulgence</h3>
-        <p class="blog-recipe">Red Velvet Cupcakes with Cream Cheese Frosting Recipe</p>
-        <div class="blog-content">
-          <p>Discover the secrets to creating perfect red velvet cupcakes with our step-by-step guide. Learn how to achieve that signature velvety texture and rich color.</p>
-          <a href="#" class="read-more-btn">Read More</a>
-        </div>
-      </article>
-
-      <article class="blog-post">
-        <div class="blog-date">15 September 2025</div>
-        <h3 class="blog-title">A Slice of Berry Bliss</h3>
-        <p class="blog-recipe">Creamy Blueberry Cheesecake Recipe</p>
-        <div class="blog-content">
-          <p>Indulge in this creamy blueberry cheesecake that combines a buttery biscuit base with smooth cream cheese filling and fresh blueberry topping. A true crowd-pleaser!</p>
-          <a href="#" class="read-more-btn">Read More</a>
-        </div>
-      </article>
-    </section>
-  </main>
+    <article class="blog-post">
+      <div class="blog-date">15 September 2025</div>
+      <h4 class="post-title">A Slice of Berry Bliss</h4>
+      <p class="post-recipe">Creamy Blueberry Cheesecake Recipe</p>
+      <div class="post-content">
+        <p>Indulge in this creamy blueberry cheesecake that combines a buttery biscuit base with smooth cream cheese filling and fresh blueberry topping. A true crowd-pleaser!</p>
+        <a href="#" class="read-more-btn">Read More</a>
+      </div>
+    </article>
+  </section>
+</main>
 
   <!-- Footer -->
   <footer>
     <section class="footerbottom">
-      <p>Copyright &copy;2025 | Designed by <span class="designer">Naadirah Karim</span></p>
+      <p>Copyright &copy;2025 | Designed by Naadirah Karim</p>
     </section>
   </footer>
 
   <!-- Scroll to Top -->
-  <button id="scrollTopBtn">↑</button>
+  <img src="/Images/up.png" alt="Scroll to top" id="scrollTopBtn" class="scroll-top">
 
     <script src="/Blog/Blog.js"></script>
 </body>
