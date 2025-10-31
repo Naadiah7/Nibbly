@@ -51,15 +51,13 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
   gsap.registerPlugin(ScrollTrigger);
 
-  // Create floating cookies
   createFloatingCookies();
 
-  // Main animation timeline
   const mainTimeline = gsap.timeline();
 
   // Banner animations
   mainTimeline
-    .fromTo('.about-title', 
+    .fromTo('.banner h2', 
       {
         opacity: 0,
         x: -50,

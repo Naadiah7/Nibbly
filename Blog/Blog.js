@@ -18,15 +18,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // Register ScrollTrigger plugin
   gsap.registerPlugin(ScrollTrigger);
 
-  // Create floating elements
-  createFloatingElements();
+  createFloatingCookies();
 
-  // Main animation timeline
   const mainTimeline = gsap.timeline();
 
   // Banner animations
   mainTimeline
-    .fromTo('.blog-title', 
+    .fromTo('.banner h2', 
       {
         opacity: 0,
         x: -50,
@@ -55,11 +53,10 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       "-=0.4"
     )
-    .fromTo('.social-links a',
+    .fromTo('.banner-subtitle p',
       {
         opacity: 0,
-        y: 30,
-        stagger: 0.1
+        y: 30
       },
       {
         opacity: 1,
@@ -107,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   );
 
-  // Blog posts animations
+  // Blog posts animations 
   gsap.utils.toArray('.blog-post').forEach((post, index) => {
     gsap.fromTo(post,
       {
@@ -166,82 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
       );
   });
 
-  // Subscribe section animations
-  gsap.fromTo('.subscribe-heading',
-    {
-      opacity: 0,
-      y: -30,
-      scale: 0.9
-    },
-    {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.7,
-      ease: "back.out(1.5)",
-      scrollTrigger: {
-        trigger: '.subscribe-content',
-        start: "top 80%",
-        toggleActions: "play none none none"
-      }
-    }
-  );
-
-  gsap.fromTo('.subscribe-text',
-    {
-      opacity: 0,
-      y: 20
-    },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: '.subscribe-content',
-        start: "top 75%",
-        toggleActions: "play none none none"
-      }
-    }
-  );
-
-  gsap.fromTo('.form-group',
-    {
-      opacity: 0,
-      x: -30
-    },
-    {
-      opacity: 1,
-      x: 0,
-      duration: 0.5,
-      stagger: 0.15,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: '.subscribe-form',
-        start: "top 85%",
-        toggleActions: "play none none none"
-      }
-    }
-  );
-
-  gsap.fromTo('.join-btn',
-    {
-      opacity: 0,
-      scale: 0.8
-    },
-    {
-      opacity: 1,
-      scale: 1,
-      duration: 0.5,
-      ease: "back.out(1.7)",
-      scrollTrigger: {
-        trigger: '.join-btn',
-        start: "top 90%",
-        toggleActions: "play none none none"
-      }
-    }
-  );
-
   // Hover animations
   document.querySelectorAll('.blog-post').forEach(post => {
     post.addEventListener('mouseenter', () => {
@@ -263,48 +184,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Social media icons hover animations
-  document.querySelectorAll('.social-links a').forEach(link => {
-    link.addEventListener('mouseenter', () => {
-      gsap.to(link, {
-        duration: 0.3,
-        y: -5,
-        scale: 1.1,
-        ease: "power2.out"
-      });
-    });
-
-    link.addEventListener('mouseleave', () => {
-      gsap.to(link, {
-        duration: 0.3,
-        y: 0,
-        scale: 1,
-        ease: "power2.out"
-      });
-    });
-  });
-
-  // Floating elements animation
-  function createFloatingElements() {
+  // Floating cookies animation
+  function createFloatingCookies() {
     const banner = document.querySelector('.banner');
     
     for (let i = 0; i < 6; i++) {
-      const element = document.createElement('div');
-      element.className = `floating-element ${i % 2 === 0 ? 'cookie' : 'muffin'}`;
-      banner.appendChild(element);
+      const cookie = document.createElement('div');
+      cookie.className = 'floating-cookie';
+      banner.appendChild(cookie);
 
       // Random positions
       const x = Math.random() * 100;
       const y = Math.random() * 100;
 
-      gsap.set(element, {
+      gsap.set(cookie, {
         left: `${x}%`,
         top: `${y}%`
       });
 
       // Floating animation
-      gsap.to(element, {
-        opacity: 0.3,
+      gsap.to(cookie, {
+        opacity: 0.4,
         duration: 3,
         delay: i * 0.5,
         yoyo: true,
@@ -315,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
   }
-  
+
   // Navigation animations
   gsap.from('#Navtop li', {
     duration: 0.6,
