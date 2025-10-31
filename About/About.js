@@ -100,6 +100,15 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       "-=0.3"
     );
+    
+    // Banner animation
+    gsap.from('.banner', {
+      duration: 0.7,
+      opacity: 0,
+      y: -30,
+      ease: "power2.out",
+      delay: 0.4
+    });
 
   // About content animations
   gsap.fromTo('.about-heading',

@@ -113,7 +113,8 @@ body {
 .banner img {
   width: 40px;
   height: 40px;
-  margin: 0 10px;
+  margin-left: 15px;
+  border-radius: 50%;
 }
 
 .banner h2 {
@@ -165,16 +166,16 @@ body {
 
 .email:hover {
     transform: scale(1.1) translateY(-2px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 rgba(0, 0, 0, 0.2);
 }
 .instagram:hover {
     transform: scale(1.1) translateY(-2px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 rgba(0, 0, 0, 0.2);
 }
 
 .tiktok:hover {
     transform: scale(1.1) translateY(-2px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 rgba(0, 0, 0, 0.2);
 }
 
 
@@ -319,6 +320,7 @@ footer {
   align-items: center;
   margin: 0;
   position: relative;
+  margin-top: auto;
 }
 
 /* Scroll Top Image Button */

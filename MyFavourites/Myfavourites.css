@@ -10,12 +10,17 @@ html{
   font-style: normal;
 }
 
+
 body {
   font-family: 'Berkshire Swash', cursive;
   margin: 0;
   background-color: #fff;
   color: #000;
   text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
 }
 
 /* Navigation Bar */
@@ -108,34 +113,82 @@ body {
   align-items: center;
   justify-content: flex-start;
   padding: 0 20px;
+  flex-wrap: wrap;
 }
 
 .banner img {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
+  margin-left: 15px;
+  border-radius: 50%;
 }
 
 .banner h2 {
-  position: static;
-  display: flex;
-  padding: 20px 13px;
   color: #000;
   font-family: 'Beth Ellen', cursive;
   font-size: 25px;
   font-weight: bold;
-  text-align: left;
+  margin-left: 20px;
 }
 
-.banner-subtitle p{
-  display: flex;
-  justify-content: flex-end;
-  flex-grow: 1;
-  margin-right: 20px;
+.banner-subtitle{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
 }
 
+.banner-subtitle p {
+  margin: 5px 0 0 0;
+  font-family: 'Orelega One', cursive;
+  font-size: 18px;
+}
 
+/* Empty State */
+.empty-state {
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  padding: 50px 30px;
+  margin: 50px auto;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
 
+.empty-state h3 {
+  font-family: 'Berkshire Swash', cursive;
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #555;
+}
 
+.empty-state p {
+  font-family: 'Palatino Linotype', serif;
+  font-size: 18px;
+  color: #777;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.explore-btn {
+  background-color: #FFC9E2;
+  color: #000;
+  font-family: 'Orelega One', cursive;
+  font-size: 18px;
+  padding: 12px 30px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  box-shadow: 4px 4px 0px #000;
+}
+
+.explore-btn:hover {
+  background-color: #FFA4CE;
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px #000;
+}
 
 
 
@@ -154,6 +207,7 @@ footer {
   align-items: center;
   margin: 0;
   position: relative;
+  margin-top: auto;
 }
 
 /* Scroll Top Image Button */
@@ -181,7 +235,7 @@ footer {
   position: absolute;
   width: 30px;
   height: 30px;
-  background: #B1FAC7;
+  background: #FFA4CE;
   border-radius: 50%;
   opacity: 0;
   pointer-events: none;
@@ -190,4 +244,34 @@ footer {
 /* Burger Menu Hidden (for desktop) */
 .checkbtn {
   display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #Navtop {
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  #Navtop ul {
+    margin-top: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .banner {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .banner img {
+    margin: 10px 0;
+  }
+  
+  .empty-state {
+    padding: 40px 20px;
+    margin: 20px;
+  }
 }

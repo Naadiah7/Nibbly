@@ -112,9 +112,10 @@ body {
 }
 
 .banner img {
-  width: 40px;
-  height: 40px;
-  margin: 0 10px;
+  width: 45px;
+  height: 45px;
+  margin-left: 15px;
+  border-radius: 50%;
 }
 
 .banner h2 {
@@ -126,9 +127,10 @@ body {
 }
 
 .banner-subtitle{
-  display: block;
-  text-align: center;;
-  flex-grow: 1;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
 }
 
 .banner-subtitle p {
@@ -136,6 +138,7 @@ body {
   font-family: 'Orelega One', cursive;
   font-size: 18px;
 }
+
 
 /* Blog Home Content Section */
 .blog-content{
@@ -166,7 +169,7 @@ body {
     font-family: 'Palatino Linotype';
     line-height: 1.6;
     font-size: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     opacity: 0; /* For animation */
     transform: translateY(20px);
 }
@@ -176,7 +179,7 @@ body {
     display: flex;
     flex-direction: column;
     max-width: 900px;
-    margin: 40px auto;
+    margin: 20px auto;
     gap: 25px;
     padding: 0 20px;
 }
@@ -307,6 +310,37 @@ footer {
   align-items: center;
   margin: 0;
   position: relative;
+  margin-top: auto;
+}
+
+/*Go Back Image Button*/
+.go-back{
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  background-color: #6EDF90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.go-back img {
+  width: 40px;
+  height: 40px;
+  border-radius: 0;
+}
+
+.go-back:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.4);
 }
 
 /* Scroll Top Image Button */
@@ -327,6 +361,11 @@ footer {
 .scroll-top:hover {
   transform: scale(1.1);
   box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+
+/* Both button on the bottom of page*/
+body:has(.go-back) .scroll-top {
+  bottom: 85px; 
 }
 
 /* Animation Elements */

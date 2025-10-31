@@ -15,7 +15,7 @@ scrollBtn.addEventListener("click", () => {
 
 // GSAP Animations
 document.addEventListener('DOMContentLoaded', function() {
-  // Register ScrollTrigger plugin
+
   gsap.registerPlugin(ScrollTrigger);
 
   createFloatingCookies();
@@ -233,5 +233,14 @@ document.addEventListener('DOMContentLoaded', function() {
     scale: 0,
     ease: "back.out(1.7)",
     delay: 0.2
+  });
+
+  // Banner animation
+  gsap.from('.banner', {
+    duration: 0.7,
+    opacity: 0,
+    y: -30,
+    ease: "power2.out",
+    delay: 0.4
   });
 });
