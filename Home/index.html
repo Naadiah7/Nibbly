@@ -17,6 +17,7 @@
 
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/MotionPathPlugin.min.js"></script>
 
   <title>Nibbly</title>
@@ -62,33 +63,34 @@
       <h2 class="banner-title">Tiny Bites, Big Delights</h2>
     </section>
 
-    <!-- Featured Recipes + Recipe Cards + Recipe Title Buttons-->
-  <section class="featured">
-    <h2>Featured Recipes</h2>
-    <div class="recipe-container">
-      <div class="recipe-card">
-        <img src="Images/pavlova.jpg" alt="Pavlova dessert with cream and fruits">
-        <div class="recipe-info">
-          <h3>Pavlova</h3>
-          <a class="recipe-btn" href="">View Recipe</a>
+    <!-- Featured Recipes + Recipe Cards + Recipe Buttons-->
+<section class="featured">
+      <h3>Featured Recipes</h3>
+      <div class="recipe-container">
+        <div class="recipe-card">
+          <img src="Images/pavlova.jpg" alt="Pavlova">
+          <div class="recipe-content">
+            <p class="recipe-description">A light meringue dessert, topped with fresh fruits and cream.</p>
+            <a class="recipe-btn" href="">Pavlova Recipe</a>
+          </div>
+        </div>
+        <div class="recipe-card">
+          <img src="Images/brownies.jpg" alt="Brownies">
+          <div class="recipe-content">
+            <p class="recipe-description">Rich, fudgy chocolate squares with a crackly top and dense.</p>
+            <a class="recipe-btn" href="">Brownies Recipe</a>
+          </div>
+        </div>
+        <div class="recipe-card">
+          <img src="Images/redvelvet.jpg" alt="Red Velvet Cupcakes">
+          <div class="recipe-content">
+            <p class="recipe-description">Velvety red cocoa cupcakes with cream cheese frosting.</p>
+            <a class="recipe-btn" href="">Red Velvet Cupcakes Recipe</a>
+          </div>
         </div>
       </div>
-      <div class="recipe-card">
-        <img src="Images/brownies.jpg" alt="Chocolate brownies with nuts">
-        <div class="recipe-info">
-          <h3>Brownies</h3>
-          <a class="recipe-btn" href="">View Recipe</a>
-        </div>
-      </div>
-      <div class="recipe-card">
-        <img src="Images/redvelvet.jpg" alt="Red velvet cupcakes with cream cheese frosting">
-        <div class="recipe-info">
-          <h3>Red Velvet Cupcakes</h3>  
-          <a class="recipe-btn" href="">View Recipe</a>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
+
   </main>
 
   <!-- Footer -->
@@ -99,7 +101,7 @@
   </footer>
 
   <!-- Scroll to Top -->
-  <img src="/Images/up.png" alt="Scroll to top" id="scrollTopBtn" class="scroll-top">
+    <!-- <img src="/Images/up.png" alt="Scroll to top" id="scrollTopBtn" class="scroll-top">-->
 
   <script src="/Home/app.js"></script>
 </body>
