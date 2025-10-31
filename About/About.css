@@ -68,7 +68,7 @@ body {
 #Navtop ul li a:hover,
 #Navtop ul li a.active {
   color: #000;
-  background-color: #71C9FF;
+  background-color: #B0E1FF;
 }
 
 /* --- Search Button --- */
@@ -103,7 +103,7 @@ body {
   width: 97.35%;
   height: 110px;
   margin: 0 auto;
-  background-color: #71C9FF;
+  background-color: #B0E1FF;
   border-radius: 15px;
   align-items: center;
   justify-content: flex-start;
@@ -228,7 +228,7 @@ body {
     display: flex;
     gap: 30px;
     align-items: center;
-    background-color: #c8eaff;
+    background-color: #ceecff;
     padding: 40px 20px;
     border-radius: 15px;
     margin: 40px auto;
@@ -289,7 +289,7 @@ body {
 
 /* --- Join Button --- */
 .join-btn {
-    background-color: #71C9FF;
+    background-color: #B0E1FF;
     color: #000;
     font-family: 'Orelega One', cursive;
     font-size: 20px;
@@ -306,7 +306,7 @@ body {
 }
 
 .join-btn:hover {
-    background-color: #B0E1FF;
+    background-color: #71C9FF;
     transform: translate(1px, 1px);
     box-shadow: 2px 2px 0px #000;
 }
@@ -348,7 +348,7 @@ footer {
   position: absolute;
   width: 30px;
   height: 30px;
-  background: #B0E1FF;
+  background: #71C9FF;
   border-radius: 50%;
   opacity: 0;
   pointer-events: none;

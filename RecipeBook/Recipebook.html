@@ -8,7 +8,7 @@
   <meta name="author" content="Naadirah Karim">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link rel="stylesheet" href="/normalize.css" />
+  <link rel="stylesheet" href="../css/normalize.css" />
   <link rel="stylesheet" href="/RecipeBook/Recipebook.css"/>
   <link rel="shortcut icon" href="/Images/Logo.png">
 
@@ -31,32 +31,62 @@
       </label>
 
       <div class="brand">
-        <a href="/Home/index.html">
+        <a href="../index.html">
             <img src="Images/Logo.png" alt="Nibbly Logo" id="logo" />
         </a>
         <h1 class="site-title">Nibbly</h1>
       </div>
 
+<!--Navigation Bar-->
       <ul>
-        <li><a href="/Home/index.html">Home</a></li>
-        <li><a href="/RecipeBook/Recipebook.html"class="active">Recipe Book</a></li>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="/RecipeBook/Recipebook.html" class="active">Recipe Book</a></li>
         <li><a href="/MyFavourites/Myfavourites.html">My Favourites</a></li>
         <li><a href="/Blog/Blog.html">Blog</a></li>
         <li><a href="/About/About.html">About</a></li>
       </ul>
+
+    <!-- Search button -->
+      <div class="search-btn">
+        <a href="/Search/search.html" class="searchButton" >
+          <img src="Images/search.png" alt="Search" />
+        </a>
+      </div>
     </nav>
   </header>
-    
 
+  <main>
+
+    <!-- Banner -->
+    <section class="banner">
+      <h2>Recipe Book</h2>
+      <img src="Images/Cupcake.png" alt="Pixel cupcake">
+
+      <!-- Social Media Links  -->
+      <div class="social-links">
+          <a href="#" class="email">
+            <img src="Images/mail.png" alt="email link">
+          </a>
+          <a href="#" class="instagram">
+            <img src="Images/instagram.png" alt="instagram link">
+          </a>
+          <a href="#" class="tiktok">
+            <img src="Images/social-media.png" alt="tiktok link">
+          </a>
+      </div>
+    </section>
+        
+  </main>
+  
   <!-- Footer -->
   <footer>
     <section class="footerbottom">
-      <p>Copyright &copy;2025 | Designed by <span class="designer">Naadirah Karim</span></p>
+      <p>Copyright &copy;2025 | Designed by Naadirah Karim</p>
     </section>
   </footer>
 
   <!-- Scroll to Top -->
-  <button id="scrollTopBtn">↑</button>
+  <img src="/Images/up.png" alt="Scroll to top" id="scrollTopBtn" class="scroll-top">
 
     <script src="/RecipeBook/Recipebook.js"></script>    
 </body>

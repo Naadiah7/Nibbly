@@ -68,7 +68,7 @@ body {
 #Navtop ul li a:hover,
 #Navtop ul li a.active {
   color: #000;
-  background-color: #6EDF90;
+  background-color: #B1FAC7;
 }
 
 /* --- Search Button --- */
@@ -103,7 +103,7 @@ body {
   width: 97.35%;
   height: 110px;
   margin: 0 auto;
-  background-color: #6EDF90;
+  background-color: #B1FAC7;
   border-radius: 15px;
   align-items: center;
   justify-content: flex-start;
@@ -190,7 +190,7 @@ body {
     align-items: center;
     justify-content: space-between;
 
-    background-color: #ceffdc;
+    background-color: #d9ffe4;
     border-radius: 15px;
     padding: 25px;
     text-align: left;
@@ -257,25 +257,30 @@ body {
 }
 
 .read-more-btn {
-    background-color: #6EDF90; 
+    background-color: #B1FAC7; 
     color: #000;
     text-decoration: none;
     font-size: 18px;
     font-family: 'Orelega One', cursive;
     padding: 15px 15px;
-    border-radius: 15px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    box-shadow: 4px 4px 0px #000;
+    transition: all 0.3s ease;
     text-align: center;
     min-width: 120px;
     flex-shrink: 0;
     margin-top: 0;
-    transition: all 0.3s ease;
     opacity: 0; /* For animation */
     transform: scale(0.8);
 }
 
 .read-more-btn:hover {
-    background-color: #B1FAC7;
-    transform: scale(1.05);
+  background-color: #6EDF90;
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px #000;
 }
 
 /*Actual Blog pages Styling*/
@@ -373,7 +378,7 @@ body:has(.go-back) .scroll-top {
   position: absolute;
   width: 30px;
   height: 30px;
-  background: #B1FAC7;
+  background: #6EDF90;
   border-radius: 50%;
   opacity: 0;
   pointer-events: none;
