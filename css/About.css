@@ -4,8 +4,8 @@ html{
 
 @font-face {
   font-family: 'Palatino Linotype';
-  src: url('/fonts/palatinolinotype_roman.woff2') format('woff2'),
-       url('/fonts/palatinolinotype_roman.woff') format('woff');
+  src: url('../fonts/palatinolinotype_roman.woff') format('woff2'),
+       url('../fonts/palatinolinotype_roman.woff2') format('woff');
   font-weight: normal;
   font-style: normal;
 }
