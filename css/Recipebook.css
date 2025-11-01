@@ -139,7 +139,7 @@ body {
 
 #recipeSearch {
   padding: 12px 15px;
-  border: 2px solid #E9C4F9;
+  border: 2px solid #5DD5C9;
   border-radius: 25px 0 0 25px;
   width: 70%;
   font-size: 16px;
@@ -148,8 +148,8 @@ body {
 
 #searchBtn {
   padding: 12px 25px;
-  background-color: #E9C4F9;
-  border: 2px solid #E9C4F9;
+  background-color: #B6FFF8;
+  border: 2px solid #B6FFF8;
   border-radius: 0 25px 25px 0;
   cursor: pointer;
   font-family: 'Orelega One', sans-serif;
@@ -158,44 +158,7 @@ body {
 }
 
 #searchBtn:hover {
-  background-color: #d8a9f0;
-}
-
-/* Search Section */
-.search-section {
-  padding: 20px;
-  background-color: #f9f9f9;
-}
-
-.search-container {
-  display: flex;
-  justify-content: center;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-#recipeSearch {
-  padding: 12px 15px;
-  border: 2px solid #E9C4F9;
-  border-radius: 25px 0 0 25px;
-  width: 70%;
-  font-size: 16px;
-  outline: none;
-}
-
-#searchBtn {
-  padding: 12px 25px;
-  background-color: #E9C4F9;
-  border: 2px solid #E9C4F9;
-  border-radius: 0 25px 25px 0;
-  cursor: pointer;
-  font-family: 'Orelega One', sans-serif;
-  font-size: 16px;
-  transition: background-color 0.3s;
-}
-
-#searchBtn:hover {
-  background-color: #d8a9f0;
+  background-color: #5DD5C9;
 }
 
 /* Categories Section */
@@ -322,7 +285,7 @@ body {
 
 .view-recipe-btn {
   display: inline-block;
-  background-color: #E9C4F9;
+  background-color: #B6FFF8;
   color: #000;
   padding: 8px 15px;
   border-radius: 20px;
@@ -334,18 +297,261 @@ body {
 }
 
 .view-recipe-btn:hover {
-  background-color: #d8a9f0;
+  background-color: #5DD5C9;
 }
 
 /*Recipe Details Styling*/
+.recipe-details {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
+.recipe-header {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 40px;
+  align-items: flex-start;
+}
 
+.recipe-image {
+  flex: 1;
+}
 
+.recipe-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
 
+.recipe-info {
+  flex: 1;
+}
 
+.recipe-info h1 {
+  font-family: 'Beth Ellen', cursive;
+  font-size: 36px;
+  margin-bottom: 15px;
+  color: #333;
+}
 
+.recipe-info p {
+  font-family: 'Palatino Linotype', serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 25px;
+}
 
+.recipe-meta-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+}
 
+.meta-item {
+  background-color: #f6f2ff;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.meta-label {
+  display: block;
+  font-family: 'Orelega One', sans-serif;
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.meta-value {
+  display: block;
+  font-family: 'Beth Ellen', cursive;
+  font-size: 18px;
+  color: #333;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.action-btn {
+  padding: 12px 25px;
+  background-color: #E9C4F9;
+  border: none;
+  border-radius: 25px;
+  font-family: 'Orelega One', sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.action-btn:hover {
+  background-color: #d8a9f0;
+}
+
+.recipe-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+}
+
+.ingredients-section,
+.instructions-section {
+  background-color: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.ingredients-section h2,
+.instructions-section h2 {
+  font-family: 'Beth Ellen', cursive;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 2px solid #E9C4F9;
+  padding-bottom: 10px;
+}
+
+#ingredientsList {
+  list-style: none;
+  padding: 0;
+}
+
+#ingredientsList li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-family: 'Palatino Linotype', serif;
+  font-size: 16px;
+}
+
+#instructionsList {
+  padding-left: 20px;
+}
+
+#instructionsList li {
+  padding: 12px 0;
+  font-family: 'Palatino Linotype', serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  padding: 40px;
+}
+
+/*Filter system*/
+.search-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.filter-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f6f2ff;
+  border-radius: 10px;
+  justify-content: center;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+}
+
+.filter-group label {
+  font-family: 'Beth Ellen', cursive;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.filter-select, .filter-input {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-family: 'Palatino Linotype', serif;
+}
+
+.search-button {
+  background-color: #E9C4F9;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Berkshire Swash', cursive;
+  transition: background-color 0.3s;
+  align-self: flex-end;
+}
+
+.search-button:hover {
+  background-color: #FFC9E2;
+}
+
+.recipe-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.favorite-btn, .view-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.3s;
+}
+
+.favorite-btn:hover, .view-btn:hover {
+  transform: scale(1.1);
+}
+
+.favorite-btn i {
+  color: #ccc;
+}
+
+.favorite-btn.active i {
+  color: #FFC9E2;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  font-family: 'Beth Ellen', cursive;
+  grid-column: 1 / -1;
+}
+
+.no-results {
+  text-align: center;
+  padding: 40px;
+  font-family: 'Beth Ellen', cursive;
+  color: #555;
+  grid-column: 1 / -1;
+}
+
+.error-message {
+  background-color: #ffe6e6;
+  color: #cc0000;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 20px 0;
+  text-align: center;
+  font-family: 'Palatino Linotype', serif;
+  grid-column: 1 / -1;
+}
 
 /* Footer */
 footer {
@@ -421,5 +627,23 @@ footer {
   
   #recipeSearch {
     width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .recipe-header {
+    flex-direction: column;
+  }
+  
+  .recipe-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .recipe-meta-details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .action-buttons {
+    flex-direction: column;
   }
 }

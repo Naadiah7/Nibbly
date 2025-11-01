@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Dessert Recipe Webapp">
+  <meta name="keywords" content="HTML, CSS, JavaScript, GSAP">
+  <meta name="author" content="Naadirah Karim">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="../css/normalize.css" />
+  <link rel="stylesheet" href="../css/Recipebook.css"/>
+  <link rel="shortcut icon" href="../Images/Logo.png">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Beth+Ellen&family=Orelega+One&display=swap" rel="stylesheet">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>  
+
+  <title>Nibbly-Recipe Details</title>
+</head>
+<body>
+
+<!-- Header Navigation -->
+  <header>
+    <nav id="Navtop">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+
+      <div class="brand">
+        <a href="../index.html">
+            <img src="../Images/Logo.png" alt="Nibbly Logo" id="logo" />
+        </a>
+        <h1 class="site-title">Nibbly</h1>
+      </div>
+
+<!--Navigation Bar-->
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../pages/Recipebook.html">Recipe Book</a></li>
+      <li><a href="../pages/Myfavourites.html">My Favourites</a></li>
+      <li><a href="../pages/Blog.html">Blog</a></li>
+      <li><a href="../pages/About.html">About</a></li>
+    </ul>
+
+    <!-- Search button -->
+      <div class="search-btn">
+        <a href="../pages/Search.html" class="searchButton" >
+          <img src="../Images/search.png" alt="Search" />
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Recipe Details Section -->
+    <section class="recipe-details">
+      <div class="recipe-header">
+        <div class="recipe-image">
+          <img id="detailImage" src="" alt="Recipe Image">
+        </div>
+        <div class="recipe-info">
+          <h1 id="detailTitle">Recipe Title</h1>
+          <p id="detailDescription">Recipe description will appear here.</p>
+          <div class="recipe-meta-details">
+            <div class="meta-item">
+              <span class="meta-label">Prep Time</span>
+              <span id="prepTime" class="meta-value">--</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Cook Time</span>
+              <span id="cookTime" class="meta-value">--</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Servings</span>
+              <span id="servings" class="meta-value">--</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Difficulty</span>
+              <span id="difficulty" class="meta-value">--</span>
+            </div>
+          </div>
+          <div class="action-buttons">
+            <button id="saveRecipe" class="action-btn">Save to Favorites</button>
+            <button id="printRecipe" class="action-btn">Print Recipe</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="recipe-content">
+        <div class="ingredients-section">
+          <h2>Ingredients</h2>
+          <ul id="ingredientsList">
+            <!-- Ingredients will be populated here -->
+          </ul>
+        </div>
+        
+        <div class="instructions-section">
+          <h2>Instructions</h2>
+          <ol id="instructionsList">
+            <!-- Instructions will be populated here -->
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer>
+    <section class="footerbottom">
+      <p>Copyright &copy;2025 | Designed by Naadirah Karim</p>
+    </section>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <img src="../Images/up.png" alt="Scroll to top" id="scrollTopBtn" class="scroll-top">
+
+  <script src="../js/Recipedetails.js"></script>    
+</body>
+</html>

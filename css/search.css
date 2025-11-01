@@ -133,16 +133,185 @@ body {
   margin-right: 20px;
 }
 
+/* Search Section */
+.search-bar {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
 
+.search-box {
+  display: flex;
+  justify-content: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
 
+#recipeSearch {
+  padding: 12px 15px;
+  border: 2px solid #5DD5C9;
+  border-radius: 25px 0 0 25px;
+  width: 70%;
+  font-size: 16px;
+  outline: none;
+}
 
+#searchBtn {
+  padding: 12px 25px;
+  background-color: #B6FFF8;
+  border: 2px solid #B6FFF8;
+  border-radius: 0 25px 25px 0;
+  cursor: pointer;
+  font-family: 'Orelega One', sans-serif;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
 
+#searchBtn:hover {
+  background-color: #5DD5C9;
+}
 
+.search-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
+.filter-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f6f2ff;
+  border-radius: 10px;
+  justify-content: center;
+}
 
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+}
 
+.filter-group label {
+  font-family: 'Beth Ellen', cursive;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
 
+.filter-select, .filter-input {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-family: 'Palatino Linotype', serif;
+}
 
+.search-button {
+  background-color: #E9C4F9;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Berkshire Swash', cursive;
+  transition: background-color 0.3s;
+  align-self: flex-end;
+}
+
+.search-button:hover {
+  background-color: #FFC9E2;
+}
+
+.results-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.recipe-card {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+}
+
+.recipe-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.recipe-info {
+  padding: 15px;
+}
+
+.recipe-title {
+  font-family: 'Beth Ellen', cursive;
+  font-size: 18px;
+  margin: 0 0 10px 0;
+}
+
+.recipe-details {
+  font-family: 'Palatino Linotype', serif;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.recipe-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.favorite-btn, .view-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.3s;
+}
+
+.favorite-btn:hover, .view-btn:hover {
+  transform: scale(1.1);
+}
+
+.favorite-btn i {
+  color: #ccc;
+}
+
+.favorite-btn.active i {
+  color: #FFC9E2;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  font-family: 'Beth Ellen', cursive;
+}
+
+.no-results {
+  text-align: center;
+  padding: 40px;
+  font-family: 'Beth Ellen', cursive;
+  color: #555;
+}
+
+.error-message {
+  background-color: #ffe6e6;
+  color: #cc0000;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 20px 0;
+  text-align: center;
+  font-family: 'Palatino Linotype', serif;
+}
+    
 
 
 /* Footer */
@@ -190,4 +359,25 @@ footer {
 /* Burger Menu Hidden (for desktop) */
 .checkbtn {
   display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .filter-section {
+    flex-direction: column;
+  }
+  
+  .filter-group {
+    width: 100%;
+  }
+  
+  .results-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .results-container {
+    grid-template-columns: 1fr;
+  }
 }

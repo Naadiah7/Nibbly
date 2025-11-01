@@ -43,7 +43,7 @@
 
     <!-- Search button -->
       <div class="search-btn">
-        <a href="../pages/Search.html"  class="active" class="searchButton" >
+        <a href="../pages/Search.html" class="active searchButton" >
           <img src="../Images/search.png" alt="Search" />
         </a>
       </div>
@@ -51,13 +51,63 @@
   </header>
 
   <main>
-    <!-- search bar -->
-     <div class="search-bar" id="searchBar">
-        <input type="text" placeholder="Search recipes..." />
+    <!-- Search Bar -->
+    <section class="search-bar">
+      <div class="search-box">
+        <input type="text" id="recipeSearch" placeholder="Search for desserts...">
+        <button id="searchBtn">Search</button>
+      </div>
+    </section>    
+    
+    <div class="search-container">
+      <!-- Filter section -->
+      <div class="filter-section">
+        <div class="filter-group">
+          <label for="dietFilter">Diet</label>
+          <select id="dietFilter" class="filter-select">
+            <option value="">Any</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="vegan">Vegan</option>
+            <option value="glutenFree">Gluten Free</option>
+            <option value="dairyFree">Dairy Free</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="typeFilter">Dessert Type</label>
+          <select id="typeFilter" class="filter-select">
+            <option value="">Any</option>
+            <option value="cake">Cake</option>
+            <option value="cookie">Cookie</option>
+            <option value="pastry">Pastry</option>
+            <option value="breakfast">Breakfast Dessert</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="ingredientFilter">Ingredient</label>
+          <input type="text" id="ingredientFilter" class="filter-input" placeholder="e.g. chocolate" />
+        </div>
+        
+        <div class="filter-group">
+          <label for="timeFilter">Max Prep Time</label>
+          <select id="timeFilter" class="filter-select">
+            <option value="">Any</option>
+            <option value="15">15 min</option>
+            <option value="30">30 min</option>
+            <option value="45">45 min</option>
+            <option value="60">60+ min</option>
+          </select>
+        </div>
+        
+        <button id="searchBtn" class="search-button">Search</button>
+      </div>
+      
+      <!-- Results section -->
+      <div id="resultsContainer" class="results-container">
+        <!-- Results will be present here by JavaScript -->
+      </div>
     </div>
-
-
-
   </main>
   
   <!-- Footer -->

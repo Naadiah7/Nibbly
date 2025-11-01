@@ -70,6 +70,49 @@
       </div>
     </section>    
     
+    <!-- Advanced Search Filters -->
+    <section class="filter-section">
+      <div class="filter-group">
+        <label for="dietFilter">Diet</label>
+        <select id="dietFilter" class="filter-select">
+          <option value="">Any</option>
+          <option value="vegetarian">Vegetarian</option>
+          <option value="vegan">Vegan</option>
+          <option value="glutenFree">Gluten Free</option>
+          <option value="dairyFree">Dairy Free</option>
+        </select>
+      </div>
+      
+      <div class="filter-group">
+        <label for="typeFilter">Dessert Type</label>
+        <select id="typeFilter" class="filter-select">
+          <option value="">Any</option>
+          <option value="cake">Cake</option>
+          <option value="cookie">Cookie</option>
+          <option value="pastry">Pastry</option>
+          <option value="breakfast">Breakfast Dessert</option>
+        </select>
+      </div>
+      
+      <div class="filter-group">
+        <label for="ingredientFilter">Ingredient</label>
+        <input type="text" id="ingredientFilter" class="filter-input" placeholder="e.g. chocolate" />
+      </div>
+      
+      <div class="filter-group">
+        <label for="timeFilter">Max Prep Time</label>
+        <select id="timeFilter" class="filter-select">
+          <option value="">Any</option>
+          <option value="15">15 min</option>
+          <option value="30">30 min</option>
+          <option value="45">45 min</option>
+          <option value="60">60+ min</option>
+        </select>
+      </div>
+      
+      <button id="advancedSearchBtn" class="search-button">Apply Filters</button>
+    </section>
+    
     <!-- Dessert Categories -->
     <section class="categories">
       <h2>Dessert Categories</h2>
