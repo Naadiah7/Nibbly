@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Dessert Recipe Webapp">
+  <meta name="keywords" content="HTML, CSS, JavaScript, GSAP">
+  <meta name="author" content="Naadirah Karim">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../css/normalize.css" />
+  <link rel="stylesheet" href="../css/Blog.css"/>
+  <link rel="shortcut icon" href="../Images/Logo.png">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Beth+Ellen&family=Orelega+One&display=swap" rel="stylesheet">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>  
+
+  <title>Blog</title>
+</head>
+<body>
+
+<!-- Header Navigation -->
+<header>
+  <nav id="Navtop">
+    <label for="check" class="checkbtn">
+      <i class="fas fa-bars"></i>
+    </label>
+
+    <div class="brand">
+      <a href="../index.html">
+          <img src="../Images/Logo.png" alt="Nibbly Logo" id="logo" />
+      </a>
+      <h1 class="site-title">Nibbly</h1>
+    </div>
+
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../pages/Recipebook.html">Recipe Book</a></li>
+      <li><a href="../pages/Myfavourites.html">My Favourites</a></li>
+      <li><a href="../pages/Blog.html" class="active">Blog</a></li>
+      <li><a href="../pages/About.html">About</a></li>
+    </ul>
+
+    <!-- Search button -->
+    <div class="search-btn">
+      <a href="../pages/Search.html" class="searchButton" >
+        <img src="../Images/search.png" alt="Search" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- Blog Banner -->
+  <section class="blog-banner">
+    <div id="blog1-banner" class="blog-banner-content hidden">
+      <img src="../Images/capmuffin.jpg" alt="Cappuccino Muffins">
+      <h2>Wake Up to Flavor</h2>
+    </div>
+    <div id="blog2-banner" class="blog-banner-content hidden">
+      <img src="../Images/redvelvet.jpg" alt="Red Velvet Cupcakes">
+      <h2>Classic Indulgence</h2>
+    </div>
+    <div id="blog3-banner" class="blog-banner-content hidden">
+      <img src="../Images/Cheesecake.jpeg" alt="Berry Cheesecake">
+      <h2>A Slice of Berry Bliss</h2>
+    </div>
+  </section>
+
+    <!-- Blog Details Content -->
+  <section class="blog-details-container">
+    
+    <!-- Blog 1 Details: Cappuccino Muffins -->
+    <article id="blog1" class="blog-details-content hidden">
+      <div class="blog-details-date">1 September 2025</div>
+      <p class="blog-details-recipe">Easy Cappuccino Muffins Recipe</p>
+      <div class="blog-details-text">
+        <p>Start your morning with these delightful cappuccino muffins that combine the rich flavor of coffee with soft, moist muffin texture. Perfect for breakfast or as an afternoon pick-me-up.</p>
+        
+        <h3>Ingredients:</h3>
+        <ul>
+          <li>2 cups all-purpose flour</li>
+          <li>1/2 cup granulated sugar</li>
+          <li>1/4 cup brown sugar</li>
+          <li>2 tsp baking powder</li>
+          <li>1/2 tsp salt</li>
+          <li>1 tbsp instant coffee granules</li>
+          <li>1 cup milk</li>
+          <li>1/2 cup unsalted butter, melted</li>
+          <li>1 large egg</li>
+          <li>1 tsp vanilla extract</li>
+        </ul>
+        
+        <h3>Instructions:</h3>
+        <ol>
+          <li>Preheat oven to 375°F (190°C) and line a muffin tin with paper liners.</li>
+          <li>In a large bowl, whisk together flour, sugars, baking powder, salt, and instant coffee.</li>
+          <li>In another bowl, mix milk, melted butter, egg, and vanilla extract.</li>
+          <li>Combine wet and dry ingredients, stirring until just mixed (do not overmix).</li>
+          <li>Divide batter evenly among muffin cups, filling each about 2/3 full.</li>
+          <li>Bake for 18-20 minutes or until a toothpick inserted comes out clean.</li>
+          <li>Cool in pan for 5 minutes, then transfer to a wire rack to cool completely.</li>
+        </ol>
+        
+        <h3>Tips:</h3>
+        <p>For an extra coffee kick, dissolve the instant coffee in 1 tablespoon of hot water before adding to the wet ingredients. You can also add chocolate chips or nuts for texture variation.</p>
+      </div>
+    </article>
+
+    <!-- Blog 2 Details: Red Velvet Cupcakes -->
+    <article id="blog2" class="blog-details-content hidden">
+      <h2 class="blog-details-title">Classic Indulgence</h2>
+      <div class="blog-details-date">8 September 2025</div>
+      <p class="blog-details-recipe">Red Velvet Cupcakes with Cream Cheese Frosting Recipe</p>
+      <div class="blog-details-text">
+        <p>Discover the secrets to creating perfect red velvet cupcakes with our step-by-step guide. Learn how to achieve that signature velvety texture and rich color.</p>
+        
+        <h3>Ingredients:</h3>
+        <ul>
+          <li>2 1/2 cups all-purpose flour</li>
+          <li>1 1/2 cups granulated sugar</li>
+          <li>1 tsp baking soda</li>
+          <li>1 tsp salt</li>
+          <li>1 tsp cocoa powder</li>
+          <li>1 1/2 cups vegetable oil</li>
+          <li>1 cup buttermilk</li>
+          <li>2 large eggs</li>
+          <li>2 tbsp red food coloring</li>
+          <li>1 tsp white vinegar</li>
+          <li>1 tsp vanilla extract</li>
+        </ul>
+        
+        <h3>Cream Cheese Frosting:</h3>
+        <ul>
+          <li>8 oz cream cheese, softened</li>
+          <li>1/2 cup unsalted butter, softened</li>
+          <li>4 cups powdered sugar</li>
+          <li>1 tsp vanilla extract</li>
+        </ul>
+        
+        <h3>Instructions:</h3>
+        <ol>
+          <li>Preheat oven to 350°F (175°C) and line a muffin tin with paper liners.</li>
+          <li>In a medium bowl, whisk together flour, sugar, baking soda, salt, and cocoa powder.</li>
+          <li>In a large bowl, mix oil, buttermilk, eggs, food coloring, vinegar, and vanilla.</li>
+          <li>Gradually add dry ingredients to wet ingredients, mixing until smooth.</li>
+          <li>Divide batter evenly among muffin cups, filling each about 2/3 full.</li>
+          <li>Bake for 18-20 minutes or until a toothpick inserted comes out clean.</li>
+          <li>Cool completely before frosting.</li>
+        </ol>
+        
+        <h3>For the Frosting:</h3>
+        <ol>
+          <li>Beat cream cheese and butter until smooth and creamy.</li>
+          <li>Gradually add powdered sugar and vanilla, beating until light and fluffy.</li>
+          <li>Frost cooled cupcakes and enjoy!</li>
+        </ol>
+        
+        <h3>Tips:</h3>
+        <p>For the best red color, use gel food coloring rather than liquid. Don't overmix the batter once the dry ingredients are added to maintain the tender texture.</p>
+      </div>
+    </article>
+
+    <!-- Blog 3 Details: Berry Cheesecake -->
+    <article id="blog3" class="blog-details-content hidden">
+      <h2 class="blog-details-title">A Slice of Berry Bliss</h2>
+      <div class="blog-details-date">15 September 2025</div>
+      <p class="blog-details-recipe">Creamy Berry Cheesecake Recipe</p>
+      <div class="blog-details-text">
+        <p>Indulge in this creamy berry cheesecake that combines a buttery biscuit base with smooth cream cheese filling and fresh blueberry topping. A true crowd-pleaser!</p>
+        
+        <h3>Ingredients:</h3>
+        
+        <h4>Crust:</h4>
+        <ul>
+          <li>2 cups graham cracker crumbs</li>
+          <li>1/2 cup unsalted butter, melted</li>
+          <li>1/4 cup granulated sugar</li>
+        </ul>
+        
+        <h4>Filling:</h4>
+        <ul>
+          <li>24 oz cream cheese, softened</li>
+          <li>1 cup granulated sugar</li>
+          <li>1 cup sour cream</li>
+          <li>3 large eggs</li>
+          <li>1 tsp vanilla extract</li>
+          <li>2 tbsp all-purpose flour</li>
+        </ul>
+        
+        <h4>Blueberry Topping:</h4>
+        <ul>
+          <li>2 cups fresh blueberries</li>
+          <li>1/4 cup granulated sugar</li>
+          <li>1 tbsp cornstarch</li>
+          <li>1 tbsp lemon juice</li>
+          <li>1/4 cup water</li>
+        </ul>
+        
+        <h3>Instructions:</h3>
+        <ol>
+          <li>Preheat oven to 325°F (160°C).</li>
+          <li>Mix graham cracker crumbs, melted butter, and sugar. Press into the bottom of a 9-inch springform pan.</li>
+          <li>Bake crust for 10 minutes, then remove from oven and let cool.</li>
+          <li>In a large bowl, beat cream cheese and sugar until smooth.</li>
+          <li>Add sour cream, eggs (one at a time), vanilla, and flour, mixing until just combined.</li>
+          <li>Pour filling over the crust and smooth the top.</li>
+          <li>Bake for 50-60 minutes or until the center is almost set.</li>
+          <li>Turn off the oven and let the cheesecake cool in the oven with the door slightly ajar for 1 hour.</li>
+          <li>Refrigerate for at least 4 hours or overnight.</li>
+        </ol>
+        
+        <h3>For the Blueberry Topping:</h3>
+        <ol>
+          <li>In a saucepan, combine blueberries, sugar, cornstarch, lemon juice, and water.</li>
+          <li>Cook over medium heat, stirring constantly, until the mixture thickens and blueberries release their juices.</li>
+          <li>Cool completely before spreading over the chilled cheesecake.</li>
+        </ol>
+        
+        <h3>Tips:</h3>
+        <p>Make sure all ingredients are at room temperature before mixing to prevent lumps in the filling. For a perfectly smooth top, run a knife around the edge of the cheesecake after baking before cooling.</p>
+      </div>
+    </article>
+  </section>
+</main>
+
+  <!-- Footer -->
+  <footer>
+    <section class="footerbottom">
+      <p>Copyright &copy;2025 | Designed by Naadirah Karim</p>
+    </section>
+  </footer>
+
+    <!-- Go Back Button -->
+  <a href="../pages/Blog.html" class="go-back">
+    <img src="../Images/back.png" alt="Go back to blog" />
+  </a>
+
+  <!-- Scroll to Top -->
+  <img src="../Images/up.png" alt="Scroll to top" id="scrollTopBtn" class="scroll-top">
+
+    <script src="../js/Blog.js"></script>
+</body>
+</html>
