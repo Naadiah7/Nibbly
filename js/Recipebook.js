@@ -1,7 +1,3 @@
-  
-  
-  
-  
 // Scroll-to-top functionality
 const scrollBtn = document.getElementById("scrollTopBtn");
 
@@ -17,37 +13,231 @@ scrollBtn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// Subscribe form functionality
+// Recipe Book Functionality
 document.addEventListener('DOMContentLoaded', function() {
-  const subscribeForm = document.querySelector('.subscribe-form');
-  
-  if (subscribeForm) {
-    subscribeForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Get form inputs
-      const nameInput = this.querySelector('input[type="text"]');
-      const emailInput = this.querySelector('input[type="email"]');
-      
-      // Simple validation
-      if (!nameInput.value.trim() || !emailInput.value.trim()) {
-        alert('Please fill in all fields before subscribing.');
-        return;
+  // Initialize recipe data
+  const recipes = {
+    cakes: [
+      {
+        id: 1,
+        title: "Classic Vanilla Cake",
+        description: "A light and fluffy vanilla cake perfect for any celebration.",
+        image: "../Images/vanilla-cake.jpg",
+        prepTime: "30 mins",
+        cookTime: "35 mins"
+      },
+      {
+        id: 2,
+        title: "Chocolate Fudge Cake",
+        description: "Rich and decadent chocolate cake with fudge frosting.",
+        image: "../Images/chocolate-cake.jpg",
+        prepTime: "25 mins",
+        cookTime: "40 mins"
       }
-      
-      // Email validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(emailInput.value)) {
-        alert('Please enter a valid email address.');
-        return;
+    ],
+    cheesecakes: [
+      {
+        id: 3,
+        title: "New York Cheesecake",
+        description: "Creamy and dense classic New York style cheesecake.",
+        image: "../Images/ny-cheesecake.jpg",
+        prepTime: "20 mins",
+        cookTime: "60 mins"
+      },
+      {
+        id: 4,
+        title: "Blueberry Cheesecake",
+        description: "Smooth cheesecake with a fresh blueberry topping.",
+        image: "../Images/blueberry-cheesecake.jpg",
+        prepTime: "25 mins",
+        cookTime: "55 mins"
       }
-      
-      // Show success message
-      alert('Thank you for subscribing to Nibbly! 🎉\n\nWelcome to the Nibblets community! You\'ll receive updates on new recipes and baking tips.');
-      
-      // Reset form
-      this.reset();
+    ],
+    cookies: [
+      {
+        id: 5,
+        title: "Chocolate Chip Cookies",
+        description: "Classic cookies with melty chocolate chips.",
+        image: "../Images/choc-chip-cookies.jpg",
+        prepTime: "15 mins",
+        cookTime: "12 mins"
+      },
+      {
+        id: 6,
+        title: "Oatmeal Raisin Cookies",
+        description: "Hearty cookies with oats and sweet raisins.",
+        image: "../Images/oatmeal-cookies.jpg",
+        prepTime: "20 mins",
+        cookTime: "15 mins"
+      }
+    ],
+    pastries: [
+      {
+        id: 7,
+        title: "Apple Turnovers",
+        description: "Flaky pastry filled with spiced apple filling.",
+        image: "../Images/apple-turnovers.jpg",
+        prepTime: "30 mins",
+        cookTime: "25 mins"
+      },
+      {
+        id: 8,
+        title: "Cream Puffs",
+        description: "Light choux pastry filled with vanilla cream.",
+        image: "../Images/cream-puffs.jpg",
+        prepTime: "40 mins",
+        cookTime: "30 mins"
+      }
+    ],
+    breakfast: [
+      {
+        id: 9,
+        title: "Blueberry Pancakes",
+        description: "Fluffy pancakes bursting with fresh blueberries.",
+        image: "../Images/blueberry-pancakes.jpg",
+        prepTime: "10 mins",
+        cookTime: "15 mins"
+      },
+      {
+        id: 10,
+        title: "Cinnamon Rolls",
+        description: "Soft rolls with cinnamon sugar and cream cheese frosting.",
+        image: "../Images/cinnamon-rolls.jpg",
+        prepTime: "25 mins",
+        cookTime: "25 mins"
+      }
+    ],
+    cupcakes: [
+      {
+        id: 11,
+        title: "Red Velvet Cupcakes",
+        description: "Moist red velvet cupcakes with cream cheese frosting.",
+        image: "../Images/red-velvet-cupcakes.jpg",
+        prepTime: "20 mins",
+        cookTime: "20 mins"
+      },
+      {
+        id: 12,
+        title: "Lemon Cupcakes",
+        description: "Zesty lemon cupcakes with tangy lemon buttercream.",
+        image: "../Images/lemon-cupcakes.jpg",
+        prepTime: "25 mins",
+        cookTime: "18 mins"
+      }
+    ]
+  };
+
+  // DOM Elements
+  const categoryCards = document.querySelectorAll('.category-card');
+  const recipeGrid = document.getElementById('recipeGrid');
+  const recipeSearch = document.getElementById('recipeSearch');
+  const searchBtn = document.getElementById('searchBtn');
+  const resultsTitle = document.getElementById('results-title');
+
+  // Display featured recipes on load
+  displayFeaturedRecipes();
+
+  // Category card click event
+  categoryCards.forEach(card => {
+    card.addEventListener('click', function() {
+      const category = this.getAttribute('data-category');
+      displayRecipesByCategory(category);
     });
+  });
+
+  // Search functionality
+  searchBtn.addEventListener('click', performSearch);
+  recipeSearch.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      performSearch();
+    }
+  });
+
+  // Function to display featured recipes
+  function displayFeaturedRecipes() {
+    resultsTitle.textContent = "Featured Recipes";
+    recipeGrid.innerHTML = '';
+    
+    // Get a mix of recipes from different categories
+    const featuredRecipes = [];
+    Object.keys(recipes).forEach(category => {
+      if (recipes[category].length > 0) {
+        featuredRecipes.push(recipes[category][0]);
+      }
+    });
+    
+    featuredRecipes.forEach(recipe => {
+      const recipeCard = createRecipeCard(recipe);
+      recipeGrid.appendChild(recipeCard);
+    });
+  }
+
+  // Function to display recipes by category
+  function displayRecipesByCategory(category) {
+    resultsTitle.textContent = `${category.charAt(0).toUpperCase() + category.slice(1)} Recipes`;
+    recipeGrid.innerHTML = '';
+    
+    if (recipes[category]) {
+      recipes[category].forEach(recipe => {
+        const recipeCard = createRecipeCard(recipe);
+        recipeGrid.appendChild(recipeCard);
+      });
+    }
+  }
+
+  // Function to perform search
+  function performSearch() {
+    const searchTerm = recipeSearch.value.toLowerCase().trim();
+    
+    if (searchTerm === '') {
+      displayFeaturedRecipes();
+      return;
+    }
+    
+    resultsTitle.textContent = `Search Results for "${searchTerm}"`;
+    recipeGrid.innerHTML = '';
+    
+    let foundRecipes = [];
+    
+    // Search through all recipes
+    Object.keys(recipes).forEach(category => {
+      recipes[category].forEach(recipe => {
+        if (recipe.title.toLowerCase().includes(searchTerm) || 
+            recipe.description.toLowerCase().includes(searchTerm)) {
+          foundRecipes.push(recipe);
+        }
+      });
+    });
+    
+    if (foundRecipes.length === 0) {
+      recipeGrid.innerHTML = '<p class="no-results">No recipes found. Try a different search term.</p>';
+    } else {
+      foundRecipes.forEach(recipe => {
+        const recipeCard = createRecipeCard(recipe);
+        recipeGrid.appendChild(recipeCard);
+      });
+    }
+  }
+
+  // Function to create a recipe card
+  function createRecipeCard(recipe) {
+    const card = document.createElement('div');
+    card.className = 'recipe-card';
+    
+    card.innerHTML = `
+      <img src="${recipe.image}" alt="${recipe.title}" class="recipe-img">
+      <div class="recipe-info">
+        <h3 class="recipe-title">${recipe.title}</h3>
+        <p class="recipe-description">${recipe.description}</p>
+        <div class="recipe-meta">
+          <span>Prep: ${recipe.prepTime}</span>
+          <span>Cook: ${recipe.cookTime}</span>
+        </div>
+        <a href="recipe-details.html?id=${recipe.id}" class="view-recipe-btn">View Recipe</a>
+      </div>
+    `;
+    
+    return card;
   }
 });
 
@@ -112,30 +302,7 @@ document.addEventListener('DOMContentLoaded', function() {
       y: -30,
       ease: "power2.out",
       delay: 0.4
-    });
-
-  
-    // Social media icons hover animations
-  document.querySelectorAll('.social-links a').forEach(link => {
-    link.addEventListener('mouseenter', () => {
-      gsap.to(link, {
-        duration: 0.3,
-        y: -5,
-        scale: 1.1,
-        ease: "power2.out"
-      });
-    });
-
-    link.addEventListener('mouseleave', () => {
-      gsap.to(link, {
-        duration: 0.3,
-        y: 0,
-        scale: 1,
-        ease: "power2.out"
-      });
-    });
-  });
-  
+    }); 
   
   // Floating cookies animation
   function createFloatingCookies() {

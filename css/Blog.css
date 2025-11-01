@@ -115,7 +115,6 @@ body {
   width: 45px;
   height: 45px;
   margin-left: 15px;
-  border-radius: 50%;
 }
 
 .banner h2 {
@@ -283,8 +282,38 @@ body {
   box-shadow: 2px 2px 0px #000;
 }
 
-/*Actual Blog pages Styling*/
 
+/*Blog Details Styling*/
+/* Blog Banner */
+.blog-banner {
+  position: relative;
+  display: flex;
+  width: 97.35%;
+  height: 110px;
+  margin: 0 auto;
+  background-color: #B1FAC7;
+  border-radius: 15px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
+
+.blog-banner img {
+  width: 60px;
+  height: 60px;
+  margin-left: 15px;
+  border-radius: 50%;
+}
+
+.blog-banner h2 {
+  color: #000;
+  font-family: 'Beth Ellen', cursive;
+  text-decoration: underline;
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 20px;
+}
 
 
 

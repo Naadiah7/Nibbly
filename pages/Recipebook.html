@@ -56,13 +56,54 @@
   </header>
 
   <main>
-
     <!-- Banner -->
     <section class="banner">
       <h2>Recipe Book</h2>
       <img src="../Images/CupcakeR.png" alt="Pixel cupcake">
     </section>
-        
+
+    <!-- Search Bar -->
+    <section class="search-bar">
+      <div class="search-box">
+        <input type="text" id="recipeSearch" placeholder="Search for desserts...">
+        <button id="searchBtn">Search</button>
+      </div>
+    </section>    
+    
+    <!-- Dessert Categories -->
+    <section class="categories">
+      <h2>Dessert Categories</h2>
+      <div class="category-grid">
+        <div class="category-card" data-category="cakes">
+          <img src="../Images/cake-icon.png" alt="Cakes">
+          <h3>Cakes</h3>
+          <p>Delicious cakes for every occasion</p>
+        </div>
+        <div class="category-card" data-category="cheesecakes">
+          <img src="../Images/cheesecake-icon.png" alt="Cheesecakes">
+          <h3>Cheesecakes</h3>
+          <p>Creamy and rich cheesecake recipes</p>
+        </div>
+        <div class="category-card" data-category="cookies">
+          <img src="../Images/cookie-icon.png" alt="Cookies">
+          <h3>Cookies</h3>
+          <p>Classic and creative cookie recipes</p>
+        </div>
+        <div class="category-card" data-category="breakfast">
+          <img src="../Images/breakfast-icon.png" alt="Breakfast Desserts">
+          <h3>Breakfast Desserts</h3>
+          <p>Sweet treats to start your day</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Recipe Results -->
+    <section class="recipe-results">
+      <h2 id="results-title">Featured Recipes</h2>
+      <div class="recipe-grid" id="recipeGrid">
+        <!-- Recipes will be dynamically populated here -->
+      </div>
+    </section>
   </main>
   
   <!-- Footer -->
