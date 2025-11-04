@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeRecipeSearch();
     initializeGSAPAnimations();
     initializeFilterSystem();
-    createFloatingCookies();
 });
 
 // Scroll-to-top function
@@ -681,6 +680,8 @@ window.viewRecipe = function(recipeId) {
 // GSAP Animations
 function initializeGSAPAnimations() {
     if (typeof gsap === 'undefined') return;
+
+    createFloatingCookies();
 
     // Animate category cards on load
     gsap.fromTo('.category-card', 
