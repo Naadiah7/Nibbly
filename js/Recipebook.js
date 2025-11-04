@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeRecipeSearch();
     initializeGSAPAnimations();
     initializeFilterSystem();
+    createFloatingCookies();
 });
 
 // Scroll-to-top function

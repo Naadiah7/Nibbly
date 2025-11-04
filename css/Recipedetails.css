@@ -135,7 +135,17 @@ body {
     margin-right: 20px;
 }
 
-.favourite img{
+.favourite {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.favourite img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 40px;
   height: 40px;
   background-color: #fff;
@@ -208,10 +218,11 @@ body {
 
 .recipe-info {
   flex: 1;
+  text-align: left;
 }
 
 .recipe-info h1 {
-  font-family: 'Beth Ellen', cursive;
+  font-family: 'Berkshire Swash', cursive;
   font-size: 36px;
   margin-bottom: 15px;
   color: #333;
@@ -290,7 +301,7 @@ body {
 
 .ingredients-section h2,
 .instructions-section h2 {
-  font-family: 'Beth Ellen', cursive;
+  font-family: 'Berkshire Swash', cursive;
   font-size: 24px;
   margin-bottom: 20px;
   color: #333;
@@ -310,6 +321,14 @@ body {
   font-size: 16px;
 }
 
+#ingredientsList li:before {
+  content: "•";
+  color: #E9C4F9;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
 #instructionsList {
   padding-left: 20px;
 }
@@ -319,6 +338,24 @@ body {
   font-family: 'Palatino Linotype', serif;
   font-size: 16px;
   line-height: 1.6;
+}
+
+#instructionsList li:before {
+  content: counter(step);
+  counter-increment: step;
+  position: absolute;
+  left: 0;
+  top: 12px;
+  background: #E9C4F9;
+  color: #000;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .no-results {
@@ -416,4 +453,19 @@ footer {
 /* Burger Menu Hidden (for desktop) */
 .checkbtn {
   display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .recipe-header {
+    flex-direction: column;
+  }
+  
+  .recipe-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+  }
 }

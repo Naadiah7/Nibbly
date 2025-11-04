@@ -14,6 +14,7 @@ function copyPageLink() {
 document.addEventListener('DOMContentLoaded', function() {
     initializeRecipeDetails();
     initializeScrollToTop();
+    setupFavoriteButton();
 });
 
 // Scroll-to-top function
@@ -394,7 +395,7 @@ function initializeRecipeDetails() {
     const recipeId = sessionStorage.getItem('currentRecipeId');
     
     if (!recipeId) {
-        showErrorMessage("No recipe selected. Please go back and select a recipe.");
+        showErrorMessage("No recipe selected. Please select a recipe.");
         return;
     }
 
@@ -402,7 +403,7 @@ function initializeRecipeDetails() {
     const recipe = completeRecipeData[recipeId];
     
     if (!recipe) {
-        showErrorMessage("Recipe not found. Please go back and select a valid recipe.");
+        showErrorMessage("Recipe not found. Please select a valid recipe.");
         return;
     }
 
@@ -415,111 +416,129 @@ function displayRecipeDetails(recipe) {
     document.title = `${recipe.title} - Nibbly`;
     
     // Update banner
-    const bannerTitle = document.querySelector('.blog-banner-content h2');
+    const bannerImage = document.getElementById('banner-recipe-image');
+    const bannerTitle = document.getElementById('banner-recipe-title');
+    
+    if (bannerImage) {
+        bannerImage.src = recipe.image;
+        bannerImage.alt = recipe.title;
+    }
+    
     if (bannerTitle) {
         bannerTitle.textContent = recipe.title;
     }
 
-    // Update recipe image
-    const recipeImage = document.querySelector('.recipe-image img');
-    if (recipeImage) {
-        recipeImage.src = recipe.image;
-        recipeImage.alt = recipe.title;
-    }
-
-    // Update recipe title and description
-    const recipeTitle = document.querySelector('.recipe-info h1');
-    const recipeDescription = document.querySelector('.recipe-info p');
+    // Update recipe details section
+    const recipeDetails = document.getElementById('recipeDetails');
     
-    if (recipeTitle) recipeTitle.textContent = recipe.title;
-    if (recipeDescription) recipeDescription.textContent = recipe.description;
-
-    // Update meta information
-    updateMetaInformation(recipe);
-    
-    // Update ingredients
-    updateIngredients(recipe.ingredients);
-    
-    // Update instructions
-    updateInstructions(recipe.instructions);
-    
-    // Setup action buttons
-    setupActionButtons(recipe);
-}
-
-function updateMetaInformation(recipe) {
-    const metaContainer = document.querySelector('.recipe-meta-details');
-    
-    if (metaContainer) {
-        metaContainer.innerHTML = `
-            <div class="meta-item">
-                <span class="meta-label">Prep Time</span>
-                <span class="meta-value">${recipe.prepTime}</span>
+    if (recipeDetails) {
+        recipeDetails.innerHTML = `
+            <div class="recipe-header">
+                <div class="recipe-image">
+                    <img src="${recipe.image}" alt="${recipe.title}" />
+                </div>
+                <div class="recipe-info">
+                    <h1>${recipe.title}</h1>
+                    <p>${recipe.description}</p>
+                    <div class="recipe-meta-details">
+                        <div class="meta-item">
+                            <span class="meta-label">Prep Time</span>
+                            <span class="meta-value">${recipe.prepTime}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Cook Time</span>
+                            <span class="meta-value">${recipe.cookTime}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Total Time</span>
+                            <span class="meta-value">${recipe.totalTime} mins</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Difficulty</span>
+                            <span class="meta-value">${recipe.difficulty}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Servings</span>
+                            <span class="meta-value">${recipe.servings}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Category</span>
+                            <span class="meta-value">${recipe.category.replace('-', ' ')}</span>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="printRecipe()">
+                            <i class="fas fa-print"></i> Print Recipe
+                        </button>
+                        <button class="action-btn" onclick="shareRecipe()">
+                            <i class="fas fa-share"></i> Share Recipe
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="meta-item">
-                <span class="meta-label">Cook Time</span>
-                <span class="meta-value">${recipe.cookTime}</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-label">Total Time</span>
-                <span class="meta-value">${recipe.totalTime} mins</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-label">Difficulty</span>
-                <span class="meta-value">${recipe.difficulty}</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-label">Servings</span>
-                <span class="meta-value">${recipe.servings}</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-label">Category</span>
-                <span class="meta-value">${recipe.category.replace('-', ' ')}</span>
+            <div class="recipe-content">
+                <div class="ingredients-section">
+                    <h2>Ingredients</h2>
+                    <ul id="ingredientsList">
+                        ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="instructions-section">
+                    <h2>Instructions</h2>
+                    <ol id="instructionsList" style="counter-reset: step;">
+                        ${recipe.instructions.map((instruction, index) => 
+                            `<li><strong>Step ${index + 1}:</strong> ${instruction}</li>`
+                        ).join('')}
+                    </ol>
+                </div>
             </div>
         `;
     }
+    
+    // Update favorite button state
+    updateFavoriteButton(recipe.id);
 }
 
-function updateIngredients(ingredients) {
-    const ingredientsList = document.getElementById('ingredientsList');
-    
-    if (ingredientsList) {
-        ingredientsList.innerHTML = ingredients.map(ingredient => 
-            `<li>${ingredient}</li>`
-        ).join('');
+function setupFavoriteButton() {
+    const favoriteBtn = document.getElementById('favourite-btn');
+    if (favoriteBtn) {
+        favoriteBtn.addEventListener('click', toggleFavorite);
     }
 }
 
-function updateInstructions(instructions) {
-    const instructionsList = document.getElementById('instructionsList');
-    
-    if (instructionsList) {
-        instructionsList.innerHTML = instructions.map((instruction, index) => 
-            `<li><strong>Step ${index + 1}:</strong> ${instruction}</li>`
-        ).join('');
-    }
-}
-
-function setupActionButtons(recipe) {
-    const actionButtons = document.querySelector('.action-buttons');
+function updateFavoriteButton(recipeId) {
     const favorites = JSON.parse(localStorage.getItem('nibblyFavorites')) || [];
-    const isFavorite = favorites.includes(recipe.id);
-
-    if (actionButtons) {
-        actionButtons.innerHTML = `
-            <button class="action-btn favorite-action ${isFavorite ? 'active' : ''}" 
-                    onclick="toggleFavoriteDetail(${recipe.id}, this)">
-                <i class="fas fa-heart"></i> ${isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-            </button>
-            <button class="action-btn" onclick="printRecipe()">
-                <i class="fas fa-print"></i> Print Recipe
-            </button>
-            <button class="action-btn" onclick="shareRecipe()">
-                <i class="fas fa-share"></i> Share Recipe
-            </button>
-        `;
+    const isFavorite = favorites.includes(parseInt(recipeId));
+    
+    const emptyHeart = document.getElementById('empty-heart');
+    const fullHeart = document.getElementById('full-heart');
+    
+    if (isFavorite) {
+        emptyHeart.style.display = 'none';
+        fullHeart.style.display = 'block';
+    } else {
+        emptyHeart.style.display = 'block';
+        fullHeart.style.display = 'none';
     }
 }
+
+function toggleFavorite() {
+    const recipeId = sessionStorage.getItem('currentRecipeId');
+    if (!recipeId) return;
+    
+    let favorites = JSON.parse(localStorage.getItem('nibblyFavorites')) || [];
+    const isFavorite = favorites.includes(parseInt(recipeId));
+    
+    if (isFavorite) {
+        favorites = favorites.filter(id => id !== parseInt(recipeId));
+    } else {
+        favorites.push(parseInt(recipeId));
+    }
+    
+    localStorage.setItem('nibblyFavorites', JSON.stringify(favorites));
+    updateFavoriteButton(parseInt(recipeId));
+}
+
 
 function showErrorMessage(message) {
     const recipeDetails = document.querySelector('.recipe-details');
@@ -536,18 +555,10 @@ function showErrorMessage(message) {
 }
 
 // Global functions for recipe details page
-window.toggleFavoriteDetail = function(recipeId, button) {
-    let favorites = JSON.parse(localStorage.getItem('nibblyFavorites')) || [];
-    
-    if (favorites.includes(recipeId)) {
-        favorites = favorites.filter(id => id !== recipeId);
-        button.classList.remove('active');
-        button.innerHTML = '<i class="fas fa-heart"></i> Add to Favorites';
-    } else {
-        favorites.push(recipeId);
-        button.classList.add('active');
-        button.innerHTML = '<i class="fas fa-heart"></i> Remove from Favorites';
-    }
-    
-    localStorage.setItem('nibblyFavorites', JSON.stringify(favorites));
+window.printRecipe = function() {
+    window.print();
+};
+
+window.shareRecipe = function() {
+    copyPageLink();
 };
