@@ -15,6 +15,9 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Beth+Ellen&family=Orelega+One&display=swap" rel="stylesheet">
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>  
@@ -69,39 +72,98 @@
         <button id="searchBtn">Search</button>
       </div>
     </section>    
-    
-  <!-- Dessert Categories -->
-  <section class="categories">
-    <h2>Desserts</h2>
-      <div class="category-grid">
-        <div class="category-card" data-category="cakes">
-          <img src="../Images/Brownie.png" alt="Cakes">
-          <h3>Cakes</h3>
-          <p>Delicious cakes for every occasion</p>
-        </div>
-        <div class="category-card" data-category="indian-sweets">
-          <img src="../Images/cheesecake-icon.png" alt="Indian Sweet Meats">
-          <h3>Indian sweets</h3>
-          <p>Traditional Indian sweets recipes</p>
-        </div>
-        <div class="category-card" data-category="meringues">
-          <img src="../Images/LMeringue.png" alt="Meringues">
-          <h3>Meringues</h3>
-          <p>Classic and light meringue recipes</p>
-        </div>
-        <div class="category-card" data-category="breakfast">
-          <img src="../Images/Pancakes.png" alt="Breakfast Desserts">
-          <h3>Breakfast Desserts</h3>
-          <p>Sweet treats to start your day</p>
-        </div>
+
+    <!-- Search Filters -->
+    <section class="filter-section">
+      <div class="filter-group">
+        <label for="dietFilter"> Diet</label>
+        <select id="dietFilter" class="filter-select">
+          <option value="">Diet</option>
+          <option value="vegetarian">Vegetarian</option>
+          <option value="vegan">Vegan</option>
+          <option value="glutenFree">Gluten Free</option>
+          <option value="dairyFree">Dairy Free</option>
+          <option value="nutFree">Nut Free</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="typeFilter">Dessert Type</label>
+        <select id="typeFilter" class="filter-select">
+          <option value="">Any Type</option>
+          <option value="cakes">Cakes</option>
+          <option value="indian-sweets">Indian Sweets</option>
+          <option value="meringues">Meringues</option>
+          <option value="breakfast">Breakfast Desserts</option>
+          <!-- there are no actual recipes for cookies and pastries-->
+          <option value="cookies">Cookies</option>
+          <option value="pastries">Pastries</option>
+        </select>
+      </div>
+
+        <div class="filter-group">
+        <label for="timeFilter"> Max Prep Time</label>
+        <select id="timeFilter" class="filter-select">
+          <option value="">Time</option>
+          <option value="30">30 min or less</option>
+          <option value="45">45 min or less</option>
+          <option value="60">60 min or less</option>
+          <option value="120">2 hours or less</option>
+        </select>
+      </div>
+      
+      <div class="filter-actions">
+        <button id="applyFiltersBtn" class="filter-button apply-btn">
+          <i class="fas fa-filter"></i> Apply Filters
+        </button>
+        <button id="clearFiltersBtn" class="filter-button clear-btn">
+          <i class="fas fa-times"></i> Clear All
+        </button>
       </div>
     </section>
-    
-    <!-- All Recipe Results -->
-    <section class="recipe-results">
-      <h2 id="results-title">All Recipes</h2>
-      <div class="recipe-grid" id="recipeGrid">
-        <!-- Recipes will be dynamically populated here -->
+
+    <!-- Filters Display -->
+    <section class="active-filters" id="activeFilters">
+      <!-- Active filters will be displayed here -->
+    </section>
+
+  <!-- Dessert Categories-->
+  <section id="categories-page" class="categories">
+    <h2>Desserts</h2>
+    <div class="category-grid">
+      <a href="#" class="category-card" data-category="cakes">
+        <img src="../Images/Brownie.png" alt="Cakes">
+        <h3>Cakes</h3>
+        <p>Delicious cakes for every occasion</p>
+      </a>
+      <a href="#" class="category-card" data-category="indian-sweets">
+        <img src="../Images/Sweet.png" alt="Indian Sweet Meats">
+        <h3>Indian sweets</h3>
+        <p>Traditional Indian sweets recipes</p>
+      </a>
+      <a href="#" class="category-card" data-category="meringues">
+        <img src="../Images/LMeringue.png" alt="Meringues">
+        <h3>Meringues</h3>
+        <p>Classic and light meringue recipes</p>
+      </a>
+      <a href="#" class="category-card" data-category="breakfast">
+        <img src="../Images/Pancakes.png" alt="Breakfast Desserts">
+        <h3>Breakfast Desserts</h3>
+        <p>Sweet treats to start your day</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Recipe Results Page -->
+  <section id="recipes-page" class="recipe-results" style="display: none;">
+    <h2 id="results-title">Recipes</h2>
+    <div class="recipe-grid" id="recipeGrid">
+      <!-- Recipes will be dynamically populated here -->
+      </div>
+      <div class="load-more-container">
+        <button id="loadMoreBtn" class="load-more-btn">
+          <i class="fas fa-plus"></i> Load More Recipes
+        </button>
       </div>
     </section>
   </main>
