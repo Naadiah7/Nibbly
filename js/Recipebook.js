@@ -1,6 +1,6 @@
-// Recipe Book - Complete JavaScript Functionality
+// Recipe Book 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functionality
+    // Initialize all functions
     initializeScrollToTop();
     initializeRecipeSearch();
     initializeGSAPAnimations();
@@ -26,14 +26,27 @@ function initializeScrollToTop() {
     }
 }
 
-// Enhanced recipe data with basic info only
+// API Configuration
+const API_CONFIG = {
+    spoonacular: {
+        apiKey: 'e983813986ce447287b5664a1l45662a',
+        baseUrl: 'https://api.spoonacular.com/recipes'
+    },
+    edamam: {
+        appId: 'ced607f2',
+        appKey: '66208284ce22f426737dc243',
+        baseUrl: 'https://api.edamam.com/api/recipes/v2'
+    }
+};
+
+// Enhanced recipe data with basic info only (fallback data)
 const enhancedLocalRecipes = {
     cakes: [
         {
             id: 1,
             title: "Classic Cheesecake",
             description: "Creamy and rich cheesecake with a buttery biscuit base.",
-            image: "../Images/cheesecake.jpg",
+            image: "../Images/Cheesecake.png",
             totalTime: 90,
             category: "cakes",
             diet: ["vegetarian"],
@@ -44,7 +57,7 @@ const enhancedLocalRecipes = {
             id: 2,
             title: "Chocolate Brownie",
             description: "Fudgy, decadent chocolate brownies with a crackly top.",
-            image: "../Images/brownie.jpg",
+            image: "../Images/Brownie.png",
             totalTime: 40,
             category: "cakes",
             diet: ["vegetarian"],
@@ -55,7 +68,7 @@ const enhancedLocalRecipes = {
             id: 3,
             title: "Red Velvet Cake",
             description: "Stunning red velvet cake with cream cheese frosting.",
-            image: "../Images/red-velvet.jpg",
+            image: "../Images/redvelvet.png",
             totalTime: 65,
             category: "cakes",
             diet: ["vegetarian"],
@@ -68,7 +81,7 @@ const enhancedLocalRecipes = {
             id: 4,
             title: "Lemon Meringue",
             description: "Tangy lemon curd topped with fluffy toasted meringue.",
-            image: "../Images/lemon-meringue.jpg",
+            image: "../Images/LMeringue.png",
             totalTime: 65,
             category: "meringues",
             diet: ["vegetarian"],
@@ -79,7 +92,7 @@ const enhancedLocalRecipes = {
             id: 5,
             title: "Pavlova",
             description: "Crisp meringue shell with soft center, topped with cream and fruit.",
-            image: "../Images/pavlova.jpg",
+            image: "../Images/Pavlova.png",
             totalTime: 115,
             category: "meringues",
             diet: ["vegetarian"],
@@ -92,7 +105,7 @@ const enhancedLocalRecipes = {
             id: 6,
             title: "Gulab Jamun",
             description: "Soft, melt-in-your-mouth milk balls in fragrant sugar syrup.",
-            image: "../Images/gulab-jamun.jpg",
+            image: "../Images/gulab-jamun.png",
             totalTime: 55,
             category: "indian-sweets",
             diet: ["vegetarian"],
@@ -103,7 +116,7 @@ const enhancedLocalRecipes = {
             id: 7,
             title: "Burfee",
             description: "Rich, fudge-like sweet made with milk and sugar.",
-            image: "../Images/burfee.jpg",
+            image: "../Images/burfee.png",
             totalTime: 45,
             category: "indian-sweets",
             diet: ["vegetarian"],
@@ -114,7 +127,7 @@ const enhancedLocalRecipes = {
             id: 8,
             title: "Chana Magaj",
             description: "Traditional gram flour sweet with ghee and sugar.",
-            image: "../Images/chana-magaj.jpg",
+            image: "../Images/chana-magaj.png",
             totalTime: 60,
             category: "indian-sweets",
             diet: ["vegetarian"],
@@ -127,7 +140,7 @@ const enhancedLocalRecipes = {
             id: 9,
             title: "Classic Pancakes",
             description: "Fluffy, golden pancakes perfect for weekend breakfast.",
-            image: "../Images/pancakes.jpg",
+            image: "../Images/Pancakes.png",
             totalTime: 25,
             category: "breakfast",
             diet: ["vegetarian"],
@@ -138,7 +151,7 @@ const enhancedLocalRecipes = {
             id: 10,
             title: "Cappuccino Muffins",
             description: "Coffee-flavored muffins with a sweet streusel topping.",
-            image: "../Images/cappuccino-muffins.jpg",
+            image: "../Images/capmuffins.png",
             totalTime: 35,
             category: "breakfast",
             diet: ["vegetarian"],
@@ -148,7 +161,170 @@ const enhancedLocalRecipes = {
     ]
 };
 
-// Recipe Search and Filtering Function
+// API Service Functions
+class RecipeAPIService {
+    // Spoonacular API - Search recipes
+    static async searchSpoonacularRecipes(query, filters = {}) {
+        try {
+            const params = new URLSearchParams({
+                apiKey: API_CONFIG.spoonacular.apiKey,
+                query: query,
+                number: 12,
+                addRecipeInformation: true,
+                fillIngredients: true
+            });
+
+            // Add filters
+            if (filters.diet) params.append('diet', filters.diet);
+            if (filters.maxReadyTime) params.append('maxReadyTime', filters.maxReadyTime);
+            if (filters.type) params.append('type', filters.type);
+
+            const response = await fetch(`${API_CONFIG.spoonacular.baseUrl}/complexSearch?${params}`);
+            
+            if (!response.ok) throw new Error('Spoonacular API request failed');
+            
+            const data = await response.json();
+            return this.formatSpoonacularRecipes(data.results);
+        } catch (error) {
+            console.error('Spoonacular API Error:', error);
+            return [];
+        }
+    }
+
+    // Edamam API - Search recipes
+    static async searchEdamamRecipes(query, filters = {}) {
+        try {
+            const params = new URLSearchParams({
+                app_id: API_CONFIG.edamam.appId,
+                app_key: API_CONFIG.edamam.appKey,
+                q: query,
+                type: 'public',
+                random: true
+            });
+
+            // Add filters
+            if (filters.diet) params.append('health', filters.diet);
+            if (filters.mealType) params.append('mealType', filters.mealType);
+
+            const response = await fetch(`${API_CONFIG.edamam.baseUrl}?${params}`);
+            
+            if (!response.ok) throw new Error('Edamam API request failed');
+            
+            const data = await response.json();
+            return this.formatEdamamRecipes(data.hits);
+        } catch (error) {
+            console.error('Edamam API Error:', error);
+            return [];
+        }
+    }
+
+    // Get recipe details from Spoonacular
+    static async getRecipeDetails(recipeId, source) {
+        try {
+            if (source === 'spoonacular') {
+                const response = await fetch(
+                    `${API_CONFIG.spoonacular.baseUrl}/${recipeId}/information?apiKey=${API_CONFIG.spoonacular.apiKey}`
+                );
+                if (!response.ok) throw new Error('Failed to fetch recipe details');
+                const data = await response.json();
+                return this.formatSpoonacularRecipeDetails(data);
+            }
+            // For local recipes, use existing data
+            return null;
+        } catch (error) {
+            console.error('Error fetching recipe details:', error);
+            return null;
+        }
+    }
+
+    // Format Spoonacular recipes for our app
+    static formatSpoonacularRecipes(recipes) {
+        return recipes.map(recipe => ({
+            id: recipe.id,
+            title: recipe.title,
+            description: recipe.summary ? recipe.summary.replace(/<[^>]*>/g, '').substring(0, 150) + '...' : 'No description available',
+            image: recipe.image,
+            totalTime: recipe.readyInMinutes || 30,
+            category: this.mapSpoonacularCategory(recipe.dishTypes),
+            diet: this.mapSpoonacularDiets(recipe.diets),
+            difficulty: this.mapDifficulty(recipe.readyInMinutes),
+            servings: recipe.servings || 4,
+            source: 'spoonacular',
+            spoonacularId: recipe.id
+        }));
+    }
+
+    // Format Edamam recipes for our app
+    static formatEdamamRecipes(recipes) {
+        return recipes.map(hit => {
+            const recipe = hit.recipe;
+            return {
+                id: `edamam_${recipe.uri.split('_').pop()}`,
+                title: recipe.label,
+                description: `A delicious ${recipe.mealType ? recipe.mealType[0] : 'recipe'} with ${recipe.ingredientLines.length} ingredients`,
+                image: recipe.image,
+                totalTime: recipe.totalTime || 30,
+                category: this.mapEdamamCategory(recipe.mealType),
+                diet: recipe.healthLabels || [],
+                difficulty: 'medium',
+                servings: recipe.yield || 4,
+                source: 'edamam',
+                edamamUri: recipe.uri
+            };
+        });
+    }
+
+    // Format detailed recipe from Spoonacular
+    static formatSpoonacularRecipeDetails(recipe) {
+        return {
+            id: recipe.id,
+            title: recipe.title,
+            description: recipe.summary ? recipe.summary.replace(/<[^>]*>/g, '') : 'No description available',
+            image: recipe.image,
+            prepTime: `${recipe.preparationMinutes || 15} mins`,
+            cookTime: `${recipe.cookingMinutes || 15} mins`,
+            totalTime: recipe.readyInMinutes,
+            category: this.mapSpoonacularCategory(recipe.dishTypes),
+            diet: this.mapSpoonacularDiets(recipe.diets),
+            difficulty: this.mapDifficulty(recipe.readyInMinutes),
+            servings: recipe.servings,
+            ingredients: recipe.extendedIngredients?.map(ing => ing.original) || [],
+            instructions: recipe.analyzedInstructions?.[0]?.steps?.map(step => step.step) || ['No instructions available'],
+            tags: recipe.dishTypes || [],
+            source: 'spoonacular'
+        };
+    }
+
+    // Helper methods for mapping categories and diets
+    static mapSpoonacularCategory(dishTypes) {
+        if (!dishTypes) return 'other';
+        const types = dishTypes.map(type => type.toLowerCase());
+        if (types.includes('dessert') || types.includes('cake')) return 'cakes';
+        if (types.includes('breakfast')) return 'breakfast';
+        if (types.includes('snack')) return 'cookies';
+        return 'other';
+    }
+
+    static mapEdamamCategory(mealType) {
+        if (!mealType) return 'other';
+        if (mealType.includes('Breakfast')) return 'breakfast';
+        if (mealType.includes('Dessert')) return 'cakes';
+        return 'other';
+    }
+
+    static mapSpoonacularDiets(diets) {
+        if (!diets) return [];
+        return diets.map(diet => diet.toLowerCase().replace(' ', ''));
+    }
+
+    static mapDifficulty(totalTime) {
+        if (totalTime <= 30) return 'easy';
+        if (totalTime <= 60) return 'medium';
+        return 'hard';
+    }
+}
+
+// Recipe Search and Filtering Function with API 
 function initializeRecipeSearch() {
     // Favorites from localStorage
     let favorites = JSON.parse(localStorage.getItem('nibblyFavorites')) || [];
@@ -220,18 +396,32 @@ function initializeRecipeSearch() {
         if (recipesPage) recipesPage.style.display = 'none';
     }
 
-    function filterByCategory(category) {
+    async function filterByCategory(category) {
         if (!resultsTitle || !recipeGrid) return;
 
-        const categoryRecipes = enhancedLocalRecipes[category] || [];
-        const categoryName = getCategoryDisplayName(category);
-        
-        resultsTitle.textContent = `${categoryName}`;
-        currentRecipes = categoryRecipes;
-        isCategoryView = true;
-        currentCategory = category;
-        
+        showLoading(recipeGrid);
         showRecipesPage();
+
+        try {
+            let categoryRecipes = [];
+            
+            if (useAPI) {
+                // Use API for category search
+                const query = getCategorySearchQuery(category);
+                const apiRecipes = await RecipeAPIService.searchSpoonacularRecipes(query);
+                categoryRecipes = apiRecipes;
+            } else {
+                // Use local data
+                categoryRecipes = enhancedLocalRecipes[category] || [];
+            }
+
+            const categoryName = getCategoryDisplayName(category);
+            
+            resultsTitle.textContent = `${categoryName}`;
+            currentRecipes = categoryRecipes;
+            isCategoryView = true;
+            currentCategory = category;
+
         displayRecipesPage(currentRecipes, 1);
         updateLoadMoreButton();
         
@@ -239,6 +429,20 @@ function initializeRecipeSearch() {
         if (categoryRecipes.length === 0) {
             showNoResultsMessage(`No ${categoryName} recipes found.`);
         }
+    } catch (error) {
+            console.error('Category filter error:', error);
+            showNoResultsMessage('Failed to load recipes. Please try again.');
+        }
+    }
+
+    function getCategorySearchQuery(category) {
+        const queries = {
+            'cakes': 'cake dessert sweet',
+            'meringues': 'meringue dessert',
+            'indian-sweets': 'indian dessert sweet',
+            'breakfast': 'breakfast pancake muffin'
+        };
+        return queries[category] || category;
     }
 
     function getCategoryDisplayName(category) {
@@ -266,7 +470,20 @@ function initializeRecipeSearch() {
         showRecipesPage();
 
         try {
-            let searchResults = searchLocalRecipes(searchTerm);
+            let searchResults = [];
+
+            if (useAPI) {
+                // Use both APIs for better results
+                const [spoonacularResults, edamamResults] = await Promise.all([
+                    RecipeAPIService.searchSpoonacularRecipes(searchTerm),
+                    RecipeAPIService.searchEdamamRecipes(searchTerm)
+                ]);
+                
+                searchResults = [...spoonacularResults, ...edamamResults];
+            } else {
+                // Use local search as fallback
+                searchResults = searchLocalRecipes(searchTerm);
+            }
 
             resultsTitle.textContent = `Search Results for "${searchTerm}"`;
             currentRecipes = searchResults;
@@ -282,7 +499,14 @@ function initializeRecipeSearch() {
 
         } catch (error) {
             console.error('Search error:', error);
-            showNoResultsMessage('Search failed. Please check your connection and try again.');
+            // Fallback to local search
+            const searchResults = searchLocalRecipes(searchTerm);
+            currentRecipes = searchResults;
+            displayRecipesPage(currentRecipes, 1);
+            
+            if (searchResults.length === 0) {
+                showNoResultsMessage(`No recipes found for "${searchTerm}". Try different keywords.`);
+            }
         }
     }
 
@@ -307,13 +531,14 @@ function initializeRecipeSearch() {
         }
 
         recipeGrid.innerHTML = recipesToShow.map(recipe => `
-            <div class="recipe-card" data-id="${recipe.id}">
+            <div class="recipe-card" data-id="${recipe.id}" data-source="${recipe.source}">
                 <div class="recipe-badges">
-                    ${recipe.diet && recipe.diet.map(diet => `
+                    ${recipe.diet && recipe.diet.slice(0, 2).map(diet => `
                         <span class="recipe-badge badge-diet">${diet}</span>
                     `).join('')}
                     <span class="recipe-badge badge-time">${recipe.totalTime}min</span>
                     <span class="recipe-badge badge-difficulty">${recipe.difficulty}</span>
+                    ${recipe.source !== 'local' ? `<span class="recipe-badge badge-api">API</span>` : ''}
                 </div>
                 <img src="${recipe.image}" alt="${recipe.title}" class="recipe-img" onerror="this.src='../Images/placeholder-recipe.jpg'">
                 <div class="recipe-info">
@@ -326,10 +551,10 @@ function initializeRecipeSearch() {
                     </div>
                     <div class="recipe-actions">
                         <button class="favorite-btn ${favorites.includes(recipe.id) ? 'active' : ''}" 
-                                onclick="toggleFavorite(${recipe.id}, this, 'local')">
+                                onclick="toggleFavorite(${recipe.id}, this, '${recipe.source}')">
                             <i class="fas fa-heart"></i>
                         </button>
-                        <button class="view-recipe-btn" onclick="viewRecipe(${recipe.id})">
+                        <button class="view-recipe-btn" onclick="viewRecipe(${recipe.id}, '${recipe.source}')">
                             <i class="fas fa-eye"></i> View Recipe
                         </button>
                     </div>
@@ -386,7 +611,6 @@ function initializeRecipeSearch() {
     }
 
     function updateResultsCount(total, showing) {
-        // Create results count element if it doesn't exist
         let resultsCount = document.getElementById('resultsCount');
         if (!resultsCount) {
             resultsCount = document.createElement('div');
@@ -408,7 +632,13 @@ function initializeRecipeSearch() {
 
     function showLoading(container) {
         if (!container) return;
-        container.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Searching recipes...</div>';
+        container.innerHTML = `
+            <div class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Searching delicious recipes...</p>
+                <p class="loading-subtext">Powered by Spoonacular & Edamam APIs</p>
+            </div>
+        `;
     }
 
     function animateNewRecipeCards(startIndex) {
@@ -432,7 +662,7 @@ function initializeRecipeSearch() {
     window.filterByCategory = filterByCategory;
 }
 
-// Filter System Functionality
+// Filter System Function
 function initializeFilterSystem() {
     // DOM Elements
     const applyFiltersBtn = document.getElementById('applyFiltersBtn');
@@ -471,7 +701,7 @@ function initializeFilterSystem() {
             time: document.getElementById('timeFilter').value
         };
 
-        // Update active filters display
+        // Active filters display
         updateActiveFiltersDisplay();
 
         // Filter and display recipes
@@ -669,9 +899,11 @@ window.toggleFavorite = function(recipeId, button, source) {
     localStorage.setItem('nibblyFavorites', JSON.stringify(favorites));
 };
 
-window.viewRecipe = function(recipeId) {
-    // Store the recipe ID for the recipe details page
+//viewRecipe function to handle API sources
+window.viewRecipe = function(recipeId, source = 'local') {
+    // Store the recipe ID and source for the recipe details page
     sessionStorage.setItem('currentRecipeId', recipeId);
+    sessionStorage.setItem('recipeSource', source);
     
     // Navigate to recipe details page
     window.location.href = 'Recipedetails.html';

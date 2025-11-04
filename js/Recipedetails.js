@@ -1,3 +1,4 @@
+//Recipe Details
 // To share the link of the website
 function copyPageLink() {
     // Get the current page URL
@@ -33,6 +34,60 @@ function initializeScrollToTop() {
         scrollBtn.addEventListener("click", () => {
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
+    }
+}
+
+async function initializeRecipeDetails() {
+    // Get recipe ID and source from sessionStorage
+    const recipeId = sessionStorage.getItem('currentRecipeId');
+    const recipeSource = sessionStorage.getItem('recipeSource') || 'local';
+    
+    if (!recipeId) {
+        showErrorMessage("No recipe selected. Please select a recipe.");
+        return;
+    }
+
+    showLoading();
+
+    try {
+        let recipe;
+        
+        if (recipeSource === 'spoonacular') {
+            // Fetch recipe details from Spoonacular API
+            recipe = await RecipeAPIService.getRecipeDetails(recipeId, 'spoonacular');
+        } else if (recipeSource === 'edamam') {
+            // For Edamam, they don't have a direct details endpoint
+            showErrorMessage("Detailed recipe information not available for this recipe.");
+            return;
+        } else {
+            // Use local recipe data
+            recipe = completeRecipeData[recipeId];
+        }
+        
+        if (!recipe) {
+            showErrorMessage("Recipe not found. Please select a valid recipe.");
+            return;
+        }
+
+        // Display recipe details
+        displayRecipeDetails(recipe);
+
+    } catch (error) {
+        console.error('Error loading recipe details:', error);
+        showErrorMessage("Failed to load recipe details. Please try again.");
+    }
+}
+
+// function to show loading state
+function showLoading() {
+    const recipeDetails = document.getElementById('recipeDetails');
+    if (recipeDetails) {
+        recipeDetails.innerHTML = `
+            <div class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading recipe details...</p>
+            </div>
+        `;
     }
 }
 

@@ -495,7 +495,7 @@ body {
   transform: none;
 }
 
-/* ===== NO RESULTS ===== */
+/*No Results*/
 .no-results {
     grid-column: 1 / -1;
     text-align: center;
@@ -558,6 +558,56 @@ body {
 
 .badge-difficulty {
   background: rgba(255, 201, 226, 0.9);
+}
+
+/* ===== API BADGES & LOADING STATES ===== */
+.api-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(93, 213, 201, 0.9);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-family: 'Orelega One', sans-serif;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.badge-api {
+    background: rgba(255, 193, 7, 0.9) !important;
+    color: #333;
+}
+
+.loading {
+    text-align: center;
+    padding: 50px;
+    font-size: 18px;
+    color: #666;
+    grid-column: 1 / -1;
+}
+
+.loading i {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #5DD5C9;
+}
+
+.loading-subtext {
+    font-size: 14px;
+    color: #888;
+    margin-top: 10px;
+    font-family: 'Palatino Linotype', serif;
+}
+
+/* Recipe image container for positioning the API badge */
+.recipe-card {
+    position: relative;
+}
+
+.recipe-card .recipe-img-container {
+    position: relative;
 }
 
 /* Responsive Design for Filters */
