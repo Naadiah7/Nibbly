@@ -288,26 +288,26 @@ body {
 
 /* --- Join Button --- */
 .join-btn {
-    background-color: #B0E1FF;
-    color: #000;
-    font-family: 'Orelega One', cursive;
-    font-size: 20px;
-    padding: 12px 40px;
-    border: 2px solid #000;
-    border-radius: 5px;
-    cursor: pointer;
-    display: block;
-    width: auto;
-    margin: 20px 0 0 0;
-    box-shadow: 4px 4px 0px #000;
-    opacity: 0; /* For animation */
-    transform: scale(0.8);
+  background-color: #B0E1FF;
+  color: #000;
+  font-family: 'Orelega One', cursive;
+  font-size: 20px;
+  padding: 12px 40px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  width: auto;
+  margin: 20px 0 0 0;
+  box-shadow: 4px 4px 0px #000;
+  opacity: 0; /* For animation */
+  transform: scale(0.8);
 }
 
 .join-btn:hover {
-    background-color: #71C9FF;
-    transform: translate(1px, 1px);
-    box-shadow: 2px 2px 0px #000;
+  background-color: #71C9FF;
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px #000;
 }
 
 /* Footer */

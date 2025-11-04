@@ -198,23 +198,28 @@ body {
 
 /*Recipe Button*/
 .recipe-btn{
+  background-color: #E9C4F9;
   text-decoration: none;
   font-family: 'Orelega One', Arial;
   color: #000;
-  font-size: 16px;
-  background-color: #ffffff;
-  border-radius: 10px;
+  font-size: 17px;
+  border-radius: 5px;
   padding: 15px 20px;
   display: block;
-  width: 95%;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 75%;
   transition: transform 0.3s ease;
   margin: 5px;
   text-align: center;
+  border: 2px solid #000;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px #000;
+  transform: scale(0.8);
 }
 
 .recipe-btn:hover{
-  transform: scale(1.05);
+  background-color: #E19CFF;
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px #000;
 }
 
 /* Footer */
@@ -254,7 +259,7 @@ footer {
   position: absolute;
   width: 30px;
   height: 30px;
-  background: #E9C4F9;
+  background: #f2d3ff;
   border-radius: 50%;
   opacity: 0;
   pointer-events: none;
