@@ -75,7 +75,6 @@ body {
 .search-btn {
   display: flex;
   align-items: center;
-  margin-left: 0px;
 }
 
 .searchButton {
@@ -100,7 +99,7 @@ body {
 .banner {
   position: relative;
   display: flex;
-  width: 97.35%;
+  width: 1480px;
   height: 110px;
   margin: 0 auto;
   background-color: #B0E1FF;

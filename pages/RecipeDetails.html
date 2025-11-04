@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <link rel="stylesheet" href="../css/normalize.css" />
-  <link rel="stylesheet" href="../css/Recipebook.css"/>
+  <link rel="stylesheet" href="../css/Recipedetails.css"/>
   <link rel="shortcut icon" href="../Images/Logo.png">
 
   <!-- Fonts -->
@@ -56,6 +56,36 @@
   </header>
 
   <main>
+      <!-- Recipe Banner -->
+    <section class="recipe-banner">
+      <div id="recipe1-banner" class="recipe-banner-content hidden">
+        <img src="../Images/capmuffin.png" alt="Cappuccino Muffins">
+        <h2>Cappuccino Muffins</h2>
+      </div>
+      <div id="recipe2-banner" class="recipe-banner-content hidden">
+        <img src="../Images/redvelvet.png" alt="Red Velvet Cupcakes">
+        <h2>Red Velvet Cupcakes</h2>
+      </div>
+      <div id="recipe3-banner" class="recipe-banner-content hidden">
+        <img src="../Images/Cheesecake.png" alt="Berry Cheesecake">
+        <h2>Berry Cheesecake</h2>
+      </div>
+    </section>
+
+    <!-- Links  -->
+    <div class="links">
+        <a href="" class="favourite">
+          <img src="../Images/Eheart.png" alt="empty heart">
+          <img src="../Images/Fheart.png" alt="full heart">
+        </a>
+        <a href="../assets/recipe-details.pdf" class="download" download="Nibbly-Recipe.pdf">
+          <img src="../Images/download.png" alt="download">
+        </a>
+        <a href="" class="share" onclick= "copyPageLink()">
+          <img src="../Images/share.png" alt="share link">
+        </a>
+    </div>
+
     <section class="recipe-details" id="recipeDetails">
       <!-- Recipe details will be populated by JavaScript -->
     </section>
@@ -70,7 +100,7 @@
 
   <!-- Go Back Button -->
   <a href="../pages/Recipebook.html" class="go-back">
-    <img src="../Images/back.png" alt="Go back to blog" />
+    <img src="../Images/back.png" alt="Go back to recipe book" />
   </a>
 
   <!-- Scroll to Top -->
