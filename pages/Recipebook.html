@@ -70,79 +70,36 @@
       </div>
     </section>    
     
-    <!-- Advanced Search Filters -->
-    <section class="filter-section">
-      <div class="filter-group">
-        <label for="dietFilter">Diet</label>
-        <select id="dietFilter" class="filter-select">
-          <option value="">Any</option>
-          <option value="vegetarian">Vegetarian</option>
-          <option value="vegan">Vegan</option>
-          <option value="glutenFree">Gluten Free</option>
-          <option value="dairyFree">Dairy Free</option>
-        </select>
-      </div>
-      
-      <div class="filter-group">
-        <label for="typeFilter">Dessert Type</label>
-        <select id="typeFilter" class="filter-select">
-          <option value="">Any</option>
-          <option value="cake">Cakes</option>
-          <option value="cookie">Cookie</option>
-          <option value="pastry">Meringue</option>
-          <option value="breakfast">Breakfast Dessert</option>
-        </select>
-      </div>
-      
-      <div class="filter-group">
-        <label for="ingredientFilter">Ingredient</label>
-        <input type="text" id="ingredientFilter" class="filter-input" placeholder="e.g. chocolate" />
-      </div>
-      
-      <div class="filter-group">
-        <label for="timeFilter">Max Prep Time</label>
-        <select id="timeFilter" class="filter-select">
-          <option value="">Any</option>
-          <option value="15">15 min</option>
-          <option value="30">30 min</option>
-          <option value="45">45 min</option>
-          <option value="60">60+ min</option>
-        </select>
-      </div>
-      
-      <button id="advancedSearchBtn" class="search-button">Apply Filters</button>
-    </section>
-    
-    <!-- Dessert Categories -->
-    <section class="categories">
-      <h2>Dessert Categories</h2>
+  <!-- Dessert Categories -->
+  <section class="categories">
+    <h2>Desserts</h2>
       <div class="category-grid">
         <div class="category-card" data-category="cakes">
-          <img src="../Images/cake-icon.png" alt="Cakes">
+          <img src="../Images/Brownie.png" alt="Cakes">
           <h3>Cakes</h3>
           <p>Delicious cakes for every occasion</p>
         </div>
-        <div class="category-card" data-category="cheesecakes">
-          <img src="../Images/cheesecake-icon.png" alt="Cheesecakes">
-          <h3>Cheesecakes</h3>
-          <p>Creamy and rich cheesecake recipes</p>
+        <div class="category-card" data-category="indian-sweets">
+          <img src="../Images/cheesecake-icon.png" alt="Indian Sweet Meats">
+          <h3>Indian sweets</h3>
+          <p>Traditional Indian sweets recipes</p>
         </div>
-        <div class="category-card" data-category="cookies">
-          <img src="../Images/cookie-icon.png" alt="Cookies">
-          <h3>Cookies</h3>
-          <p>Classic and creative cookie recipes</p>
+        <div class="category-card" data-category="meringues">
+          <img src="../Images/LMeringue.png" alt="Meringues">
+          <h3>Meringues</h3>
+          <p>Classic and light meringue recipes</p>
         </div>
         <div class="category-card" data-category="breakfast">
-          <img src="../Images/breakfast-icon.png" alt="Breakfast Desserts">
+          <img src="../Images/Pancakes.png" alt="Breakfast Desserts">
           <h3>Breakfast Desserts</h3>
           <p>Sweet treats to start your day</p>
         </div>
       </div>
     </section>
     
-    <!-- Recipe Results -->
+    <!-- All Recipe Results -->
     <section class="recipe-results">
-      <h2 id="results-title">Featured Recipes</h2>
+      <h2 id="results-title">All Recipes</h2>
       <div class="recipe-grid" id="recipeGrid">
         <!-- Recipes will be dynamically populated here -->
       </div>

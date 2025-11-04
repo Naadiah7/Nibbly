@@ -23,7 +23,7 @@ function getUrlParameter(name) {
   return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
 
-// Blog Details functionality
+// Blog Details function
 function initializeBlogDetails() {
   const blogId = getUrlParameter('id');
   
@@ -275,7 +275,7 @@ function initializeBlogAnimations() {
     });
 
     postTimeline
-      .fromTo(post.querySelector('.blog-date'),
+      .fromTo(post.querySelector('.post-date'),
         { opacity: 0, y: -20 },
         { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
       )

@@ -182,7 +182,7 @@ body {
 }
 
 .category-card {
-  background-color: #f6f2ff;
+  background-color: #f2feff;
   border-radius: 15px;
   padding: 20px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -353,7 +353,7 @@ body {
 }
 
 .meta-item {
-  background-color: #f6f2ff;
+  background-color: #f2feff;
   padding: 15px;
   border-radius: 10px;
   text-align: center;
