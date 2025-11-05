@@ -16,3 +16,4 @@ The recipes are recipes I use in my own household. I added 2-3 recipes for each 
 I used the free spoonacular API and the free Edamam API.
 
 The speechify Api is used for the whole website for accessibility.
+

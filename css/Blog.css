@@ -346,14 +346,14 @@ body {
 
 .blog-details-date {
   font-family: 'Orelega One', cursive;
-  font-size: 16px;
+  font-size: 17px;
   color: #666;
   margin-bottom: 20px;
 }
 
 .blog-details-recipe {
   font-family: 'Palatino Linotype';
-  font-size: 18px;
+  font-size: 20px;
   color: #000;
   margin-bottom: 20px;
   font-weight: bold;
@@ -361,7 +361,7 @@ body {
 
 .blog-details-text {
   font-family: 'Palatino Linotype';
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.6;
   color: #333;
   margin-bottom: 20px;
@@ -378,23 +378,6 @@ body {
   color: #000;
   margin-top: 25px;
   margin-bottom: 15px;
-}
-
-.blog-details-text h4 {
-  font-family: 'Berkshire Swash', cursive;
-  font-size: 18px;
-  color: #000;
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-.blog-details-text ul, .blog-details-text ol {
-  margin-bottom: 20px;
-  padding-left: 20px;
-}
-
-.blog-details-text li {
-  margin-bottom: 8px;
 }
 
 .hidden {

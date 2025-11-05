@@ -24,34 +24,15 @@ const blogData = {
     image: "../Images/capmuffin.png",
     alt: "Cappuccino Muffins",
     content: `
-      <p>Start your morning with these delightful cappuccino muffins that combine the rich flavor of coffee with soft, moist muffin texture. Perfect for breakfast or as an afternoon pick-me-up.</p>
-      
-      <h3>Ingredients:</h3>
-      <ul>
-        <li>2 cups all-purpose flour</li>
-        <li>1/2 cup granulated sugar</li>
-        <li>1/4 cup brown sugar</li>
-        <li>2 tsp baking powder</li>
-        <li>1/2 tsp salt</li>
-        <li>1 tbsp instant coffee granules</li>
-        <li>1 cup milk</li>
-        <li>1/2 cup unsalted butter, melted</li>
-        <li>1 large egg</li>
-        <li>1 tsp vanilla extract</li>
-      </ul>
-      
-      <h3>Instructions:</h3>
-      <ol>
-        <li>Preheat oven to 375°F (190°C) and line a muffin tin with paper liners.</li>
-        <li>In a large bowl, whisk together flour, sugars, baking powder, salt, and instant coffee.</li>
-        <li>In another bowl, mix milk, melted butter, egg, and vanilla extract.</li>
-        <li>Combine wet and dry ingredients, stirring until just mixed (do not overmix).</li>
-        <li>Divide batter evenly among muffin cups, filling each about 2/3 full.</li>
-        <li>Bake for 18-20 minutes or until a toothpick inserted comes out clean.</li>
-        <li>Cool in pan for 5 minutes, then transfer to a wire rack to cool completely.</li>
-      </ol>
-      
-      <h3>Tips:</h3>
+      <p>Calling all coffee lovers! Have you ever wished you could eat your morning cappuccino? Well, consider this your wake-up call. The cappuccino muffin is here to transform your coffee break into a truly immersive experience.
+
+      This isn't a cloyingly sweet, cake-disguised-as-a-muffin situation. This is a sophisticated bake, designed for those who appreciate the rich, robust depth of a good espresso. The base is tender and moist, infused with a generous dose of coffee that ensures the flavor is in every single bite. You'll even see the beautiful specks of espresso grounds throughout, a promise of the genuine article.
+
+      And what's a cappuccino without its foam? We achieve that with a generous scattering of buttery cinnamon streusel on top. It bakes up into a crunchy, crumbly, sweet crust that perfectly mimics the frothy top of your favorite coffeehouse drink.
+
+      It's the ultimate grab-and-go breakfast that doesn't compromise on flavor. Pair it with your morning cup for a double dose of coziness, or enjoy it as the perfect afternoon perk-me-up. It's a little bit indulgent, a whole lot satisfying, and entirely for you.</p>
+
+      <h3>Some Tips:</h3>
       <p>For an extra coffee kick, dissolve the instant coffee in 1 tablespoon of hot water before adding to the wet ingredients. You can also add chocolate chips or nuts for texture variation.</p>
     `
   },
@@ -62,50 +43,15 @@ const blogData = {
     image: "../Images/redvelvet.png",
     alt: "Red Velvet Cupcakes",
     content: `
-      <p>Discover the secrets to creating perfect red velvet cupcakes with our step-by-step guide. Learn how to achieve that signature velvety texture and rich color.</p>
+      <p>There are desserts that you eat, and then there are desserts that you experience. The red velvet cupcake sits firmly in the latter category. It's more than just a treat; it's a tiny, edible declaration of love and celebration.
+
+      What I've always found so captivating about red velvet isn't just its bold, dramatic color. It's the subtlety of its flavor—a whisper of cocoa, a tang from the buttermilk, and that uniquely soft, "velvet" crumb that feels luxurious on the tongue. It's a complex dance of flavors that a standard chocolate cake can't quite replicate.
+
+      But let's be real: the true soulmate to this scarlet cake is its flawless partner, the cream cheese frosting. That cool, tangy, impossibly creamy topping is the perfect counterpoint to the cake's gentle sweetness. The visual contrast alone—snow-white frosting against a passionate red backdrop—is enough to make your heart skip a beat.
+
+      Baking these is like creating little masterpieces. They're for the moments that matter, the days that need a splash of joy, or when you simply want to say "you are special" in the most delicious way possible.</p>
       
-      <h3>Ingredients:</h3>
-      <ul>
-        <li>2 1/2 cups all-purpose flour</li>
-        <li>1 1/2 cups granulated sugar</li>
-        <li>1 tsp baking soda</li>
-        <li>1 tsp salt</li>
-        <li>1 tsp cocoa powder</li>
-        <li>1 1/2 cups vegetable oil</li>
-        <li>1 cup buttermilk</li>
-        <li>2 large eggs</li>
-        <li>2 tbsp red food coloring</li>
-        <li>1 tsp white vinegar</li>
-        <li>1 tsp vanilla extract</li>
-      </ul>
-      
-      <h3>Cream Cheese Frosting:</h3>
-      <ul>
-        <li>8 oz cream cheese, softened</li>
-        <li>1/2 cup unsalted butter, softened</li>
-        <li>4 cups powdered sugar</li>
-        <li>1 tsp vanilla extract</li>
-      </ul>
-      
-      <h3>Instructions:</h3>
-      <ol>
-        <li>Preheat oven to 350°F (175°C) and line a muffin tin with paper liners.</li>
-        <li>In a medium bowl, whisk together flour, sugar, baking soda, salt, and cocoa powder.</li>
-        <li>In a large bowl, mix oil, buttermilk, eggs, food coloring, vinegar, and vanilla.</li>
-        <li>Gradually add dry ingredients to wet ingredients, mixing until smooth.</li>
-        <li>Divide batter evenly among muffin cups, filling each about 2/3 full.</li>
-        <li>Bake for 18-20 minutes or until a toothpick inserted comes out clean.</li>
-        <li>Cool completely before frosting.</li>
-      </ol>
-      
-      <h3>For the Frosting:</h3>
-      <ol>
-        <li>Beat cream cheese and butter until smooth and creamy.</li>
-        <li>Gradually add powdered sugar and vanilla, beating until light and fluffy.</li>
-        <li>Frost cooled cupcakes and enjoy!</li>
-      </ol>
-      
-      <h3>Tips:</h3>
+      <h3>Some Tips:</h3>
       <p>For the best red color, use gel food coloring rather than liquid. Don't overmix the batter once the dry ingredients are added to maintain the tender texture.</p>
     `
   },
@@ -116,58 +62,16 @@ const blogData = {
     image: "../Images/Cheesecake.png",
     alt: "Berry Cheesecake",
     content: `
-      <p>Indulge in this creamy berry cheesecake that combines a buttery biscuit base with smooth cream cheese filling and fresh blueberry topping. A true crowd-pleaser!</p>
+      <p>When the sun is high and the air is warm, the last thing anyone wants to do is heat up the kitchen. But that doesn't mean you have to sacrifice a spectacular dessert. Enter the hero of the summer: the no-bake berry cheesecake.
+
+      This dessert is a dream of contrasts. It starts with a simple, crisp biscuit base that provides the essential crunch. Then, the filling—oh, the filling! It's a cloud of creamy, tangy, velvety smooth cheesecake that sets perfectly in the chill of the fridge, no oven required. It's rich, yet somehow feels light and refreshing.
+
+      The real showstopper, though, is the glistening, jewel-toned berry topping. A vibrant mix of raspberries, blueberries, and blackberries, artfully arranged and often glazed with a shiny finish, creates a mosaic that looks almost too beautiful to eat. It's a burst of fresh, bright flavor that cuts through the richness of the cream cheese filling in the most perfect way.
+
+      This cheesecake is your secret weapon for effortless entertaining. It's cool, stunning, and can be made ahead of time, taking the stress out of hosting. It's the taste of summer on a fork—pure, simple, and utterly delightful.</p>
       
-      <h3>Ingredients:</h3>
-      
-      <h4>Crust:</h4>
-      <ul>
-        <li>2 cups graham cracker crumbs</li>
-        <li>1/2 cup unsalted butter, melted</li>
-        <li>1/4 cup granulated sugar</li>
-      </ul>
-      
-      <h4>Filling:</h4>
-      <ul>
-        <li>24 oz cream cheese, softened</li>
-        <li>1 cup granulated sugar</li>
-        <li>1 cup sour cream</li>
-        <li>3 large eggs</li>
-        <li>1 tsp vanilla extract</li>
-        <li>2 tbsp all-purpose flour</li>
-      </ul>
-      
-      <h4>Blueberry Topping:</h4>
-      <ul>
-        <li>2 cups fresh blueberries</li>
-        <li>1/4 cup granulated sugar</li>
-        <li>1 tbsp cornstarch</li>
-        <li>1 tbsp lemon juice</li>
-        <li>1/4 cup water</li>
-      </ul>
-      
-      <h3>Instructions:</h3>
-      <ol>
-        <li>Preheat oven to 325°F (160°C).</li>
-        <li>Mix graham cracker crumbs, melted butter, and sugar. Press into the bottom of a 9-inch springform pan.</li>
-        <li>Bake crust for 10 minutes, then remove from oven and let cool.</li>
-        <li>In a large bowl, beat cream cheese and sugar until smooth.</li>
-        <li>Add sour cream, eggs (one at a time), vanilla, and flour, mixing until just combined.</li>
-        <li>Pour filling over the crust and smooth the top.</li>
-        <li>Bake for 50-60 minutes or until the center is almost set.</li>
-        <li>Turn off the oven and let the cheesecake cool in the oven with the door slightly ajar for 1 hour.</li>
-        <li>Refrigerate for at least 4 hours or overnight.</li>
-      </ol>
-      
-      <h3>For the Blueberry Topping:</h3>
-      <ol>
-        <li>In a saucepan, combine blueberries, sugar, cornstarch, lemon juice, and water.</li>
-        <li>Cook over medium heat, stirring constantly, until the mixture thickens and blueberries release their juices.</li>
-        <li>Cool completely before spreading over the chilled cheesecake.</li>
-      </ol>
-      
-      <h3>Tips:</h3>
-      <p>Make sure all ingredients are at room temperature before mixing to prevent lumps in the filling. For a perfectly smooth top, run a knife around the edge of the cheesecake after baking before cooling.</p>
+      <h3>Some Tips:</h3>
+      <p>Make sure all ingredients are at room temperature before mixing to prevent lumps in the filling. For the best texture and stability, it is recommended to chill it for at least 6-8 hours or overnight before serving. </p>
     `
   }
 };

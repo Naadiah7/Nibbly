@@ -1,9 +1,8 @@
-// GSAP Animations used in all the pages
+//GSAP Animations
 document.addEventListener('DOMContentLoaded', function() {
   gsap.registerPlugin(ScrollTrigger);
 
   createFloatingCookies();
-  initializeSpeechify(); 
 
   const mainTimeline = gsap.timeline();
 
@@ -289,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 //Speechify API function
-const apiKey = "PI7OSDM1Aa6mUln9v5VkVbH-XrFlZWERXeGvjgPHG6s="; 
+/*const apiKey = "PI7OSDM1Aa6mUln9v5VkVbH-XrFlZWERXeGvjgPHG6s="; 
 const endpoint = "https://api.sws.speechify.com/v1/speech"; // Replace with your real API endpoint
 
 document.getElementById("speakBtn").addEventListener("click", async () => {
@@ -321,4 +320,4 @@ document.getElementById("speakBtn").addEventListener("click", async () => {
     console.error("Speech generation error:", error);
     alert("Error generating speech. Check the console for details.");
   }
-});
+});*/
