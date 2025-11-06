@@ -1,4 +1,3 @@
-//Recipe Details
 // To share the link of the website
 function copyPageLink() {
     // Get the current page URL
@@ -11,7 +10,6 @@ function copyPageLink() {
     });
 }
 
-// Recipe Details Page JavaScript
 document.addEventListener('DOMContentLoaded', function() {
     initializeRecipeDetails();
     initializeScrollToTop();

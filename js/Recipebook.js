@@ -1,9 +1,7 @@
-// Recipe Book 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functions
     initializeScrollToTop();
     initializeRecipeSearch();
-    initializeGSAPAnimations();
     initializeFilterSystem();
 });
 
