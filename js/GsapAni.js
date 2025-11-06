@@ -407,6 +407,38 @@ function initializeBlogPageAnimations() {
     if (!document.querySelector('.banner')) return;
 
     // Blog content animations
+        // Animate banner
+    gsap.fromTo('.banner h2', 
+            {
+                opacity: 0,
+                x: -50,
+                scale: 0.8
+            },
+            {
+                opacity: 1,
+                x: 0,
+                scale: 1,
+                duration: 0.8,
+                ease: "back.out(1.7)"
+            }
+    );
+
+    gsap.fromTo('.banner img', 
+            {
+                opacity: 0,
+                rotation: -180,
+                scale: 0
+            },
+            {
+                opacity: 1,
+                rotation: 0,
+                scale: 1,
+                duration: 0.6,
+                ease: "back.out(1.5)"
+            },
+            "-=0.4"
+    );
+    
     gsap.fromTo('.blog-heading',
         {
             opacity: 0,
@@ -691,19 +723,47 @@ function animateBanner() {
 function initializeRecipeBookAnimations() {
     // Animate category cards on load
     gsap.fromTo('.category-card', 
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: "power2.out" }
+        { opacity: 0, 
+            y: 30 
+        },
+        { opacity: 1, 
+            y: 0, 
+            duration: 0.8, 
+            stagger: 0.2, 
+            ease: "power2.out" 
+        }
     );
 
     // Animate banner
     gsap.fromTo('.banner h2', 
-        { opacity: 0, x: -50 },
-        { opacity: 1, x: 0, duration: 1, delay: 0.5 }
+            {
+                opacity: 0,
+                x: -50,
+                scale: 0.8
+            },
+            {
+                opacity: 1,
+                x: 0,
+                scale: 1,
+                duration: 0.8,
+                ease: "back.out(1.7)"
+            }
     );
 
     gsap.fromTo('.banner img', 
-        { opacity: 0, scale: 0 },
-        { opacity: 1, scale: 1, duration: 0.8, delay: 0.8, ease: "back.out(1.7)" }
+            {
+                opacity: 0,
+                rotation: -180,
+                scale: 0
+            },
+            {
+                opacity: 1,
+                rotation: 0,
+                scale: 1,
+                duration: 0.6,
+                ease: "back.out(1.5)"
+            },
+            "-=0.4"
     );
 
     // Animate filter section
@@ -822,7 +882,7 @@ function initializeRecipeDetailsAnimations() {
 
 // --- Floating Cookies Animation ---
 function createFloatingCookies() {
-    const banner = document.querySelector('.banner, .blog-banner, .banner-title');
+    const banner = document.querySelector('.banner, .blog-banner, .banner-title, .search-page');
     if (!banner) return;
     
     // Clear existing floating cookies

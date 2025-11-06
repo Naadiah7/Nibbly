@@ -12,9 +12,17 @@
   <link rel="stylesheet" href="../css/search.css" />
   <link rel="shortcut icon" href="../Images/Logo.png" type="image of logo/png" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Beth+Ellen&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Beth+Ellen&family=Orelega+One&display=swap" rel="stylesheet">
 
-  <title>Nibbly - Recipe Search</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>  
+
+  <title>Recipe Book</title>
 </head>
 <body>
 
@@ -32,7 +40,7 @@
         <h1 class="site-title">Nibbly</h1>
       </div>
 
-<!--Navigation Bar-->
+    <!--Navigation Bar-->
     <ul>
       <li><a href="../index.html">Home</a></li>
       <li><a href="../pages/Recipebook.html">Recipe Book</a></li>
@@ -51,6 +59,7 @@
   </header>
 
   <main>
+  <section class="search-page">
     <!-- Search Bar -->
     <section class="search-bar">
       <div class="search-box">
@@ -58,56 +67,70 @@
         <button id="searchBtn">Search</button>
       </div>
     </section>    
-    
-    <div class="search-container">
-      <!-- Filter section -->
-      <div class="filter-section">
+
+    <!-- Search Filters -->
+    <section class="filter-section">
+      <div class="filter-group">
+        <label for="dietFilter">Diet Type</label>
+        <select id="dietFilter" class="filter-select">
+          <option value="">Diet</option>
+          <option value="vegetarian">Vegetarian</option>
+          <option value="vegan">Vegan</option>
+          <option value="glutenFree">Gluten Free</option>
+          <option value="dairyFree">Dairy Free</option>
+          <option value="nutFree">Nut Free</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="typeFilter">Dessert Type</label>
+        <select id="typeFilter" class="filter-select">
+          <option value=""> Type</option>
+          <option value="cakes">Cakes</option>
+          <option value="indian-sweets">Indian Sweets</option>
+          <option value="meringues">Meringues</option>
+          <option value="breakfast">Breakfast Desserts</option>
+        </select>
+      </div>
+
         <div class="filter-group">
-          <label for="dietFilter">Diet</label>
-          <select id="dietFilter" class="filter-select">
-            <option value="">Any</option>
-            <option value="vegetarian">Vegetarian</option>
-            <option value="vegan">Vegan</option>
-            <option value="glutenFree">Gluten Free</option>
-            <option value="dairyFree">Dairy Free</option>
-          </select>
-        </div>
-        
-        <div class="filter-group">
-          <label for="typeFilter">Dessert Type</label>
-          <select id="typeFilter" class="filter-select">
-            <option value="">Any</option>
-            <option value="cake">Cakes</option>
-            <option value="cookie">Sweet Meats</option>
-            <option value="pastry">Meringues</option>
-            <option value="breakfast">Breakfast Desserts</option>
-          </select>
-        </div>
-        
-        <div class="filter-group">
-          <label for="ingredientFilter">Ingredient</label>
-          <input type="text" id="ingredientFilter" class="filter-input" placeholder="e.g. chocolate" />
-        </div>
-        
-        <div class="filter-group">
-          <label for="timeFilter">Max Prep Time</label>
-          <select id="timeFilter" class="filter-select">
-            <option value="">Any</option>
-            <option value="15">15 min</option>
-            <option value="30">30 min</option>
-            <option value="45">45 min</option>
-            <option value="60">60+ min</option>
-          </select>
-        </div>
-        
-        <button id="searchBtn" class="search-button">Search</button>
+        <label for="timeFilter"> Max Prep Time</label>
+        <select id="timeFilter" class="filter-select">
+          <option value="">Time</option>
+          <option value="30">30 min or less</option>
+          <option value="45">45 min or less</option>
+          <option value="60">60 min or less</option>
+          <option value="120">2 hours or less</option>
+        </select>
       </div>
       
-      <!-- Results section -->
-      <div id="resultsContainer" class="results-container">
-        <!-- Results will be present here by JavaScript -->
+      <div class="filter-actions">
+        <button id="applyFiltersBtn" class="filter-button apply-btn">
+          <i class="fas fa-filter"></i> Apply Filters
+        </button>
+        <button id="clearFiltersBtn" class="filter-button clear-btn"> Clear All
+        </button>
       </div>
-    </div>
+    </section>
+
+    <!-- Filters Display -->
+    <section class="active-filters" id="activeFilters">
+      <!-- Active filters will be displayed here -->
+    </section>
+      
+  <!-- Recipe Results Page -->
+  <section id="recipes-page" class="recipe-results" style="display: none;">
+    <h2 id="results-title">Recent Recipes</h2>
+    <div class="recipe-grid" id="recipeGrid">
+      <!-- Recipes will be dynamically populated here -->
+      </div>
+      <div class="load-more-container">
+        <button id="loadMoreBtn" class="load-more-btn">
+          <i class="fas fa-plus"></i> Load More Recipes
+        </button>
+      </div>
+    </section>
+    </section>
   </main>
   
   <!-- Footer -->
@@ -117,7 +140,7 @@
     </section>
   </footer>
 
-    <script src="../js/search.js"></script>
+    <script src="../js/Recipebook.js"></script>
     <script src="../js/GsapAni.js"></script> 
 </body>
 </html>

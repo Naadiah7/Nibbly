@@ -1,4 +1,4 @@
-// Scroll-to-top functionality
+// Scroll-to-top function
 const scrollBtn = document.getElementById("scrollTopBtn");
 
 if (scrollBtn) {
@@ -79,6 +79,18 @@ const blogData = {
   }
 };
 
+// Function to navigate to recipe from blog
+window.viewRecipeFromBlog = function(recipeId) {
+    console.log('View Recipe from Blog clicked:', recipeId);
+    
+    // Store the recipe ID and source for the recipe details page
+    sessionStorage.setItem('currentRecipeId', recipeId.toString());
+    sessionStorage.setItem('recipeSource', 'local');
+    
+    // Navigate to recipe details page
+    window.location.href = 'Recipedetails.html';
+};
+
 // Function to create blog banner content
 function createBlogBanner(blogId, blogData) {
   const bannerContent = document.createElement('div');
@@ -120,7 +132,9 @@ function createBlogDetails(blogId, blogData) {
   const readMoreBtn = document.createElement('a');
   readMoreBtn.className = 'read-more-recipe-btn';
   readMoreBtn.textContent = 'Read Recipe';
-  readMoreBtn.href = `../pages/RecipeDetails.html?id=${blogData.recipeId}`;
+  readMoreBtn.onclick = function() {
+    viewRecipeFromBlog(blogData.recipeId);
+  };
   
   article.appendChild(date);
   article.appendChild(recipe);
@@ -160,7 +174,7 @@ function initializeBlogDetails() {
   }
 }
 
-// Function to get URL parameters (for BlogDetails.html)
+// Function to get URL parameters - BlogDetails Page
 function getUrlParameter(name) {
   name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
   const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');

@@ -104,7 +104,7 @@ body {
 
 .banner img {
   width: 100%;
-  height: 120px;
+  height: 115px;
   border-bottom: 2px solid #ccc;
   display: flex;
 }
@@ -115,12 +115,13 @@ body {
   top: 33%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 1515px;
+  width: 100%;
   padding: 12px 10px;
   background-color: #E19CFF;
   color: #000;
   border-radius: 15px;
   z-index: 10;
+  box-sizing: border-box;
 }
 
 .banner-title p {
@@ -131,7 +132,7 @@ body {
 
 /* Featured Recipes */
 .featured {
-  margin: 5px 0;
+  margin: 0;
 }
 
 .featured h3 {
@@ -148,7 +149,7 @@ body {
   justify-content: center;;
   gap: 40px;
   flex-wrap: wrap;
-  margin-top: 12px;
+  margin-top: 17px;
   margin-bottom: 20px;
 }
 
@@ -157,7 +158,7 @@ body {
   border-radius: 20px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   width: 200px;
-  height: 290px;
+  height: 295px;
   padding: 20px 50px;
   text-align: center;
   transition: transform 0.3s ease;
@@ -202,7 +203,7 @@ body {
   text-decoration: none;
   font-family: 'Orelega One', Arial;
   color: #000;
-  font-size: 17px;
+  font-size: 18px;
   border-radius: 5px;
   padding: 15px 20px;
   display: block;
@@ -259,11 +260,12 @@ footer {
   position: absolute;
   width: 30px;
   height: 30px;
-  background: #da85ff;
+  background: #E19CFF;
   border-radius: 50%;
   opacity: 0;
   pointer-events: none;
 }
+
 
 
 /* Burger Menu Hidden (for desktop) */

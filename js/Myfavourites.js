@@ -377,11 +377,11 @@ function loadFavorites() {
     const favoritesContainer = document.getElementById('favoritesContainer');
     const emptyState = document.getElementById('emptyState');
     
-    console.log('Loading favorites:', favorites); // Debug log
+    //console.log('Loading favorites:', favorites);  Debug log
     
     if (favorites.length === 0) {
-        favoritesContainer.style.display = 'none';
-        emptyState.style.display = 'block';
+        if (favoritesContainer) favoritesContainer.style.display = 'none';
+        if (emptyState) emptyState.style.display = 'block';
         
         // Animate empty state
         if (typeof gsap !== 'undefined') {
@@ -396,48 +396,50 @@ function loadFavorites() {
         return;
     }
     
-    emptyState.style.display = 'none';
-    favoritesContainer.style.display = 'grid';
+    if (emptyState) emptyState.style.display = 'none';
+    if (favoritesContainer) favoritesContainer.style.display = 'grid';
     
     // Clear container
-    favoritesContainer.innerHTML = '';
-    
-    // Add favorite recipes
-    favorites.forEach(recipeId => {
-        const numericRecipeId = parseInt(recipeId);
-        const recipe = completeRecipeData[numericRecipeId];
+    if (favoritesContainer) {
+        favoritesContainer.innerHTML = '';
         
-        if (recipe) {
-            const recipeCard = document.createElement('div');
-            recipeCard.className = 'recipe-card';
-            recipeCard.innerHTML = `
-                <img src="${recipe.image}" alt="${recipe.title}">
-                <div class="recipe-info">
-                    <h3>${recipe.title}</h3>
-                    <p>${recipe.description}</p>
-                    <div class="recipe-meta">
-                        <span class="prep-time">${recipe.prepTime}</span>
-                        <span class="servings">${recipe.servings} servings</span>
+        // Add favorite recipes
+        favorites.forEach(recipeId => {
+            const numericRecipeId = parseInt(recipeId);
+            const recipe = completeRecipeData[numericRecipeId];
+            
+            if (recipe) {
+                const recipeCard = document.createElement('div');
+                recipeCard.className = 'recipe-card';
+                recipeCard.innerHTML = `
+                    <img src="${recipe.image}" alt="${recipe.title}" onerror="this.src='../Images/placeholder.jpg'">
+                    <div class="recipe-info">
+                        <h3>${recipe.title}</h3>
+                        <p>${recipe.description}</p>
+                        <div class="recipe-meta">
+                            <span class="prep-time">${recipe.prepTime}</span>
+                            <span class="servings">${recipe.servings} servings</span>
+                        </div>
+                        <button class="view-recipe-btn" onclick="viewRecipe(${recipe.id})">View Recipe</button>
                     </div>
-                    <button class="view-recipe-btn" onclick="viewRecipe(${recipe.id})">View Recipe</button>
-                </div>
-            `;
-            favoritesContainer.appendChild(recipeCard);
-        } else {
-            console.warn('Recipe not found for ID:', recipeId);
-        }
-    });
-    
-    // Animate recipe cards
-    if (typeof gsap !== 'undefined') {
-        gsap.from('.recipe-card', {
-            duration: 0.6,
-            opacity: 0,
-            y: 30,
-            stagger: 0.1,
-            ease: "back.out(1.2)",
-            delay: 0.5
+                `;
+                favoritesContainer.appendChild(recipeCard);
+            } else {
+                console.warn('Recipe not found for ID:', recipeId, 'Available IDs:', Object.keys(completeRecipeData));
+            }
         });
+        
+        // Animate recipe cards
+        if (typeof gsap !== 'undefined') {
+            gsap.from('.recipe-card', {
+                duration: 0.6,
+                opacity: 0,
+                y: 30,
+                stagger: 0.1,
+                ease: "back.out(1.2)",
+                delay: 0.5
+            });
+        }
     }
 }
 
@@ -446,3 +448,12 @@ function viewRecipe(recipeId) {
     sessionStorage.setItem('recipeSource', 'local'); 
     window.location.href = '../pages/Recipedetails.html';
 }
+
+// Debug function to check what's in localStorage
+function debugLocalStorage() {
+    console.log('nibblyFavorites:', JSON.parse(localStorage.getItem('nibblyFavorites')));
+    console.log('All localStorage:', { ...localStorage });
+}
+
+// Make it available globally for debugging
+window.debugLocalStorage = debugLocalStorage;

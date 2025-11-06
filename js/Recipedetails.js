@@ -11,10 +11,31 @@ function copyPageLink() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    cleanNavigationBar();
     initializeRecipeDetails();
     initializeScrollToTop();
     setupFavoriteButton();
 });
+
+function cleanNavigationBar() {
+    const brand = document.querySelector('.brand');
+    if (brand) {
+        // Remove any text nodes that are just numbers
+        brand.childNodes.forEach(node => {
+            if (node.nodeType === Node.TEXT_NODE && /^\d+$/.test(node.textContent.trim())) {
+                node.remove();
+            }
+        });
+        
+        // Remove any elements that might contain numbers
+        const numberElements = brand.querySelectorAll('span, div, p');
+        numberElements.forEach(el => {
+            if (/^\d+$/.test(el.textContent.trim())) {
+                el.remove();
+            }
+        });
+    }
+}
 
 // Scroll-to-top function
 function initializeScrollToTop() {
@@ -35,8 +56,32 @@ function initializeScrollToTop() {
     }
 }
 
+function getUrlParameter(name) {
+  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+  const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+  const results = regex.exec(location.search);
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+// Main function to initialize recipe details
 async function initializeRecipeDetails() {
-    // Get recipe ID and source from sessionStorage
+    // First check for URL parameter
+    const urlRecipeId = getUrlParameter('id');
+    
+    // If URL parameter exists, use it and store in sessionStorage
+    if (urlRecipeId) {
+        // Check if it's a blog recipe (starts with 'blog')
+        if (urlRecipeId.startsWith('blog')) {
+            const numericId = urlRecipeId.replace('blog', '');
+            sessionStorage.setItem('currentRecipeId', numericId);
+            sessionStorage.setItem('recipeSource', 'local');
+        } else {
+            sessionStorage.setItem('currentRecipeId', urlRecipeId);
+            sessionStorage.setItem('recipeSource', 'local');
+        }
+    }
+    
+    // Then get recipe ID and source from sessionStorage
     const recipeId = sessionStorage.getItem('currentRecipeId');
     const recipeSource = sessionStorage.getItem('recipeSource') || 'local';
     
@@ -59,7 +104,7 @@ async function initializeRecipeDetails() {
             return;
         } else {
             // Use local recipe data
-            recipe = completeRecipeData[recipeId];
+            recipe = completeRecipeData[Number(recipeId)];
         }
         
         if (!recipe) {
@@ -76,7 +121,7 @@ async function initializeRecipeDetails() {
     }
 }
 
-// function to show loading state
+// Function to show loading state
 function showLoading() {
     const recipeDetails = document.getElementById('recipeDetails');
     if (recipeDetails) {
@@ -88,6 +133,7 @@ function showLoading() {
         `;
     }
 }
+
 
 // Complete recipe data with full details
 const completeRecipeData = {
@@ -443,28 +489,24 @@ const completeRecipeData = {
     }
 };
 
-function initializeRecipeDetails() {
-    // Get recipe ID from sessionStorage
-    const recipeId = sessionStorage.getItem('currentRecipeId');
-    
-    if (!recipeId) {
-        showErrorMessage("No recipe selected. Please select a recipe.");
-        return;
-    }
+// Function to store recipe ID and navigate to details page
+function viewRecipe(recipeId, source = 'local') {
+    sessionStorage.setItem('currentRecipeId', recipeId);
+    sessionStorage.setItem('recipeSource', source);
+    window.location.href = 'RecipeDetails.html';
+}
 
-    // Get recipe data
-    const recipe = completeRecipeData[recipeId];
-    
-    if (!recipe) {
-        showErrorMessage("Recipe not found. Please select a valid recipe.");
-        return;
-    }
-
-    // Display recipe details
-    displayRecipeDetails(recipe);
+// Function to view recipe from blog
+function viewRecipeFromBlog(recipeId) {
+    sessionStorage.setItem('currentRecipeId', recipeId);
+    sessionStorage.setItem('recipeSource', 'local');
+    window.location.href = 'RecipeDetails.html';
 }
 
 function displayRecipeDetails(recipe) {
+
+    //console.log('Displaying recipe:', recipe.id, recipe.title);
+    //console.log('Recipe object:', recipe);
     // Update page title
     document.title = `${recipe.title} - Nibbly`;
     
@@ -498,37 +540,25 @@ function displayRecipeDetails(recipe) {
                 </div>
                     <div class="recipe-meta-details">
                         <div class="meta-item">
-                            <span class="meta-label">Prep Time</span>
+                            <span class="meta-label">Prep Time:</span>
                             <span class="meta-value">${recipe.prepTime}</span>
                         </div>
                         <div class="meta-item">
-                            <span class="meta-label">Cook Time</span>
-                            <span class="meta-value">${recipe.cookTime}</span>
-                        </div>
-                        <div class="meta-item">
-                            <span class="meta-label">Total Time</span>
+                            <span class="meta-label">Total Time:</span>
                             <span class="meta-value">${recipe.totalTime} mins</span>
                         </div>
                         <div class="meta-item">
-                            <span class="meta-label">Difficulty</span>
+                            <span class="meta-label">Difficulty:</span>
                             <span class="meta-value">${recipe.difficulty}</span>
                         </div>
                         <div class="meta-item">
-                            <span class="meta-label">Servings</span>
+                            <span class="meta-label">Servings:</span>
                             <span class="meta-value">${recipe.servings}</span>
                         </div>
                         <div class="meta-item">
-                            <span class="meta-label">Category</span>
+                            <span class="meta-label">Category:</span>
                             <span class="meta-value">${recipe.category.replace('-', ' ')}</span>
                         </div>
-                    </div>
-                    <div class="action-buttons">
-                        <button class="action-btn" onclick="printRecipe()">
-                            <i class="fas fa-print"></i> Print Recipe
-                        </button>
-                        <button class="action-btn" onclick="shareRecipe()">
-                            <i class="fas fa-share"></i> Share Recipe
-                        </button>
                     </div>
                 </div>
             </div>
@@ -561,29 +591,30 @@ function updateBannerMetadata(recipe) {
     if (metaBanner) {
         metaBanner.innerHTML = `
             <div class="meta-item">
-                <span class="meta-label">Prep Time</span>
+                <span class="meta-label">Prep Time:</span>
                 <span class="meta-value">${recipe.prepTime}</span>
             </div>
             <div class="meta-item">
-                <span class="meta-label">Total Time</span>
+                <span class="meta-label">Total Time:</span>
                 <span class="meta-value">${recipe.totalTime} mins</span>
             </div>
             <div class="meta-item">
-                <span class="meta-label">Difficulty</span>
+                <span class="meta-label">Difficulty:</span>
                 <span class="meta-value">${recipe.difficulty}</span>
             </div>
             <div class="meta-item">
-                <span class="meta-label">Servings</span>
+                <span class="meta-label">Servings:</span>
                 <span class="meta-value">${recipe.servings}</span>
             </div>
             <div class="meta-item">
-                <span class="meta-label">Category</span>
+                <span class="meta-label">Category:</span>
                 <span class="meta-value">${recipe.category.replace('-', ' ')}</span>
             </div>
         `;
     }
 }
 
+// --- Favourite toggle system ---
 function setupFavoriteButton() {
     const favoriteBtn = document.getElementById('favourite-btn');
     if (favoriteBtn) {
@@ -616,17 +647,19 @@ function toggleFavorite() {
     
     let favorites = JSON.parse(localStorage.getItem('nibblyFavorites')) || [];
     const numericRecipeId = parseInt(recipeId);
-    const isFavorite = favorites.includes(numericRecipeId);
     
-    console.log('Current favorites before toggle:', favorites);
-    console.log('Toggling recipe ID:', numericRecipeId, 'Currently favorite:', isFavorite);
+    console.log('Current favorites:', favorites);
+    console.log('Recipe ID to toggle:', numericRecipeId);
+    
+    const isFavorite = favorites.includes(numericRecipeId);
     
     if (isFavorite) {
         favorites = favorites.filter(id => id !== numericRecipeId);
-        console.log('Removed from favorites. New favorites:', favorites);
+        console.log('Removed from favorites');
     } else {
+        // Ensure we're adding the numeric ID
         favorites.push(numericRecipeId);
-        console.log('Added to favorites. New favorites:', favorites);
+        console.log('Added to favorites');
     }
     
     localStorage.setItem('nibblyFavorites', JSON.stringify(favorites));
@@ -635,13 +668,9 @@ function toggleFavorite() {
     // Show feedback to user
     showFavoriteFeedback(!isFavorite);
     
-    // Force a refresh of the favorites page if it's open in another tab
-    if (window.opener && !window.opener.closed) {
-        try {
-            window.opener.postMessage({ type: 'favoritesUpdated', favorites: favorites }, '*');
-        } catch (e) {
-            console.log('Could not notify parent window');
-        }
+    // Force refresh favorites page if it's open
+    if (window.opener) {
+        window.opener.postMessage({ type: 'favoritesUpdated' }, '*');
     }
 }
 
@@ -652,7 +681,7 @@ function showFavoriteFeedback(added) {
         position: fixed;
         top: 20px;
         right: 20px;
-        background: ${added ? '#4CAF50' : '#f44336'};
+        background: ${added ? '#77d17aff' : '#f3746aff'};
         color: white;
         padding: 15px 20px;
         border-radius: 5px;
@@ -731,3 +760,56 @@ window.addEventListener('message', function(event) {
         }
     }
 });
+
+
+// API Service for fetching recipes
+const RecipeAPIService = {
+    async getRecipeDetails(recipeId, source) {
+        if (source === 'spoonacular') {
+            // Spoonacular API implementation
+            const apiKey = 'YOUR_SPOONACULAR_API_KEY'; // Replace with your actual API key
+            const response = await fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`);
+            
+            if (!response.ok) {
+                throw new Error('Failed to fetch recipe from Spoonacular API');
+            }
+            
+            const data = await response.json();
+            
+            // Transform Spoonacular data to match our format
+            return {
+                id: data.id,
+                title: data.title,
+                description: data.summary ? data.summary.replace(/<[^>]*>/g, '') : 'No description available',
+                image: data.image,
+                prepTime: data.readyInMinutes ? `${data.readyInMinutes} mins` : 'N/A',
+                cookTime: data.readyInMinutes ? `${data.readyInMinutes} mins` : 'N/A',
+                totalTime: data.readyInMinutes || 0,
+                category: data.dishTypes && data.dishTypes.length > 0 ? data.dishTypes[0] : 'dessert',
+                diet: this.mapDiets(data),
+                difficulty: 'medium', // Spoonacular doesn't provide difficulty
+                servings: data.servings || 4,
+                ingredients: data.extendedIngredients ? data.extendedIngredients.map(ing => ing.original) : [],
+                instructions: data.analyzedInstructions && data.analyzedInstructions.length > 0 
+                    ? data.analyzedInstructions[0].steps.map(step => step.step)
+                    : ['No instructions available'],
+                tags: data.cuisines || []
+            };
+        }
+        
+        throw new Error(`Unsupported recipe source: ${source}`);
+    },
+    
+    mapDiets(data) {
+        const diets = [];
+        if (data.vegetarian) diets.push('vegetarian');
+        if (data.vegan) diets.push('vegan');
+        if (data.glutenFree) diets.push('glutenFree');
+        if (data.dairyFree) diets.push('dairyFree');
+        return diets;
+    }
+};
+
+// Make functions globally available
+window.viewRecipe = viewRecipe;
+window.viewRecipeFromBlog = viewRecipeFromBlog;
