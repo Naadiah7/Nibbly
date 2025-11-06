@@ -24,8 +24,9 @@ body {
   align-items: center;
   justify-content: space-between;
   background-color: #f6f2ff;
-  padding-right: 20px;
+  padding-right:20px;
   border-bottom: 2px solid #ccc;
+  overflow: hidden;
 }
 
 .brand {
@@ -71,7 +72,7 @@ body {
   background-color: #B6FFF8;
 }
 
-/* --- Search Button --- */
+/* Search Button*/
 .search-btn {
   display: flex;
   align-items: center;
@@ -96,8 +97,13 @@ body {
 }
 
 /* Recipe Banner */
+.recipe-banner {
+    background-color: #B6FFF8;
+    padding: 10px 0;
+    margin-bottom: 30px;
+}
+
 .recipe-banner-content {
-  position: relative;
   display: flex;
   width: 1480px;
   height: 110px;
@@ -105,36 +111,68 @@ body {
   background-color: #B6FFF8;
   border-radius: 15px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 0 20px;
-  flex-wrap: wrap;
 }
 
 .recipe-banner-content img {
   width: 60px;
   height: 60px;
-  margin-left: 15px;
+  flex-shrink: 0;
   border-radius: 50%;
 }
 
 .recipe-banner-content h2 {
   color: #000;
-  font-family: 'Beth Ellen', cursive;
+  font-family: 'Berkshire Swash', cursive;
   text-decoration: underline;
   font-size: 25px;
   font-weight: bold;
-  margin-left: 20px;
+  margin-left: 0 20px;
+  flex-shrink: 0;
+}
+
+/* Recipe Metadata in Banner */
+.recipe-meta-banner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  flex-grow: 1;
+  max-width: 400px;
+  margin: 0 20px;
+}
+
+.recipe-meta-banner .meta-item {
+  background-color: #f2feff;
+  padding: 10px 15px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 120px;
+}
+
+.recipe-meta-banner .meta-label {
+  display: block;
+  font-family: 'Orelega One', sans-serif;
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 3px;
+}
+
+.recipe-meta-banner .meta-value {
+  display: block;
+  font-family: 'Berkshire Swash', cursive;
+  font-size: 16px;
+  color: #333;
 }
 
 /* --- Links --- */
 .links {
-    display: flex;
-    justify-content: flex-end;
-    flex-grow: 1;
-    margin-right: 20px;
+  display: flex;
+  gap: 15px;
+  flex-shrink: 0;
 }
 
-.favourite {
+.favourite .print .share{
   position: relative;
   width: 40px;
   height: 40px;
@@ -142,9 +180,6 @@ body {
 }
 
 .favourite img {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 40px;
   height: 40px;
   background-color: #fff;
@@ -188,26 +223,31 @@ body {
 
 .recipe-header {
   display: flex;
-  gap: 40px;
+  flex-direction: column;
+  gap: 30px;
   margin-bottom: 40px;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .recipe-image {
-  flex: 1;
+  width: 100%;
+  margin-top: 20px;
 }
 
 .recipe-image img {
   width: 100%;
+  max-width: 600px;
   height: 400px;
   object-fit: cover;
   border-radius: 15px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  margin: 0 auto;
+  display: block;
 }
 
 .recipe-info {
-  flex: 1;
-  text-align: left;
+  width: 100%;
+  text-align: center;
 }
 
 .recipe-info h1 {
@@ -226,58 +266,17 @@ body {
 }
 
 .recipe-meta-details {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  margin-bottom: 30px;
-}
-
-.meta-item {
-  background-color: #f2feff;
-  padding: 15px;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.meta-label {
-  display: block;
-  font-family: 'Orelega One', sans-serif;
-  font-size: 14px;
-  color: #888;
-  margin-bottom: 5px;
-}
-
-.meta-value {
-  display: block;
-  font-family: 'Beth Ellen', cursive;
-  font-size: 18px;
-  color: #333;
+    display: none;
 }
 
 .action-buttons {
-  display: flex;
-  gap: 15px;
-}
-
-.action-btn {
-  padding: 12px 25px;
-  background-color: #E9C4F9;
-  border: none;
-  border-radius: 25px;
-  font-family: 'Orelega One', sans-serif;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.action-btn:hover {
-  background-color: #d8a9f0;
+    display: none;
 }
 
 .recipe-content {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 40px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
 }
 
 .ingredients-section,
@@ -366,7 +365,7 @@ body {
   grid-column: 1 / -1;
 }
 
-/* ===== API BADGES & LOADING STATES ===== */
+/* API BADGES & LOADING STATES */
 .api-badge {
     position: absolute;
     top: 10px;
@@ -415,6 +414,7 @@ body {
 .recipe-card .recipe-img-container {
     position: relative;
 }
+
 
 /* Footer */
 footer {

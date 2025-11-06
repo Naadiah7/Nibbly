@@ -157,7 +157,7 @@ body {
   border-radius: 20px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   width: 200px;
-  height: 289px;
+  height: 290px;
   padding: 20px 50px;
   text-align: center;
   transition: transform 0.3s ease;
@@ -259,7 +259,7 @@ footer {
   position: absolute;
   width: 30px;
   height: 30px;
-  background: #f2d3ff;
+  background: #E19CFF;
   border-radius: 50%;
   opacity: 0;
   pointer-events: none;

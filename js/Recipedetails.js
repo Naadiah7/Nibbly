@@ -7,7 +7,7 @@ function copyPageLink() {
     // Copy to clipboard
     navigator.clipboard.writeText(pageUrl).then(() => {
         // Show success message
-        alert('Link copied to clipboard! You can now share it with friends.');
+        alert('Link copied to clipboard! You can now share it.');
     });
 }
 
@@ -56,7 +56,7 @@ async function initializeRecipeDetails() {
             // Fetch recipe details from Spoonacular API
             recipe = await RecipeAPIService.getRecipeDetails(recipeId, 'spoonacular');
         } else if (recipeSource === 'edamam') {
-            // For Edamam, they don't have a direct details endpoint
+            // For Edamam, they don't have a direct details endpoint for free
             showErrorMessage("Detailed recipe information not available for this recipe.");
             return;
         } else {
@@ -445,25 +445,8 @@ const completeRecipeData = {
     }
 };
 
-
-function getUrlParameter(name) {
-  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-  const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-  const results = regex.exec(location.search);
-  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-}
-
-//initializeRecipeDetails function to check for URL parameters first
 function initializeRecipeDetails() {
-    // First check for URL parameter
-    const urlRecipeId = getUrlParameter('id');
-    
-    // If URL parameter exists, use it and store in sessionStorage
-    if (urlRecipeId) {
-        sessionStorage.setItem('currentRecipeId', urlRecipeId);
-    }
-    
-    // Then get recipe ID 
+    // Get recipe ID from sessionStorage
     const recipeId = sessionStorage.getItem('currentRecipeId');
     
     if (!recipeId) {
@@ -500,18 +483,21 @@ function displayRecipeDetails(recipe) {
         bannerTitle.textContent = recipe.title;
     }
 
+    // Update metadata in banner
+    updateBannerMetadata(recipe);
+
     // Update recipe details section
     const recipeDetails = document.getElementById('recipeDetails');
     
     if (recipeDetails) {
         recipeDetails.innerHTML = `
             <div class="recipe-header">
-                <div class="recipe-image">
-                    <img src="${recipe.image}" alt="${recipe.title}" />
-                </div>
                 <div class="recipe-info">
                     <h1>${recipe.title}</h1>
                     <p>${recipe.description}</p>
+                    <div class="recipe-image">
+                    <img src="${recipe.image}" alt="${recipe.title}" />
+                </div>
                     <div class="recipe-meta-details">
                         <div class="meta-item">
                             <span class="meta-label">Prep Time</span>
@@ -566,9 +552,38 @@ function displayRecipeDetails(recipe) {
             </div>
         `;
     }
+
     
     // Update favorite button state
     updateFavoriteButton(recipe.id);
+}
+
+function updateBannerMetadata(recipe) {
+    const metaBanner = document.querySelector('.recipe-meta-banner');
+    if (metaBanner) {
+        metaBanner.innerHTML = `
+            <div class="meta-item">
+                <span class="meta-label">Prep Time</span>
+                <span class="meta-value">${recipe.prepTime}</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Total Time</span>
+                <span class="meta-value">${recipe.totalTime} mins</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Difficulty</span>
+                <span class="meta-value">${recipe.difficulty}</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Servings</span>
+                <span class="meta-value">${recipe.servings}</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Category</span>
+                <span class="meta-value">${recipe.category.replace('-', ' ')}</span>
+            </div>
+        `;
+    }
 }
 
 function setupFavoriteButton() {
@@ -596,21 +611,87 @@ function updateFavoriteButton(recipeId) {
 
 function toggleFavorite() {
     const recipeId = sessionStorage.getItem('currentRecipeId');
-    if (!recipeId) return;
+    if (!recipeId) {
+        console.error('No recipe ID found in sessionStorage');
+        return;
+    }
     
     let favorites = JSON.parse(localStorage.getItem('nibblyFavorites')) || [];
-    const isFavorite = favorites.includes(parseInt(recipeId));
+    const numericRecipeId = parseInt(recipeId);
+    const isFavorite = favorites.includes(numericRecipeId);
+    
+    console.log('Current favorites before toggle:', favorites);
+    console.log('Toggling recipe ID:', numericRecipeId, 'Currently favorite:', isFavorite);
     
     if (isFavorite) {
-        favorites = favorites.filter(id => id !== parseInt(recipeId));
+        favorites = favorites.filter(id => id !== numericRecipeId);
+        console.log('Removed from favorites. New favorites:', favorites);
     } else {
-        favorites.push(parseInt(recipeId));
+        favorites.push(numericRecipeId);
+        console.log('Added to favorites. New favorites:', favorites);
     }
     
     localStorage.setItem('nibblyFavorites', JSON.stringify(favorites));
-    updateFavoriteButton(parseInt(recipeId));
+    updateFavoriteButton(numericRecipeId);
+    
+    // Show feedback to user
+    showFavoriteFeedback(!isFavorite);
+    
+    // Force a refresh of the favorites page if it's open in another tab
+    if (window.opener && !window.opener.closed) {
+        try {
+            window.opener.postMessage({ type: 'favoritesUpdated', favorites: favorites }, '*');
+        } catch (e) {
+            console.log('Could not notify parent window');
+        }
+    }
 }
 
+function showFavoriteFeedback(added) {
+    // Create a temporary feedback message
+    const feedback = document.createElement('div');
+    feedback.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${added ? '#4CAF50' : '#f44336'};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 5px;
+        font-family: 'Orelega One', sans-serif;
+        z-index: 10000;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        animation: slideIn 0.3s ease-out;
+    `;
+    
+    feedback.textContent = added ? '✓ Added to favorites!' : '✗ Removed from favorites';
+    
+    document.body.appendChild(feedback);
+    
+    // Remove after 2 seconds
+    setTimeout(() => {
+        feedback.style.animation = 'slideOut 0.3s ease-in';
+        setTimeout(() => {
+            if (feedback.parentNode) {
+                feedback.parentNode.removeChild(feedback);
+            }
+        }, 300);
+    }, 2000);
+}
+
+// Add CSS for animations
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOut {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
 
 function showErrorMessage(message) {
     const recipeDetails = document.querySelector('.recipe-details');
@@ -626,6 +707,13 @@ function showErrorMessage(message) {
     }
 }
 
+// Debug function to check favorites (temporary)
+function debugFavorites() {
+    const favorites = JSON.parse(localStorage.getItem('nibblyFavorites')) || [];
+    console.log('Current favorites in localStorage:', favorites);
+    alert('Current favorites: ' + JSON.stringify(favorites));
+}
+
 // Global functions for recipe details page
 window.printRecipe = function() {
     window.print();
@@ -634,3 +722,14 @@ window.printRecipe = function() {
 window.shareRecipe = function() {
     copyPageLink();
 };
+
+// Listen for favorites updates from other tabs/windows
+window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'favoritesUpdated') {
+        // Update the favorite button if this recipe is affected
+        const recipeId = sessionStorage.getItem('currentRecipeId');
+        if (recipeId) {
+            updateFavoriteButton(parseInt(recipeId));
+        }
+    }
+});

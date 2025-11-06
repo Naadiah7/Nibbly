@@ -1,4 +1,4 @@
-// Scroll-to-top functionality
+// Scroll-to-top function
 const scrollBtn = document.getElementById("scrollTopBtn");
 
 window.onscroll = function() {
@@ -11,6 +11,12 @@ window.onscroll = function() {
 
 scrollBtn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// Initialize favorites when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  loadFavorites();
+  initializeAnimations();
 });
 
 // Complete recipe data with full details (same as in Recipedetails.js)
@@ -372,18 +378,22 @@ function loadFavorites() {
     const favoritesContainer = document.getElementById('favoritesContainer');
     const emptyState = document.getElementById('emptyState');
     
+    console.log('Loading favorites:', favorites); // Debug log
+    
     if (favorites.length === 0) {
         favoritesContainer.style.display = 'none';
         emptyState.style.display = 'block';
         
         // Animate empty state
-        gsap.from('.empty-state', {
-            duration: 0.8,
-            opacity: 0,
-            scale: 0.8,
-            ease: "back.out(1.5)",
-            delay: 0.6
-        });
+        if (typeof gsap !== 'undefined') {
+            gsap.from('.empty-state', {
+                duration: 0.8,
+                opacity: 0,
+                scale: 0.8,
+                ease: "back.out(1.5)",
+                delay: 0.6
+            });
+        }
         return;
     }
     
@@ -395,7 +405,9 @@ function loadFavorites() {
     
     // Add favorite recipes
     favorites.forEach(recipeId => {
-        const recipe = completeRecipeData[recipeId];
+        const numericRecipeId = parseInt(recipeId);
+        const recipe = completeRecipeData[numericRecipeId];
+        
         if (recipe) {
             const recipeCard = document.createElement('div');
             recipeCard.className = 'recipe-card';
@@ -412,22 +424,27 @@ function loadFavorites() {
                 </div>
             `;
             favoritesContainer.appendChild(recipeCard);
+        } else {
+            console.warn('Recipe not found for ID:', recipeId);
         }
     });
     
     // Animate recipe cards
-    gsap.from('.recipe-card', {
-        duration: 0.6,
-        opacity: 0,
-        y: 30,
-        stagger: 0.1,
-        ease: "back.out(1.2)",
-        delay: 0.5
-    });
+    if (typeof gsap !== 'undefined') {
+        gsap.from('.recipe-card', {
+            duration: 0.6,
+            opacity: 0,
+            y: 30,
+            stagger: 0.1,
+            ease: "back.out(1.2)",
+            delay: 0.5
+        });
+    }
 }
 
 function viewRecipe(recipeId) {
     sessionStorage.setItem('currentRecipeId', recipeId);
+    sessionStorage.setItem('recipeSource', 'local'); 
     window.location.href = '../pages/Recipedetails.html';
 }
 

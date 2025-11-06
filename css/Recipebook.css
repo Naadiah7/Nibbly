@@ -123,6 +123,31 @@ body {
   margin-left: 20px;
 }
 
+.read-blog-btn {
+  display: inline-block;
+  background-color: #B6FFF8; 
+  color: #000;
+  text-decoration: none;
+  font-size: 20px;
+  font-family: 'Orelega One', cursive;
+  padding: 12px 12px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px #000;
+  transition: all 0.3s ease;
+  text-align: center;
+  margin-left: auto;
+  margin-right: 20px;
+  /*opacity:0; for animation*/
+}
+
+.read-blog-btn:hover {
+  background-color: #5DD5C9;
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px #000;
+}
+
 /* Search Section */
 .search-bar {
   padding: 20px;
