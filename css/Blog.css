@@ -107,7 +107,6 @@ body {
   align-items: center;
   justify-content: flex-start;
   padding: 0 20px;
-  flex-wrap: wrap;
 }
 
 .banner img {
@@ -134,9 +133,51 @@ body {
 .banner-subtitle p {
   margin: 5px 0 0 0;
   font-family: 'Orelega One', cursive;
-  font-size: 18px;
+  font-size: 20px;
 }
 
+/* --- Social Links --- */
+.social-links {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+    margin-right: 20px;
+}
+
+.email img{
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.instagram img{
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.tiktok img{
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.email .instagram .tiktok:hover {
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 rgba(0, 0, 0, 0.2);
+}
 
 /* Blog Page Content Section */
 .blog-content{
@@ -269,6 +310,7 @@ body {
     padding-right: 20px; 
 }
 
+
 .read-more-btn {
     background-color: #B1FAC7; 
     color: #000;
@@ -384,7 +426,33 @@ body {
   display: none;
 }
 
+/* Read Recipe Button in Blog Details */
+.read-more-recipe-btn {
+    background-color: #B1FAC7; 
+    color: #000;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: 'Orelega One', cursive;
+    padding: 18px 18px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    box-shadow: 4px 4px 0px #000;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 120px;
+    flex-shrink: 0;
+    margin-top: 0;
+    opacity: 0; /* For animation */
+    transform: scale(0.8);
+}
 
+.read-more-recipe-btn:hover {
+  background-color: #6EDF90;
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px #000;
+}
 
 /* Footer */
 footer {

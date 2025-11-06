@@ -445,8 +445,25 @@ const completeRecipeData = {
     }
 };
 
+
+function getUrlParameter(name) {
+  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+  const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+  const results = regex.exec(location.search);
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+//initializeRecipeDetails function to check for URL parameters first
 function initializeRecipeDetails() {
-    // Get recipe ID from sessionStorage
+    // First check for URL parameter
+    const urlRecipeId = getUrlParameter('id');
+    
+    // If URL parameter exists, use it and store in sessionStorage
+    if (urlRecipeId) {
+        sessionStorage.setItem('currentRecipeId', urlRecipeId);
+    }
+    
+    // Then get recipe ID 
     const recipeId = sessionStorage.getItem('currentRecipeId');
     
     if (!recipeId) {

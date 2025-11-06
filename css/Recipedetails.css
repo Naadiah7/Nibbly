@@ -130,7 +130,6 @@ body {
 .links {
     display: flex;
     justify-content: flex-end;
-    gap: 15px;
     flex-grow: 1;
     margin-right: 20px;
 }
@@ -175,20 +174,10 @@ body {
   transition: all 0.3s ease;
 }
 
-.favourite:hover {
+.favourite .print .share:hover {
     transform: scale(1.1) translateY(-2px);
     box-shadow: 0 rgba(0, 0, 0, 0.2);
 }
-.print:hover {
-    transform: scale(1.1) translateY(-2px);
-    box-shadow: 0 rgba(0, 0, 0, 0.2);
-}
-
-.share:hover {
-    transform: scale(1.1) translateY(-2px);
-    box-shadow: 0 rgba(0, 0, 0, 0.2);
-}
-
 
 /*Recipe Details*/
 .recipe-details {

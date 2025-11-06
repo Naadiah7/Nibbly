@@ -233,7 +233,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 15px auto;
+  margin: 10px auto;
   padding: 0 20px;
   max-width: 1200px;
 }
@@ -246,7 +246,7 @@ body {
   padding: 8px 15px;
   border-radius: 20px;
   font-family: 'Orelega One', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   color: #333;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   animation: slideIn 0.3s ease;
@@ -257,6 +257,10 @@ body {
   font-family: 'Berkshire Swash', cursive;
   font-size: 30px;
   color: #333;
+  background-color: #5DD5C9;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 10px;
 }
 
 .category-grid {
@@ -275,7 +279,7 @@ body {
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
   text-decoration: none;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   display: block;
 }
 

@@ -23,6 +23,7 @@ const blogData = {
     recipe: "Easy Cappuccino Muffins Recipe",
     image: "../Images/capmuffin.png",
     alt: "Cappuccino Muffins",
+    recipeId: "10",
     content: `
       <p>Calling all coffee lovers! Have you ever wished you could eat your morning cappuccino? Well, consider this your wake-up call. The cappuccino muffin is here to transform your coffee break into a truly immersive experience.
 
@@ -42,6 +43,7 @@ const blogData = {
     recipe: "Red Velvet Cupcakes with Cream Cheese Frosting Recipe",
     image: "../Images/redvelvet.png",
     alt: "Red Velvet Cupcakes",
+    recipeId: "3",
     content: `
       <p>There are desserts that you eat, and then there are desserts that you experience. The red velvet cupcake sits firmly in the latter category. It's more than just a treat; it's a tiny, edible declaration of love and celebration.
 
@@ -61,6 +63,7 @@ const blogData = {
     recipe: "Creamy Berry Cheesecake Recipe",
     image: "../Images/Cheesecake.png",
     alt: "Berry Cheesecake",
+    recipeId: "1",
     content: `
       <p>When the sun is high and the air is warm, the last thing anyone wants to do is heat up the kitchen. But that doesn't mean you have to sacrifice a spectacular dessert. Enter the hero of the summer: the no-bake berry cheesecake.
 
@@ -113,9 +116,16 @@ function createBlogDetails(blogId, blogData) {
   textContent.className = 'blog-details-text';
   textContent.innerHTML = blogData.content;
   
+
+  const readMoreBtn = document.createElement('a');
+  readMoreBtn.className = 'read-more-recipe-btn';
+  readMoreBtn.textContent = 'Read Recipe';
+  readMoreBtn.href = `../pages/RecipeDetails.html?id=${blogData.recipeId}`;
+  
   article.appendChild(date);
   article.appendChild(recipe);
   article.appendChild(textContent);
+  article.appendChild(readMoreBtn);
   
   return article;
 }
@@ -422,6 +432,27 @@ function initializeBlogAnimations() {
     });
   });
 
+  //Social media icons hover animations
+  document.querySelectorAll('.social-links a').forEach(link => {
+    link.addEventListener('mouseenter', () => {
+      gsap.to(link, {
+        duration: 0.3,
+        y: -5,
+        scale: 1.1,
+        ease: "power2.out"
+      });
+    });
+
+    link.addEventListener('mouseleave', () => {
+      gsap.to(link, {
+        duration: 0.3,
+        y: 0,
+        scale: 1,
+        ease: "power2.out"
+      });
+    });
+  });
+
   // Navigation animations
   gsap.from('#Navtop li', {
     duration: 0.6,
@@ -478,7 +509,7 @@ function initializeBlogDetailsAnimations() {
     );
     
     // Stagger animation for blog content
-    const blogElements = activeBlog.querySelectorAll('h2, .blog-details-date, .blog-details-recipe, .blog-details-text p, .blog-details-text h3, .blog-details-text ul, .blog-details-text ol, .blog-details-text h4');
+    const blogElements = activeBlog.querySelectorAll('h2, .blog-details-date, .blog-details-recipe, .blog-details-text p, .blog-details-text h3, .blog-details-text ul, .blog-details-text ol, .blog-details-text h4, .read-more-recipe-btn');
     
     gsap.fromTo(blogElements,
       {
