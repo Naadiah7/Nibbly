@@ -161,7 +161,7 @@ const enhancedLocalRecipes = {
     ]
 };
 
-// API Service Functions
+// API Functions
 class RecipeAPIService {
     // Spoonacular API - Search recipes
     static async searchSpoonacularRecipes(query, filters = {}) {
@@ -237,7 +237,7 @@ class RecipeAPIService {
         }
     }
 
-    // Format Spoonacular recipes for our app
+    // Format Spoonacular recipes
     static formatSpoonacularRecipes(recipes) {
         return recipes.map(recipe => ({
             id: recipe.id,
@@ -254,7 +254,7 @@ class RecipeAPIService {
         }));
     }
 
-    // Format Edamam recipes for our app
+    // Format Edamam recipes 
     static formatEdamamRecipes(recipes) {
         return recipes.map(hit => {
             const recipe = hit.recipe;
@@ -396,6 +396,7 @@ function initializeRecipeSearch() {
         if (recipesPage) recipesPage.style.display = 'none';
     }
 
+    // filterByCategory function
     async function filterByCategory(category) {
         if (!resultsTitle || !recipeGrid) return;
 
@@ -405,15 +406,8 @@ function initializeRecipeSearch() {
         try {
             let categoryRecipes = [];
             
-            if (useAPI) {
-                // Use API for category search
-                const query = getCategorySearchQuery(category);
-                const apiRecipes = await RecipeAPIService.searchSpoonacularRecipes(query);
-                categoryRecipes = apiRecipes;
-            } else {
-                // Use local data
-                categoryRecipes = enhancedLocalRecipes[category] || [];
-            }
+            // Use local data for category filtering
+            categoryRecipes = enhancedLocalRecipes[category] || [];
 
             const categoryName = getCategoryDisplayName(category);
             
@@ -472,16 +466,16 @@ function initializeRecipeSearch() {
         try {
             let searchResults = [];
 
-            if (useAPI) {
-                // Use both APIs for better results
-                const [spoonacularResults, edamamResults] = await Promise.all([
-                    RecipeAPIService.searchSpoonacularRecipes(searchTerm),
-                    RecipeAPIService.searchEdamamRecipes(searchTerm)
-                ]);
-                
-                searchResults = [...spoonacularResults, ...edamamResults];
-            } else {
-                // Use local search as fallback
+            // Use both APIs for better results
+            const [spoonacularResults, edamamResults] = await Promise.all([
+                RecipeAPIService.searchSpoonacularRecipes(searchTerm),
+                RecipeAPIService.searchEdamamRecipes(searchTerm)
+            ]);
+            
+            searchResults = [...spoonacularResults, ...edamamResults];
+
+            // Fallback to local search if no API results
+            if (searchResults.length === 0) {
                 searchResults = searchLocalRecipes(searchTerm);
             }
 
@@ -550,10 +544,6 @@ function initializeRecipeSearch() {
                         <span><i class="fas fa-users"></i> ${recipe.servings} servings</span>
                     </div>
                     <div class="recipe-actions">
-                        <button class="favorite-btn ${favorites.includes(recipe.id) ? 'active' : ''}" 
-                                onclick="toggleFavorite(${recipe.id}, this, '${recipe.source}')">
-                            <i class="fas fa-heart"></i>
-                        </button>
                         <button class="view-recipe-btn" onclick="viewRecipe(${recipe.id}, '${recipe.source}')">
                             <i class="fas fa-eye"></i> View Recipe
                         </button>
@@ -562,7 +552,7 @@ function initializeRecipeSearch() {
             </div>
         `).join('');
 
-        // Update results count
+        // To update results count
         updateResultsCount(recipes.length, recipesToShow.length);
         
         // Animate new cards
@@ -586,8 +576,18 @@ function initializeRecipeSearch() {
             loadMoreBtn.style.display = 'none';
         }
         
-        // Update results count
+        // To update results count
         updateResultsCount(0, 0);
+    }
+
+    function showLoading(container) {
+        if (!container) return;
+        container.innerHTML = `
+            <div class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading recipes...</p>
+            </div>
+        `;
     }
 
     function loadMoreRecipes() {
@@ -630,17 +630,6 @@ function initializeRecipeSearch() {
         }
     }
 
-    function showLoading(container) {
-        if (!container) return;
-        container.innerHTML = `
-            <div class="loading">
-                <i class="fas fa-spinner fa-spin"></i>
-                <p>Searching delicious recipes...</p>
-                <p class="loading-subtext">Powered by Spoonacular & Edamam APIs</p>
-            </div>
-        `;
-    }
-
     function animateNewRecipeCards(startIndex) {
         if (typeof gsap !== 'undefined') {
             const newCards = document.querySelectorAll('.recipe-card');
@@ -660,6 +649,7 @@ function initializeRecipeSearch() {
     window.isCategoryView = isCategoryView;
     window.currentCategory = currentCategory;
     window.filterByCategory = filterByCategory;
+    window.showNoResultsMessage = showNoResultsMessage;
 }
 
 // Filter System Function
@@ -761,8 +751,6 @@ function initializeFilterSystem() {
                 'indian-sweets': 'Indian Sweets',
                 meringues: 'Meringues',
                 breakfast: 'Breakfast Desserts',
-                cookies: 'Cookies',
-                pastries: 'Pastries'
             },
             time: {
                 '30': 'Under 30 min',
@@ -840,7 +828,7 @@ function initializeFilterSystem() {
         if (categoriesPage) categoriesPage.style.display = 'none';
         if (recipesPage) recipesPage.style.display = 'block';
 
-        // Update current recipes and display
+        // Update to current recipes and display
         if (window.currentRecipes) {
             window.currentRecipes = filteredRecipes;
         }
@@ -908,6 +896,7 @@ window.viewRecipe = function(recipeId, source = 'local') {
     // Navigate to recipe details page
     window.location.href = 'Recipedetails.html';
 };
+
 
 // GSAP Animations
 function initializeGSAPAnimations() {

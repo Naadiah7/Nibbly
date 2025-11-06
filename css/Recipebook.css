@@ -255,7 +255,7 @@ body {
 /* Dessert Categories */
 .categories h2 {
   font-family: 'Berkshire Swash', cursive;
-  font-size: 30px;
+  font-size: 25px;
   color: #333;
   background-color: #5DD5C9;
   display: inline-block;
@@ -318,14 +318,17 @@ body {
 
 .recipe-results h2 {
   font-family: 'Berkshire Swash', cursive;
-  font-size: 30px;
-  margin-bottom: 5px;
+  font-size: 25px;
   color: #333;
+  background-color: #5DD5C9;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 10px;
 }
 
 .recipe-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
@@ -337,6 +340,7 @@ body {
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   transition: transform 0.3s, box-shadow 0.3s;
+  margin-top: 30px;
 }
 
 .recipe-card:hover {
@@ -370,6 +374,7 @@ body {
 }
 
 .recipe-meta {
+  font-family: 'Palatino Linotype', serif;
   display: flex;
   justify-content: space-between;
   font-size: 14px;
@@ -401,7 +406,7 @@ body {
   box-shadow: 4px 4px #000;
 }
 
-/* ===== RECIPE BADGES ===== */
+/*RECIPE BADGES */
 .recipe-badges {
     position: absolute;
     top: 8px;
@@ -499,6 +504,7 @@ body {
 
 /*No Results*/
 .no-results {
+  font-family: 'Orelega One', sans-serif;
     grid-column: 1 / -1;
     text-align: center;
     padding: 30px;
@@ -525,7 +531,7 @@ body {
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* Enhanced Recipe Cards with Filter Indicators */
+/*Recipe Cards with Filter Indicators */
 .recipe-card {
   position: relative;
   overflow: hidden;
@@ -562,7 +568,7 @@ body {
   background: rgba(255, 201, 226, 0.9);
 }
 
-/* ===== API BADGES & LOADING STATES ===== */
+/*API BADGES & LOADING STATES*/
 .api-badge {
     position: absolute;
     top: 10px;
@@ -739,6 +745,7 @@ body {
 }
 
 .no-results {
+  font-family: 'Orelega One', sans-serif;
   grid-column: 1 / -1;
   text-align: center;
   font-size: 18px;
