@@ -382,12 +382,14 @@ body {
 
 /* --- Link --- */
 .link {
-  position: relative;
-  display: flex;
-  justify-content: flex-end;
-  flex-grow: 1;
-  margin-right: 20px;
+  position: absolute;
+  top: 26px;
+  right: 40px;
+  z-index: 100;
   cursor: pointer;
+}
+
+.share{
   display: none;
 }
 
@@ -399,6 +401,10 @@ body {
   border-radius: 5px;
   box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+}
+
+.share.visible {
+  display: block;
 }
 
 .share:hover {

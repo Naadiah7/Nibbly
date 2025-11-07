@@ -1,5 +1,4 @@
 // GSAP Animations for All Pages
-
 document.addEventListener('DOMContentLoaded', function() {
     if (typeof gsap !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
@@ -67,6 +66,7 @@ function getCurrentPage() {
     if (path.includes('recipebook.html')) return 'recipe-book';
     if (path.includes('myfavourites.html')) return 'my-favourites';
     if (path.includes('recipedetails.html')) return 'recipe-details';
+    if (path.includes('search.html')) return 'search';
     return 'home'; 
 }
 
@@ -96,6 +96,8 @@ function initializePageSpecificAnimations() {
         case 'recipe-details':
             initializeRecipeDetailsAnimations();
             break;
+        case 'search':
+            initializeSearchAnimations();
         default:
             initializeHomePageAnimations();
     }
@@ -587,7 +589,7 @@ function initializeBlogDetailsAnimations() {
         );
         
         // Share link animation
-        gsap.fromTo('.links > div',
+        gsap.fromTo('.share',
         {
             opacity: 0,
             scale: 0.5,
@@ -603,6 +605,27 @@ function initializeBlogDetailsAnimations() {
             delay: 1.0
         }
         );
+
+        // Share button hover animation
+        const shareButton = document.querySelector('.share');
+        if (shareButton) {
+            shareButton.addEventListener('mouseenter', () => {
+                gsap.to(shareButton, {
+                    duration: 0.3,
+                    scale: 1.1,
+                    y: -5,
+                    ease: "power2.out"
+                });
+            });
+            shareButton.addEventListener('mouseleave', () => {
+                gsap.to(shareButton, {
+                    duration: 0.3,
+                    scale: 1,
+                    y: 0,
+                    ease: "power2.out"
+                });
+            });
+        }
 
         // Stagger animation for blog content
         const blogElements = activeBlog.querySelectorAll('h2, .blog-details-date, .blog-details-recipe, .blog-details-text p, .blog-details-text h3, .blog-details-text ul, .blog-details-text ol, .blog-details-text h4, .read-more-recipe-btn');
@@ -653,6 +676,7 @@ function animateBanner() {
     // For blog details banner
     const detailsBannerImg = banner.querySelector('.blog-banner-content img');
     const detailsBannerTitle = banner.querySelector('.blog-banner-content h2');
+    const shareButton = banner.querySelector('.share');
 
     if (mainBannerTitle && mainBannerImg) {
         // Main blog page banner animation
@@ -734,6 +758,25 @@ function animateBanner() {
                 },
                 "-=0.4"
             );
+            if (shareButton) {
+            bannerTimeline.fromTo(shareButton,
+                {
+                    opacity: 0,
+                    scale: 0,
+                    rotation: -180,
+                    x: 30
+                },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    rotation: 0,
+                    x: 0,
+                    duration: 0.7,
+                    ease: "back.out(1.7)"
+                },
+                "-=0.3"
+            );
+        }
     }
 }
 
@@ -810,84 +853,6 @@ function initializeRecipeBookAnimations() {
         button.addEventListener('mouseleave', () => {
             gsap.to(button, { scale: 1, duration: 0.2 });
         });
-    });
-}
-
-// My Favourites Page Animations
-function initializeMyFavouritesAnimations() {
-    const mainTimeline = gsap.timeline();
-
-    // Banner animations
-    mainTimeline
-        .fromTo('.banner h2', 
-            {
-                opacity: 0,
-                x: -50,
-                scale: 0.8
-            },
-            {
-                opacity: 1,
-                x: 0,
-                scale: 1,
-                duration: 0.8,
-                ease: "back.out(1.7)"
-            }
-        )
-        .fromTo('.banner img',
-            {
-                opacity: 0,
-                rotation: -180,
-                scale: 0
-            },
-            {
-                opacity: 1,
-                rotation: 0,
-                scale: 1,
-                duration: 0.6,
-                ease: "back.out(1.5)"
-            },
-            "-=0.4"
-        )
-        .fromTo('.banner-subtitle p',
-            {
-                opacity: 0,
-                y: 30
-            },
-            {
-                opacity: 1,
-                y: 0,
-                duration: 0.5,
-                ease: "power2.out"
-            },
-            "-=0.3"
-        );
-
-    // Banner animation
-    gsap.from('.banner', {
-        duration: 0.7,
-        opacity: 0,
-        y: -30,
-        ease: "power2.out",
-        delay: 0.4
-    });
-
-    // Empty state animation
-    gsap.from('.empty-state', {
-        duration: 0.8,
-        opacity: 0,
-        scale: 0.8,
-        ease: "back.out(1.5)",
-        delay: 0.6
-    });
-
-    // Recipe cards animation
-    gsap.from('.recipe-card', {
-        duration: 0.6,
-        opacity: 0,
-        y: 30,
-        stagger: 0.1,
-        ease: "back.out(1.2)",
-        delay: 0.5
     });
 }
 
@@ -1210,9 +1175,188 @@ function initializeRecipeDetailsAnimations() {
         });
     }
 
-    // Floating cookies animation for recipe details page
     createFloatingCookies();
 }
+
+
+
+// My Favourites Page Animations
+function initializeMyFavouritesAnimations() {
+    const mainTimeline = gsap.timeline();
+
+    // Banner animations
+    mainTimeline
+        .fromTo('.banner h2', 
+            {
+                opacity: 0,
+                x: -50,
+                scale: 0.8
+            },
+            {
+                opacity: 1,
+                x: 0,
+                scale: 1,
+                duration: 0.8,
+                ease: "back.out(1.7)"
+            }
+        )
+        .fromTo('.banner img',
+            {
+                opacity: 0,
+                rotation: -180,
+                scale: 0
+            },
+            {
+                opacity: 1,
+                rotation: 0,
+                scale: 1,
+                duration: 0.6,
+                ease: "back.out(1.5)"
+            },
+            "-=0.4"
+        )
+        .fromTo('.banner-subtitle p',
+            {
+                opacity: 0,
+                y: 30
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                ease: "power2.out"
+            },
+            "-=0.3"
+        );
+
+    // Banner animation
+    gsap.from('.banner', {
+        duration: 0.7,
+        opacity: 0,
+        y: -30,
+        ease: "power2.out",
+        delay: 0.4
+    });
+
+    // Empty state animation
+    gsap.from('.empty-state', {
+        duration: 0.8,
+        opacity: 0,
+        scale: 0.8,
+        ease: "back.out(1.5)",
+        delay: 0.6
+    });
+
+    // Recipe cards animation
+    gsap.from('.recipe-card', {
+        duration: 0.6,
+        opacity: 0,
+        y: 30,
+        stagger: 0.1,
+        ease: "back.out(1.2)",
+        delay: 0.5
+    });
+}
+
+// --- Search Page Animations ---
+function initializeSearchAnimations() {
+    // Animate category cards on load
+    gsap.fromTo('.category-card', 
+        { opacity: 0, 
+            y: 30 
+        },
+        { opacity: 1, 
+            y: 0, 
+            duration: 0.8, 
+            stagger: 0.2, 
+            ease: "power2.out" 
+        }
+    );
+
+    // Animate banner
+    gsap.fromTo('.banner h2', 
+            {
+                opacity: 0,
+                x: -50,
+                scale: 0.8
+            },
+            {
+                opacity: 1,
+                x: 0,
+                scale: 1,
+                duration: 0.8,
+                ease: "back.out(1.7)"
+            }
+    );
+
+    gsap.fromTo('.banner img', 
+            {
+                opacity: 0,
+                rotation: -180,
+                scale: 0
+            },
+            {
+                opacity: 1,
+                rotation: 0,
+                scale: 1,
+                duration: 0.6,
+                ease: "back.out(1.5)"
+            },
+            "-=0.4"
+    );
+
+    // Animate filter section
+    gsap.fromTo('.filter-section', 
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.7, delay: 1.2, ease: "power2.out" }
+    );
+
+    // Floating animation for category cards on hover
+    document.querySelectorAll('.category-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            gsap.to(card, { y: -5, duration: 0.3, ease: "power2.out" });
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, { y: 0, duration: 0.3, ease: "power2.out" });
+        });
+    });
+
+    // Animate filter buttons on hover
+    document.querySelectorAll('.filter-button').forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            gsap.to(button, { scale: 1.05, duration: 0.2 });
+        });
+        
+        button.addEventListener('mouseleave', () => {
+            gsap.to(button, { scale: 1, duration: 0.2 });
+        });
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // --- Floating Cookies Animation ---
 function createFloatingCookies() {

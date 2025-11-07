@@ -161,9 +161,15 @@ function initializeBlogDetails() {
   const blogId = getUrlParameter('id');
   const blogBannerSection = document.querySelector('.blog-banner');
   const blogDetailsContainer = document.querySelector('.blog-details-container');
+
+    // Clear existing content but keep the share container
+  if (blogBannerSection) {
+    // Remove only the banner content, not the share container
+    const existingBannerContents = blogBannerSection.querySelectorAll('.blog-banner-content');
+    existingBannerContents.forEach(content => content.remove());
+  }
   
   // Clear existing content
-  if (blogBannerSection) blogBannerSection.innerHTML = '';
   if (blogDetailsContainer) blogDetailsContainer.innerHTML = '';
   
   // Create and append all blog banners and details
@@ -178,16 +184,19 @@ function initializeBlogDetails() {
   // Show the requested blog and its banner
   const selectedBlogId = blogId && blogData[blogId] ? blogId : 'blog1';
   
+  // Show selected blog content
   if (document.getElementById(selectedBlogId)) {
     document.getElementById(selectedBlogId).classList.remove('hidden');
   }
   if (document.getElementById(selectedBlogId + '-banner')) {
     document.getElementById(selectedBlogId + '-banner').classList.remove('hidden');
   }
-
+  
+  // Show the share button
   const shareButton = document.querySelector('.share');
   if (shareButton) {
-    shareButton.style.display = 'block';
+    shareButton.classList.add('visible');
+    console.log('Share button is now visible');
   }
 }
 

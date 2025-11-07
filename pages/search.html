@@ -58,7 +58,8 @@
     </nav>
   </header>
 
-  <main>
+<main>
+  
   <section class="search-page">
     <!-- Search Bar -->
     <section class="search-bar">
@@ -93,7 +94,7 @@
         </select>
       </div>
 
-        <div class="filter-group">
+      <div class="filter-group">
         <label for="timeFilter"> Max Prep Time</label>
         <select id="timeFilter" class="filter-select">
           <option value="">Time</option>
@@ -118,20 +119,19 @@
       <!-- Active filters will be displayed here -->
     </section>
       
-  <!-- Recipe Results Page -->
-  <section id="recipes-page" class="recipe-results" style="display: none;">
-    <h2 id="results-title">Recent Recipes</h2>
-    <div class="recipe-grid" id="recipeGrid">
-      <!-- Recipes will be dynamically populated here -->
+    <!-- Recipe Results Page -->
+    <section id="recipes-page" class="recipe-results" style="display: none;">
+      <h2 id="results-title">Recently Viewed Recipes</h2>
+      <div class="recipe-grid" id="recipeGrid">
+        <!-- Recipes will be dynamically populated here -->
       </div>
       <div class="load-more-container">
-        <button id="loadMoreBtn" class="load-more-btn">
-          <i class="fas fa-plus"></i> Load More Recipes
+        <button id="loadMoreBtn" class="load-more-btn">Load More Recipes
         </button>
       </div>
     </section>
-    </section>
-  </main>
+  </section>
+</main>
   
   <!-- Footer -->
   <footer>
@@ -139,6 +139,9 @@
       <p>Copyright &copy;2025 | Designed by Naadirah Karim | 2427389</p>
     </section>
   </footer>
+
+  <!-- Scroll to Top -->
+  <img src="../images/up.png" alt="Scroll to top" id="scrollTopBtn" class="scroll-top">
 
     <script src="../js/search.js"></script>
     <script src="../js/gsap.js"></script> 
