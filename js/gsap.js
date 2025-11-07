@@ -58,6 +58,18 @@ function initializeCommonAnimations() {
     });
 }
 
+// Get current page name
+function getCurrentPage() {
+    const path = window.location.pathname;
+    if (path.includes('about.html')) return 'about';
+    if (path.includes('blog.html')) return 'blog';
+    if (path.includes('blogdetails.html')) return 'blog-details';
+    if (path.includes('recipebook.html')) return 'recipe-book';
+    if (path.includes('myfavourites.html')) return 'my-favourites';
+    if (path.includes('recipedetails.html')) return 'recipe-details';
+    return 'home'; 
+}
+
 // Page-specific animations
 function initializePageSpecificAnimations() {
     const currentPage = getCurrentPage();
@@ -87,18 +99,6 @@ function initializePageSpecificAnimations() {
         default:
             initializeHomePageAnimations();
     }
-}
-
-// Get current page name
-function getCurrentPage() {
-    const path = window.location.pathname;
-    if (path.includes('About.html')) return 'about';
-    if (path.includes('Blog.html')) return 'blog';
-    if (path.includes('BlogDetails.html')) return 'blog-details';
-    if (path.includes('Recipebook.html')) return 'recipe-book';
-    if (path.includes('Myfavourites.html')) return 'my-favourites';
-    if (path.includes('Recipedetails.html')) return 'recipe-details';
-    return 'home'; 
 }
 
 // --- Home Page Animations --- 

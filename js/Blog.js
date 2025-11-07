@@ -21,7 +21,7 @@ const blogData = {
     title: "Wake Up to Flavor",
     date: "1 September 2025",
     recipe: "Easy Cappuccino Muffins Recipe",
-    image: "../Images/capmuffin.png",
+    image: "../Images/Capmuffin.png",
     alt: "Cappuccino Muffins",
     recipeId: "10",
     content: `
@@ -41,7 +41,7 @@ const blogData = {
     title: "Classic Indulgence",
     date: "8 September 2025",
     recipe: "Red Velvet Cupcakes with Cream Cheese Frosting Recipe",
-    image: "../Images/redvelvet.png",
+    image: "../Images/Redvelvet.png",
     alt: "Red Velvet Cupcakes",
     recipeId: "3",
     content: `

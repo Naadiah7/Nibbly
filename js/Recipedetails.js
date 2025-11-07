@@ -207,7 +207,7 @@ const completeRecipeData = {
         id: 3,
         title: "Red Velvet Cake",
         description: "Stunning red velvet cake with cream cheese frosting.",
-        image: "../Images/redvelvet.png",
+        image: "../Images/Redvelvet.png",
         prepTime: "30 mins",
         cookTime: "35 mins",
         totalTime: 65,
@@ -453,7 +453,7 @@ const completeRecipeData = {
         id: 10,
         title: "Cappuccino Muffins",
         description: "Coffee-flavored muffins with a sweet streusel topping.",
-        image: "../Images/capmuffin.png",
+        image: "../Images/Capmuffin.png",
         prepTime: "15 mins",
         cookTime: "20 mins",
         totalTime: 35,
@@ -493,14 +493,14 @@ const completeRecipeData = {
 function viewRecipe(recipeId, source = 'local') {
     sessionStorage.setItem('currentRecipeId', recipeId);
     sessionStorage.setItem('recipeSource', source);
-    window.location.href = 'RecipeDetails.html';
+    window.location.href = 'recipedetails.html';
 }
 
 // Function to view recipe from blog
 function viewRecipeFromBlog(recipeId) {
     sessionStorage.setItem('currentRecipeId', recipeId);
     sessionStorage.setItem('recipeSource', 'local');
-    window.location.href = 'RecipeDetails.html';
+    window.location.href = 'recipedetails.html';
 }
 
 function displayRecipeDetails(recipe) {
