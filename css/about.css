@@ -1,0 +1,393 @@
+html{
+    scroll-behavior: smooth;
+}
+
+@font-face {
+  font-family: 'Palatino Linotype';
+  src: url('../fonts/palatinolinotype_roman.woff') format('woff2'),
+       url('../fonts/palatinolinotype_roman.woff2') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Berkshire Swash', cursive;
+  margin: 0;
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+}
+
+/* Navigation Bar */
+#Navtop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f6f2ff;
+  padding-right: 20px;
+  border-bottom: 2px solid #ccc;
+}
+
+.brand {
+  display: flex;
+  align-items:center;
+  gap: 10px;
+  background-color: #E9C4F9;
+  padding: 4px 20px; 
+}
+
+#logo {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 50% black;
+}
+
+.site-title {
+  font-size: 25px;
+  color: #000;
+}
+
+#Navtop ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+}
+
+#Navtop ul li a {
+  text-decoration: none;
+  color: #000;
+  font-size: 20px;
+  padding: 0.5rem 1rem; 
+  border-radius: 0.5rem;
+  margin: 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#Navtop ul li a:hover,
+#Navtop ul li a.active {
+  color: #000;
+  background-color: #B0E1FF;
+}
+
+/* --- Search Button --- */
+.search-btn {
+  display: flex;
+  align-items: center;
+}
+
+.searchButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.searchButton img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.searchButton:hover img {
+  transform: scale(1.07);
+}
+
+/* Banner */
+.banner {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 110px;
+  margin: 0 auto;
+  background-color: #B0E1FF;
+  border-radius: 15px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.banner img {
+  width: 40px;
+  height: 40px;
+  margin-left: 15px;
+  border-radius: 50%;
+}
+
+.banner h2 {
+  color: #000;
+  font-family: 'Beth Ellen', cursive;
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+/* --- Social Links --- */
+.social-links {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.email img{
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.instagram img{
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.tiktok img{
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.email .instagram .tiktok:hover {
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 rgba(0, 0, 0, 0.2);
+}
+
+
+/* --- About Content --- */
+.about-content{
+    display: flex;
+    gap: 30px;
+    margin: 40px auto;
+    align-items: flex-start;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+.about-content  .text-block {
+    flex-grow: 1;
+    max-width: 100%;
+    text-align: left;
+}
+
+.about-heading {
+    font-size: 30px;
+    color: #000;
+    font-family: 'Berkshire Swash', cursive;
+    text-decoration: underline;
+    margin-top: 0;
+    margin-bottom: 20px;
+    opacity: 0; /* For animation */
+}
+
+.about-text {
+    font-family: 'Palatino Linotype', Arial;
+    line-height: 1.6;
+    font-size: 17px;
+    margin-bottom: 20px;
+    opacity: 0; /* For animation */
+    transform: translateY(20px);
+}
+
+.offer-heading {
+    font-size: 24px;
+    color: #000;
+    font-family: 'Berkshire Swash', cursive;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    opacity: 0; /* For animation */
+}
+
+/* --- Subscribe Section --- */
+.subscribe-content {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    background-color: #ceecff;
+    padding: 40px 20px;
+    border-radius: 15px;
+    margin: 40px auto;
+    max-width: 1200px;
+    text-align: left;
+}
+
+.subscribe-content .text-block {
+    flex-grow: 1;
+}
+
+.subscribe-heading {
+    font-size: 28px;
+    color: #000;
+    font-family: 'Berkshire Swash', cursive;
+    text-decoration: none;
+    margin-top: 0;
+    margin-bottom: 15px;
+    opacity: 0; /* For animation */
+}
+
+.subscribe-text {
+    font-family: 'Palatino Linotype';
+    line-height: 1.6;
+    font-size: 16px;
+    margin-bottom: 25px;
+    opacity: 0; /* For animation */
+    transform: translateY(20px);
+}
+
+/* Subscribe Form */
+.subscribe-form {
+    max-width: 400px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    opacity: 0; /* For animation */
+    transform: translateX(-30px);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #71C9FF;
+    border-radius: 8px;
+    font-family: 'Palatino Linotype';
+    font-size: 16px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #71C9FF;
+    box-shadow: 0 0 8px rgba(113, 201, 255, 0.3);
+}
+
+/* --- Join Button --- */
+.join-btn {
+  background-color: #B0E1FF;
+  color: #000;
+  font-family: 'Orelega One', cursive;
+  font-size: 20px;
+  padding: 12px 40px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  width: auto;
+  margin: 20px 0 0 0;
+  box-shadow: 4px 4px 0px #000;
+  opacity: 0; /* For animation */
+  transform: scale(0.8);
+}
+
+.join-btn:hover {
+  background-color: #71C9FF;
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px #000;
+}
+
+/* Footer */
+footer {
+  background-color: #555;
+  color: white;
+  padding: 1px 1px;
+  font-size: 16px;
+  align-items: center;
+  margin: 0;
+  position: relative;
+  margin-top: auto;
+}
+
+/* Scroll Top Image Button */
+.scroll-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: none;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.scroll-top:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+
+/* Animation Elements */
+.floating-cookie {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #71C9FF;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Burger Menu Hidden (for desktop) */
+.checkbtn {
+  display: none;
+}
+
+/*Media Queries*/
+@media (max-width: 768px) {
+  #Navtop ul {
+    flex-direction: column;
+    display: none;
+  }
+  #check:checked ~ ul {
+    display: flex;
+  }
+  .checkbtn {
+    display: block;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  .banner {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .banner img {
+    margin: 10px 0;
+  }
+
+  .social-links {
+    justify-content: center;
+    margin: 10px 0 0 0;
+  }
+
+  .about-content,
+  .subscribe-content {
+    flex-direction: column;
+    padding: 20px 15px;
+  }
+
+  .subscribe-form {
+    max-width: 100%;
+  }
+}
