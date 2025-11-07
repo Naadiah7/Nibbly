@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Dessert Recipe Webapp">
+  <meta name="keywords" content="HTML, CSS, JavaScript, GSAP">
+  <meta name="author" content="Naadirah Karim">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../css/normalize.css" />
+  <link rel="stylesheet" href="../css/myfavourites.css"/>
+  <link rel="shortcut icon" href="../images/logo.png">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Beth+Ellen&family=Orelega+One&display=swap" rel="stylesheet">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>  
+
+  <title>My Favourites</title>
+</head>
+<body>
+  
+<!-- Header Navigation -->
+<header>
+  <nav id="Navtop">
+    <label for="check" class="checkbtn">
+      <i class="fas fa-bars"></i>
+    </label>
+
+    <div class="brand">
+      <a href="../index.html">
+          <img src="../images/logo.png" alt="Nibbly Logo" id="logo" />
+      </a>
+      <h1 class="site-title">Nibbly</h1>
+    </div>
+
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../pages/recipebook.html">Recipe Book</a></li>
+      <li><a href="../pages/myfavourites.html" class="active">My Favourites</a></li>
+      <li><a href="../pages/blog.html">Blog</a></li>
+      <li><a href="../pages/about.html">About</a></li>
+    </ul>
+
+    <!-- Search button -->
+    <div class="search-btn">
+      <a href="../pages/search.html" class="searchButton" >
+        <img src="../images/search.png" alt="Search" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- Banner -->
+  <section class="banner">
+    <h2>My Favourite Recipes</h2>
+    <img src="../images/cinnabonD.png" alt="Pixel Cinnabon">
+    <div class="banner-subtitle">
+        <p>Your Favourite Recipes Right Here!</p>
+    </div>
+  </section>
+
+ <!-- Favorites Container -->
+  <section class="favorites-container" id="favoritesContainer">
+    <!-- Favorites will be populated by JavaScript -->
+  </section>
+
+  <!-- Empty State (hidden)-->
+  <section class="empty-state" id="emptyState">
+    <h3>No Favourites Yet</h3>
+    <p>You haven't saved any recipes to your favourites yet. Explore our recipes!</p>
+    <a href="../pages/recipebook.html" class="explore-btn">Explore Recipes</a>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <section class="footerbottom">
+    <p>Copyright &copy;2025 | Designed by Naadirah Karim | 2427389</p>
+  </section>
+</footer>
+
+<!-- Scroll to Top -->
+<img src="../images/up.png" alt="Scroll to top" id="scrollTopBtn" class="scroll-top">
+
+    <script src="../js/myfavourites.js"></script>   
+    <script src="../js/gsap.js"></script> 
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Dessert Recipe Webapp" />
+  <meta name="keywords" content="HTML, CSS, JavaScript, GSAP" />
+  <meta name="author" content="Naadirah Karim" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="../css/normalize.css" />
+  <link rel="stylesheet" href="../css/search.css" />
+  <link rel="shortcut icon" href="../images/logo.png" type="image of logo/png" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Beth+Ellen&family=Orelega+One&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>  
+
+  <title>Recipe Book</title>
+</head>
+<body>
+
+<!-- Header Navigation -->
+  <header>
+    <nav id="Navtop">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+
+      <div class="brand">
+        <a href="../index.html">
+            <img src="../images/logo.png" alt="Nibbly Logo" id="logo" />
+        </a>
+        <h1 class="site-title">Nibbly</h1>
+      </div>
+
+    <!--Navigation Bar-->
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../pages/recipebook.html">Recipe Book</a></li>
+      <li><a href="../pages/myfavourites.html">My Favourites</a></li>
+      <li><a href="../pages/blog.html">Blog</a></li>
+      <li><a href="../pages/about.html">About</a></li>
+    </ul>
+
+    <!-- Search button -->
+      <div class="search-btn">
+        <a href="../pages/search.html" class="active searchButton" >
+          <img src="../images/search.png" alt="Search" />
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+  <section class="search-page">
+    <!-- Search Bar -->
+    <section class="search-bar">
+      <div class="search-box">
+        <input type="text" id="recipeSearch" placeholder="Search for desserts...">
+        <button id="searchBtn">Search</button>
+      </div>
+    </section>    
+
+    <!-- Search Filters -->
+    <section class="filter-section">
+      <div class="filter-group">
+        <label for="dietFilter">Diet Type</label>
+        <select id="dietFilter" class="filter-select">
+          <option value="">Diet</option>
+          <option value="vegetarian">Vegetarian</option>
+          <option value="vegan">Vegan</option>
+          <option value="glutenFree">Gluten Free</option>
+          <option value="dairyFree">Dairy Free</option>
+          <option value="nutFree">Nut Free</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="typeFilter">Dessert Type</label>
+        <select id="typeFilter" class="filter-select">
+          <option value=""> Type</option>
+          <option value="cakes">Cakes</option>
+          <option value="indian-sweets">Indian Sweets</option>
+          <option value="meringues">Meringues</option>
+          <option value="breakfast">Breakfast Desserts</option>
+        </select>
+      </div>
+
+        <div class="filter-group">
+        <label for="timeFilter"> Max Prep Time</label>
+        <select id="timeFilter" class="filter-select">
+          <option value="">Time</option>
+          <option value="30">30 min or less</option>
+          <option value="45">45 min or less</option>
+          <option value="60">60 min or less</option>
+          <option value="120">2 hours or less</option>
+        </select>
+      </div>
+      
+      <div class="filter-actions">
+        <button id="applyFiltersBtn" class="filter-button apply-btn">
+          <i class="fas fa-filter"></i> Apply Filters
+        </button>
+        <button id="clearFiltersBtn" class="filter-button clear-btn"> Clear All
+        </button>
+      </div>
+    </section>
+
+    <!-- Filters Display -->
+    <section class="active-filters" id="activeFilters">
+      <!-- Active filters will be displayed here -->
+    </section>
+      
+  <!-- Recipe Results Page -->
+  <section id="recipes-page" class="recipe-results" style="display: none;">
+    <h2 id="results-title">Recent Recipes</h2>
+    <div class="recipe-grid" id="recipeGrid">
+      <!-- Recipes will be dynamically populated here -->
+      </div>
+      <div class="load-more-container">
+        <button id="loadMoreBtn" class="load-more-btn">
+          <i class="fas fa-plus"></i> Load More Recipes
+        </button>
+      </div>
+    </section>
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer>
+    <section class="footerbottom">
+      <p>Copyright &copy;2025 | Designed by Naadirah Karim | 2427389</p>
+    </section>
+  </footer>
+
+    <script src="../js/recipebook.js"></script>
+    <script src="../js/gsap.js"></script> 
+</body>
+</html>

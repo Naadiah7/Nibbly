@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Dessert Recipe Webapp">
+  <meta name="keywords" content="HTML, CSS, JavaScript, GSAP">
+  <meta name="author" content="Naadirah Karim">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="../css/normalize.css" />
+  <link rel="stylesheet" href="../css/recipedetails.css"/>
+  <link rel="shortcut icon" href="../images/logo.png">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Beth+Ellen&family=Orelega+One&display=swap" rel="stylesheet">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>  
+
+  <title>Nibbly-Recipe Details</title>
+</head>
+<body>
+
+<!-- Header Navigation -->
+  <header>
+    <nav id="Navtop">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+
+      <div class="brand">
+        <a href="../index.html">
+            <img src="../images/logo.png" alt="Nibbly Logo" id="logo" />
+        </a>
+        <h1 class="site-title">Nibbly</h1>
+      </div>
+
+<!--Navigation Bar-->
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../pages/recipebook.html"class="active">Recipe Book</a></li>
+      <li><a href="../pages/myfavourites.html">My Favourites</a></li>
+      <li><a href="../pages/blog.html">Blog</a></li>
+      <li><a href="../pages/about.html">About</a></li>
+    </ul>
+
+    <!-- Search button -->
+      <div class="search-btn">
+        <a href="../pages/search.html" class="searchButton" >
+          <img src="../images/search.png" alt="Search" />
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Recipe Banner -->
+    <section class="recipe-banner">
+      <div class="recipe-banner">
+        <div class="recipe-banner-content">
+          <img id="banner-recipe-image" src="" alt="">
+          <h2 id="banner-recipe-title"></h2>
+        
+        <!-- Metadata in the  banner -->
+        <div class="recipe-meta-banner">
+            <div class="meta-item">
+                <span class="meta-label">Prep Time:</span>
+                <span class="meta-value"></span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Total Time:</span>
+                <span class="meta-value"></span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Difficulty:</span>
+                <span class="meta-value"></span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Servings:</span>
+                <span class="meta-value"></span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Category:</span>
+                <span class="meta-value"></span>
+            </div>
+        </div>
+  
+      <!-- Action Links -->
+      <div class="links">
+        <div class="favourite" id="favourite-btn">
+            <img id="empty-heart" src="../images/eheart.png" alt="Add to Favorites">
+            <img id="full-heart" src="../images/fheart.png" alt="Remove from Favorites" style="display: none;">
+        </div>
+        <div class="print">
+            <img src="../images/print.png" alt="Print Recipe" onclick="printRecipe()">
+        </div>
+        <div class="share">
+            <img src="../images/share.png" alt="Share Recipe" onclick="shareRecipe()">
+        </div>
+      </div>
+    </div>
+</div>
+</section>
+
+    <section class="recipe-details" id="recipeDetails">
+      <!-- Recipe details will be populated by JavaScript -->
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer>
+    <section class="footerbottom">
+      <p>Copyright &copy;2025 | Designed by Naadirah Karim | 2427389</p>
+    </section>
+  </footer>
+
+    <!-- Go Back Button -->
+    <a href="../pages/recipebook.html" class="go-back">
+      <img src="../images/back.png" alt="Go back to recipe book" />
+    </a>
+
+    <!-- Scroll to Top -->
+    <img src="../images/up.png" alt="Scroll to top" id="scrollTopBtn" class="scroll-top">
+
+    <script src="../js/recipedetails.js"></script>    
+    <script src="../js/gsap.js"></script> 
+</body>
+</html>

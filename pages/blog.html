@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Dessert Recipe Webapp">
+  <meta name="keywords" content="HTML, CSS, JavaScript, GSAP">
+  <meta name="author" content="Naadirah Karim">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../css/normalize.css" />
+  <link rel="stylesheet" href="../css/blog.css"/>
+  <link rel="shortcut icon" href="../images/logo.png">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Beth+Ellen&family=Orelega+One&display=swap" rel="stylesheet">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>  
+
+  <title>Blog</title>
+</head>
+<body>
+
+<!-- Header Navigation -->
+<header>
+  <nav id="Navtop">
+    <label for="check" class="checkbtn">
+      <i class="fas fa-bars"></i>
+    </label>
+
+    <div class="brand">
+      <a href="../index.html">
+          <img src="../images/logo.png" alt="Nibbly Logo" id="logo" />
+      </a>
+      <h1 class="site-title">Nibbly</h1>
+    </div>
+
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../pages/recipebook.html">Recipe Book</a></li>
+      <li><a href="../pages/myfavourites.html">My Favourites</a></li>
+      <li><a href="../pages/blog.html" class="active">Blog</a></li>
+      <li><a href="../pages/about.html">About</a></li>
+    </ul>
+
+    <!-- Search button -->
+    <div class="search-btn">
+      <a href="../pages/search.html" class="searchButton" >
+        <img src="../images/search.png" alt="Search" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- Banner -->
+  <section class="banner">
+    <h2>Dessert Blogs</h2>
+    <img src="../images/cheesecakeL.png" alt="Pixel Cheesecake">
+    <div class="banner-subtitle">
+        <p>Tips, tricks, and stories from the world of desserts</p>
+    </div>
+
+  <!-- Social Media Links  -->
+  <div class="social-links">
+      <a href="mailto:nibblyy@gmail.com" class="email">
+        <img src="../images/email.png" alt="email link">
+      </a>
+      <a href="https://www.instagram.com/nibbly.za/" target="_blank" rel="noopener noreferrer" class="instagram">
+        <img src="../images/instagram.png" alt="instagram link">
+      </a>
+      <a href="https://www.tiktok.com/@nibbly.za" target="_blank" rel="noopener noreferrer" class="tiktok">
+        <img src="../images/tiktok.png" alt="tiktok link">
+      </a>
+  </div>
+  </section>
+
+  <!-- Blog Content Section -->
+  <section class="blog-content">
+      <div class="text-block">
+          <h3 class="blog-heading">Latest Blog Posts</h3>
+          <p class="blog-intro">Discover the latest tips, tricks, and stories from the world of desserts. From baking techniques to recipe deep dives, our blog has everything you need to elevate your dessert game.</p>
+      </div>
+  </section>
+
+  <!-- Blog Posts -->
+  <section class="horizontal-posts">
+    <article class="blog-post">
+      <div class="post-text">
+        <div class="post-date">1 September 2025</div>
+        <div class="post-header">
+           <img src="../images/capmuffin.png" alt="Cappuccino Muffins" class="post-img">
+           <h4 class="post-title">Wake Up to Flavor</h4>
+        </div>
+        <p class="post-recipe">Easy Cappuccino Muffins Recipe</p>
+        <div class="post-content">
+          <p>Start your morning with these delightful cappuccino muffins that combine the rich flavor of coffee with soft, moist muffin texture. Perfect for breakfast or as an afternoon pick-me-up.</p>
+        </div>
+      </div>
+      <a href="../pages/blogdetails.html?id=blog1" class="read-more-btn">Read More</a>
+    </article>
+
+    <article class="blog-post">
+      <div class="post-text">
+        <div class="post-date">8 September 2025</div>
+        <div class="post-header">
+          <img src="../images/redvelvet.png" alt="Red Velvet Cupcakes" class="post-img">
+          <h4 class="post-title">Classic Indulgence</h4>
+        </div>
+        <p class="post-recipe">Red Velvet Cupcakes with Cream Cheese Frosting Recipe</p>
+        <div class="post-content">
+          <p>Discover the secrets to creating perfect red velvet cupcakes with our step-by-step guide. Learn how to achieve that signature velvety texture and rich color.</p>
+        </div>
+      </div>
+      <a href="../pages/blogdetails.html?id=blog2" class="read-more-btn">Read More</a>
+    </article>
+
+    <article class="blog-post">
+      <div class="post-text">
+        <div class="post-date">15 September 2025</div>
+        <div class="post-header">
+          <img src="../images/cheesecake.png" alt="Berry Cheesecake" class="post-img">
+          <h4 class="post-title">A Slice of Berry Bliss</h4>
+        </div>
+        <p class="post-recipe">Creamy Berry Cheesecake Recipe</p>
+        <div class="post-content">
+          <p>Indulge in this creamy berry cheesecake that combines a buttery biscuit base with smooth cream cheese filling and topped with fresh berries. A true crowd-pleaser!</p>
+        </div>
+      </div>
+      <a href="../pages/blogdetails.html?id=blog3" class="read-more-btn">Read More</a>
+    </article>
+  </section>
+</main>
+
+  <!-- Footer -->
+  <footer>
+    <section class="footerbottom">
+      <p>Copyright &copy;2025 | Designed by Naadirah Karim | 2427389</p>
+    </section>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <img src="../images/up.png" alt="Scroll to top" id="scrollTopBtn" class="scroll-top">
+
+    <script src="../js/blog.js"></script>
+    <script src="../js/gsap.js"></script> 
+</body>
+</html>
