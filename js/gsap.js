@@ -1,4 +1,4 @@
-// GSAP Animations for All Pages
+// ===== GSAP ANIMATIONS FOR ALL PAGES =====
 document.addEventListener('DOMContentLoaded', function() {
     if (typeof gsap !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Common animations used across pages
+// ===== COMMON ANIMATIONS =====
 function initializeCommonAnimations() {
     // Floating cookies animation 
     createFloatingCookies();
@@ -57,7 +57,7 @@ function initializeCommonAnimations() {
     });
 }
 
-// Get current page name
+// ===== PAGE DETECTION =====
 function getCurrentPage() {
     const path = window.location.pathname;
     if (path.includes('about.html')) return 'about';
@@ -67,10 +67,10 @@ function getCurrentPage() {
     if (path.includes('myfavourites.html')) return 'my-favourites';
     if (path.includes('recipedetails.html')) return 'recipe-details';
     if (path.includes('search.html')) return 'search';
-    return 'home'; 
+    return 'home';
 }
 
-// Page-specific animations
+// ===== PAGE-SPECIFIC ANIMATIONS =====
 function initializePageSpecificAnimations() {
     const currentPage = getCurrentPage();
     
@@ -98,12 +98,13 @@ function initializePageSpecificAnimations() {
             break;
         case 'search':
             initializeSearchAnimations();
+            break;
         default:
             initializeHomePageAnimations();
     }
 }
 
-// --- Home Page Animations --- 
+// ===== HOME PAGE ANIMATIONS =====
 function initializeHomePageAnimations() {
     const mainTimeline = gsap.timeline();
 
@@ -139,8 +140,7 @@ function initializeHomePageAnimations() {
                 trigger: '.featured',
                 start: 'top 80%',
                 end: 'bottom 20%',
-                toggleActions: 'play none none none', 
-                markers: false 
+                toggleActions: 'play none none none'
             }
         }
     );
@@ -161,8 +161,7 @@ function initializeHomePageAnimations() {
                 trigger: '.recipe-container',
                 start: 'top 70%',
                 end: 'bottom 30%',
-                toggleActions: 'play none none none',
-                markers: false
+                toggleActions: 'play none none none'
             }
         }
     );
@@ -184,14 +183,13 @@ function initializeHomePageAnimations() {
                 trigger: '.featured',
                 start: 'top 85%',
                 end: 'bottom 15%',
-                toggleActions: 'play none none none',
-                markers: false
+                toggleActions: 'play none none none'
             }
         }
     );
 }
 
-// --- About Page Animations ---
+// ===== ABOUT PAGE ANIMATIONS =====
 function initializeAboutPageAnimations() {
     const mainTimeline = gsap.timeline();
 
@@ -404,41 +402,40 @@ function initializeAboutPageAnimations() {
     });
 }
 
-// --- Blog Page Animations --- 
+// ===== BLOG PAGE ANIMATIONS =====
 function initializeBlogPageAnimations() {
     if (!document.querySelector('.banner')) return;
 
     // Blog content animations
-        // Animate banner
     gsap.fromTo('.banner h2', 
-            {
-                opacity: 0,
-                x: -50,
-                scale: 0.8
-            },
-            {
-                opacity: 1,
-                x: 0,
-                scale: 1,
-                duration: 0.8,
-                ease: "back.out(1.7)"
-            }
+        {
+            opacity: 0,
+            x: -50,
+            scale: 0.8
+        },
+        {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "back.out(1.7)"
+        }
     );
 
     gsap.fromTo('.banner img', 
-            {
-                opacity: 0,
-                rotation: -180,
-                scale: 0
-            },
-            {
-                opacity: 1,
-                rotation: 0,
-                scale: 1,
-                duration: 0.6,
-                ease: "back.out(1.5)"
-            },
-            "-=0.4"
+        {
+            opacity: 0,
+            rotation: -180,
+            scale: 0
+        },
+        {
+            opacity: 1,
+            rotation: 0,
+            scale: 1,
+            duration: 0.6,
+            ease: "back.out(1.5)"
+        },
+        "-=0.4"
     );
     
     gsap.fromTo('.blog-heading',
@@ -567,7 +564,7 @@ function initializeBlogPageAnimations() {
     });
 }
 
-// --- Blog Details Page Animations ---
+// ===== BLOG DETAILS PAGE ANIMATIONS =====
 function initializeBlogDetailsAnimations() {
     if (!document.querySelector('.blog-banner')) return;
 
@@ -590,20 +587,20 @@ function initializeBlogDetailsAnimations() {
         
         // Share link animation
         gsap.fromTo('.share',
-        {
-            opacity: 0,
-            scale: 0.5,
-            rotation: -180
-        },
-        {
-            opacity: 1,
-            scale: 1,
-            rotation: 0,
-            duration: 0.6,
-            stagger: 0.15,
-            ease: "back.out(1.7)",
-            delay: 1.0
-        }
+            {
+                opacity: 0,
+                scale: 0.5,
+                rotation: -180
+            },
+            {
+                opacity: 1,
+                scale: 1,
+                rotation: 0,
+                duration: 0.6,
+                stagger: 0.15,
+                ease: "back.out(1.7)",
+                delay: 1.0
+            }
         );
 
         // Share button hover animation
@@ -617,6 +614,7 @@ function initializeBlogDetailsAnimations() {
                     ease: "power2.out"
                 });
             });
+            
             shareButton.addEventListener('mouseleave', () => {
                 gsap.to(shareButton, {
                     duration: 0.3,
@@ -661,133 +659,16 @@ function initializeBlogDetailsAnimations() {
     });
 }
 
-// Banner Animations Functions used for blog pages 
-function animateBanner() {
-    const banner = document.querySelector('.banner, .blog-banner');
-    if (!banner) return;
-
-    const bannerTimeline = gsap.timeline();
-
-    // For main blog page banner
-    const mainBannerTitle = banner.querySelector('.banner h2');
-    const mainBannerImg = banner.querySelector('.banner img');
-    const mainBannerSubtitle = banner.querySelector('.banner-subtitle p');
-    
-    // For blog details banner
-    const detailsBannerImg = banner.querySelector('.blog-banner-content img');
-    const detailsBannerTitle = banner.querySelector('.blog-banner-content h2');
-    const shareButton = banner.querySelector('.share');
-
-    if (mainBannerTitle && mainBannerImg) {
-        // Main blog page banner animation
-        bannerTimeline
-            .fromTo(mainBannerTitle, 
-                {
-                    opacity: 0,
-                    x: -50,
-                    scale: 0.8
-                },
-                {
-                    opacity: 1,
-                    x: 0,
-                    scale: 1,
-                    duration: 0.8,
-                    ease: "back.out(1.7)"
-                }
-            )
-            .fromTo(mainBannerImg,
-                {
-                    opacity: 0,
-                    rotation: -180,
-                    scale: 0
-                },
-                {
-                    opacity: 1,
-                    rotation: 0,
-                    scale: 1,
-                    duration: 0.6,
-                    ease: "back.out(1.5)"
-                },
-                "-=0.4"
-            );
-
-        if (mainBannerSubtitle) {
-            bannerTimeline.fromTo(mainBannerSubtitle,
-                {
-                    opacity: 0,
-                    y: 30
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.5,
-                    ease: "power2.out"
-                },
-                "-=0.3"
-            );
-        }
-    } else if (detailsBannerImg && detailsBannerTitle) {
-        // Blog details page banner animation
-        bannerTimeline
-            .fromTo(detailsBannerImg,
-                {
-                    opacity: 0,
-                    rotation: -180,
-                    scale: 0
-                },
-                {
-                    opacity: 1,
-                    rotation: 0,
-                    scale: 1,
-                    duration: 0.8,
-                    ease: "back.out(1.7)"
-                }
-            )
-            .fromTo(detailsBannerTitle,
-                {
-                    opacity: 0,
-                    x: 50,
-                    scale: 0.8
-                },
-                {
-                    opacity: 1,
-                    x: 0,
-                    scale: 1,
-                    duration: 0.6,
-                    ease: "back.out(1.5)"
-                },
-                "-=0.4"
-            );
-            if (shareButton) {
-            bannerTimeline.fromTo(shareButton,
-                {
-                    opacity: 0,
-                    scale: 0,
-                    rotation: -180,
-                    x: 30
-                },
-                {
-                    opacity: 1,
-                    scale: 1,
-                    rotation: 0,
-                    x: 0,
-                    duration: 0.7,
-                    ease: "back.out(1.7)"
-                },
-                "-=0.3"
-            );
-        }
-    }
-}
-
-// --- Recipe Book Page Animations ---
+// ===== RECIPE BOOK PAGE ANIMATIONS =====
 function initializeRecipeBookAnimations() {
     // Animate category cards on load
     gsap.fromTo('.category-card', 
-        { opacity: 0, 
+        { 
+            opacity: 0, 
             y: 30 
         },
-        { opacity: 1, 
+        { 
+            opacity: 1, 
             y: 0, 
             duration: 0.8, 
             stagger: 0.2, 
@@ -797,34 +678,34 @@ function initializeRecipeBookAnimations() {
 
     // Animate banner
     gsap.fromTo('.banner h2', 
-            {
-                opacity: 0,
-                x: -50,
-                scale: 0.8
-            },
-            {
-                opacity: 1,
-                x: 0,
-                scale: 1,
-                duration: 0.8,
-                ease: "back.out(1.7)"
-            }
+        {
+            opacity: 0,
+            x: -50,
+            scale: 0.8
+        },
+        {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "back.out(1.7)"
+        }
     );
 
     gsap.fromTo('.banner img', 
-            {
-                opacity: 0,
-                rotation: -180,
-                scale: 0
-            },
-            {
-                opacity: 1,
-                rotation: 0,
-                scale: 1,
-                duration: 0.6,
-                ease: "back.out(1.5)"
-            },
-            "-=0.4"
+        {
+            opacity: 0,
+            rotation: -180,
+            scale: 0
+        },
+        {
+            opacity: 1,
+            rotation: 0,
+            scale: 1,
+            duration: 0.6,
+            ease: "back.out(1.5)"
+        },
+        "-=0.4"
     );
 
     // Animate filter section
@@ -856,8 +737,7 @@ function initializeRecipeBookAnimations() {
     });
 }
 
-
-// --- Recipe Details Page Animations ---
+// ===== RECIPE DETAILS PAGE ANIMATIONS =====
 function initializeRecipeDetailsAnimations() {
     if (!document.querySelector('.recipe-banner')) return;
 
@@ -1178,9 +1058,7 @@ function initializeRecipeDetailsAnimations() {
     createFloatingCookies();
 }
 
-
-
-// My Favourites Page Animations
+// ===== MY FAVOURITES PAGE ANIMATIONS =====
 function initializeMyFavouritesAnimations() {
     const mainTimeline = gsap.timeline();
 
@@ -1258,14 +1136,16 @@ function initializeMyFavouritesAnimations() {
     });
 }
 
-// --- Search Page Animations ---
+// ===== SEARCH PAGE ANIMATIONS =====
 function initializeSearchAnimations() {
     // Animate category cards on load
     gsap.fromTo('.category-card', 
-        { opacity: 0, 
+        { 
+            opacity: 0, 
             y: 30 
         },
-        { opacity: 1, 
+        { 
+            opacity: 1, 
             y: 0, 
             duration: 0.8, 
             stagger: 0.2, 
@@ -1275,34 +1155,34 @@ function initializeSearchAnimations() {
 
     // Animate banner
     gsap.fromTo('.banner h2', 
-            {
-                opacity: 0,
-                x: -50,
-                scale: 0.8
-            },
-            {
-                opacity: 1,
-                x: 0,
-                scale: 1,
-                duration: 0.8,
-                ease: "back.out(1.7)"
-            }
+        {
+            opacity: 0,
+            x: -50,
+            scale: 0.8
+        },
+        {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "back.out(1.7)"
+        }
     );
 
     gsap.fromTo('.banner img', 
-            {
-                opacity: 0,
-                rotation: -180,
-                scale: 0
-            },
-            {
-                opacity: 1,
-                rotation: 0,
-                scale: 1,
-                duration: 0.6,
-                ease: "back.out(1.5)"
-            },
-            "-=0.4"
+        {
+            opacity: 0,
+            rotation: -180,
+            scale: 0
+        },
+        {
+            opacity: 1,
+            rotation: 0,
+            scale: 1,
+            duration: 0.6,
+            ease: "back.out(1.5)"
+        },
+        "-=0.4"
     );
 
     // Animate filter section
@@ -1334,31 +1214,127 @@ function initializeSearchAnimations() {
     });
 }
 
+// ===== BANNER ANIMATIONS =====
+function animateBanner() {
+    const banner = document.querySelector('.banner, .blog-banner');
+    if (!banner) return;
 
+    const bannerTimeline = gsap.timeline();
 
+    // For main blog page banner
+    const mainBannerTitle = banner.querySelector('.banner h2');
+    const mainBannerImg = banner.querySelector('.banner img');
+    const mainBannerSubtitle = banner.querySelector('.banner-subtitle p');
+    
+    // For blog details banner
+    const detailsBannerImg = banner.querySelector('.blog-banner-content img');
+    const detailsBannerTitle = banner.querySelector('.blog-banner-content h2');
+    const shareButton = banner.querySelector('.share');
 
+    if (mainBannerTitle && mainBannerImg) {
+        // Main blog page banner animation
+        bannerTimeline
+            .fromTo(mainBannerTitle, 
+                {
+                    opacity: 0,
+                    x: -50,
+                    scale: 0.8
+                },
+                {
+                    opacity: 1,
+                    x: 0,
+                    scale: 1,
+                    duration: 0.8,
+                    ease: "back.out(1.7)"
+                }
+            )
+            .fromTo(mainBannerImg,
+                {
+                    opacity: 0,
+                    rotation: -180,
+                    scale: 0
+                },
+                {
+                    opacity: 1,
+                    rotation: 0,
+                    scale: 1,
+                    duration: 0.6,
+                    ease: "back.out(1.5)"
+                },
+                "-=0.4"
+            );
 
+        if (mainBannerSubtitle) {
+            bannerTimeline.fromTo(mainBannerSubtitle,
+                {
+                    opacity: 0,
+                    y: 30
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "power2.out"
+                },
+                "-=0.3"
+            );
+        }
+    } else if (detailsBannerImg && detailsBannerTitle) {
+        // Blog details page banner animation
+        bannerTimeline
+            .fromTo(detailsBannerImg,
+                {
+                    opacity: 0,
+                    rotation: -180,
+                    scale: 0
+                },
+                {
+                    opacity: 1,
+                    rotation: 0,
+                    scale: 1,
+                    duration: 0.8,
+                    ease: "back.out(1.7)"
+                }
+            )
+            .fromTo(detailsBannerTitle,
+                {
+                    opacity: 0,
+                    x: 50,
+                    scale: 0.8
+                },
+                {
+                    opacity: 1,
+                    x: 0,
+                    scale: 1,
+                    duration: 0.6,
+                    ease: "back.out(1.5)"
+                },
+                "-=0.4"
+            );
+            
+        if (shareButton) {
+            bannerTimeline.fromTo(shareButton,
+                {
+                    opacity: 0,
+                    scale: 0,
+                    rotation: -180,
+                    x: 30
+                },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    rotation: 0,
+                    x: 0,
+                    duration: 0.7,
+                    ease: "back.out(1.7)"
+                },
+                "-=0.3"
+            );
+        }
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// --- Floating Cookies Animation ---
+// ===== FLOATING COOKIES ANIMATION =====
 function createFloatingCookies() {
     const banner = document.querySelector('.banner, .blog-banner, .banner-title, .recipe-banner-content, .search-page');
     if (!banner) return;
@@ -1419,7 +1395,7 @@ function createFloatingCookies() {
     }
 }
 
-// Utility function to animate new recipe cards
+// ===== UTILITY FUNCTIONS =====
 function animateNewRecipeCards(startIndex) {
     if (typeof gsap !== 'undefined') {
         const newCards = document.querySelectorAll('.recipe-card');
@@ -1432,8 +1408,7 @@ function animateNewRecipeCards(startIndex) {
     }
 }
 
-// globally available functions
+// ===== GLOBALLY AVAILABLE FUNCTIONS =====
 window.createFloatingCookies = createFloatingCookies;
 window.animateBanner = animateBanner;
 window.animateNewRecipeCards = animateNewRecipeCards;
-

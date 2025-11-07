@@ -1,24 +1,21 @@
-// Scroll-to-top function
+
+// ===== SCROLL-TO-TOP FUNCTIONALITY =====
 const scrollBtn = document.getElementById("scrollTopBtn");
 
 window.onscroll = function() {
-  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    scrollBtn.style.display = "block";
-  } else {
-    scrollBtn.style.display = "none";
-  }
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        scrollBtn.style.display = "block";
+    } else {
+        scrollBtn.style.display = "none";
+    }
 };
 
 scrollBtn.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// Initialize favorites when page loads
-document.addEventListener('DOMContentLoaded', function() {
-  loadFavorites();
-});
 
-// Complete recipe data with full details
+// ===== RECIPE DATA STORAGE =====
 const completeRecipeData = {
     1: {
         id: 1,
@@ -372,118 +369,150 @@ const completeRecipeData = {
     }
 };
 
+
+// ===== FAVORITES MANAGEMENT =====
+/*Load and display favorite recipes from localStorage*/
 function loadFavorites() {
     const favorites = JSON.parse(localStorage.getItem('nibblyFavorites')) || [];
     const favoritesContainer = document.getElementById('favoritesContainer');
     const emptyState = document.getElementById('emptyState');
     
-    console.log('Loading favorites:', favorites); // Debug log
+    console.log('Loading favorites:', favorites);
     
     if (favorites.length === 0) {
-        if (favoritesContainer) {
-            favoritesContainer.style.display = 'none';
-            favoritesContainer.innerHTML = ''; // Clear any existing content
-        }
-        if (emptyState) {
-            emptyState.style.display = 'block'; // Show empty state
-        }
-        
-        // Animate empty state
-        if (typeof gsap !== 'undefined' && emptyState) {
-            gsap.fromTo(emptyState, {
-                opacity: 0,
-                scale: 0.8
-            }, {
-                duration: 0.8,
-                opacity: 1,
-                scale: 1,
-                ease: "back.out(1.5)",
-                delay: 0.6
-            });
-        }
+        handleEmptyFavorites(favoritesContainer, emptyState);
         return;
     }
     
-    // Hide empty state and show favorites
+    displayFavorites(favorites, favoritesContainer, emptyState);
+}
+
+/*Handle empty favorites state with animation*/
+function handleEmptyFavorites(favoritesContainer, emptyState) {
+    if (favoritesContainer) {
+        favoritesContainer.style.display = 'none';
+        favoritesContainer.innerHTML = '';
+    }
+    
+    if (emptyState) {
+        emptyState.style.display = 'block';
+        animateEmptyState(emptyState);
+    }
+}
+
+/*Animate empty state appearance*/
+function animateEmptyState(emptyState) {
+    if (typeof gsap !== 'undefined' && emptyState) {
+        gsap.fromTo(emptyState, 
+            { opacity: 0, scale: 0.8 },
+            { 
+                duration: 0.8, 
+                opacity: 1, 
+                scale: 1, 
+                ease: "back.out(1.5)", 
+                delay: 0.6 
+            }
+        );
+    }
+}
+
+/*Display favorite recipes in the container*/
+function displayFavorites(favorites, favoritesContainer, emptyState) {
     if (emptyState) emptyState.style.display = 'none';
+    
     if (favoritesContainer) {
         favoritesContainer.style.display = 'grid';
         favoritesContainer.innerHTML = '';
         
         let hasValidFavorites = false;
         
-        // Add favorite recipes
         favorites.forEach(favId => {
-            let numericId;
+            const numericId = parseFavoriteId(favId);
             
-            // Parse the favorite ID - handle both "local_5" format and numeric IDs
-            if (typeof favId === 'number') {
-                numericId = favId;
-            } else if (typeof favId === 'string') {
-                if (favId.includes('_')) {
-                    const parts = favId.split('_');
-                    // Only process local recipes for now
-                    if (parts[0] === 'local') {
-                        numericId = parseInt(parts[1]);
-                    } else {
-                        console.log('Skipping non-local recipe:', favId);
-                        return; // Skip this iteration for API recipes
-                    }
-                } else {
-                    // Handle case where it's just a string number
-                    numericId = parseInt(favId);
-                }
-            }
-            
-            // Check if we have a valid numeric ID and the recipe exists
-            if (!isNaN(numericId) && completeRecipeData[numericId]) {
-                const recipe = completeRecipeData[numericId];
-                const recipeCard = document.createElement('div');
-                recipeCard.className = 'recipe-card';
-                recipeCard.innerHTML = `
-                    <img src="${recipe.image}" alt="${recipe.title}" onerror="this.src='../images/placeholder.png'">
-                    <div class="recipe-info">
-                        <h3>${recipe.title}</h3>
-                        <p>${recipe.description}</p>
-                        <div class="recipe-meta">
-                            <span class="prep-time">${recipe.prepTime}</span>
-                            <span class="servings">${recipe.servings} servings</span>
-                        </div>
-                        <button class="view-recipe-btn" onclick="viewRecipe(${recipe.id})">View Recipe</button>
-                    </div>
-                `;
-                favoritesContainer.appendChild(recipeCard);
+            if (isValidRecipe(numericId)) {
+                createRecipeCard(numericId, favoritesContainer);
                 hasValidFavorites = true;
-            } else {
-                console.warn('Recipe not found for ID:', favId, 'Numeric ID:', numericId, 'Available IDs:', Object.keys(completeRecipeData));
             }
         });
         
-        // If no valid favorites were found after processing, show empty state
         if (!hasValidFavorites) {
-            if (emptyState) emptyState.style.display = 'block';
-            favoritesContainer.style.display = 'none';
+            handleEmptyFavorites(favoritesContainer, emptyState);
             return;
         }
         
-        // Animate recipe cards
-        if (typeof gsap !== 'undefined') {
-            gsap.from('.recipe-card', {
-                duration: 0.6,
-                opacity: 0,
-                y: 30,
-                stagger: 0.1,
-                ease: "back.out(1.2)",
-                delay: 0.5
-            });
-        }
+        animateRecipeCards();
     }
 }
+
+/*Parse favorite ID from various formats*/
+function parseFavoriteId(favId) {
+    if (typeof favId === 'number') {
+        return favId;
+    }
+    
+    if (typeof favId === 'string') {
+        if (favId.includes('_')) {
+            const parts = favId.split('_');
+            return parts[0] === 'local' ? parseInt(parts[1]) : NaN;
+        }
+        return parseInt(favId);
+    }
+    
+    return NaN;
+}
+
+/*Check if recipe ID is valid and exists in data*/
+function isValidRecipe(numericId) {
+    return !isNaN(numericId) && completeRecipeData[numericId];
+}
+
+/*Create and append recipe card to container*/
+function createRecipeCard(recipeId, container) {
+    const recipe = completeRecipeData[recipeId];
+    const recipeCard = document.createElement('div');
+    recipeCard.className = 'recipe-card';
+    
+    recipeCard.innerHTML = `
+        <img src="${recipe.image}" alt="${recipe.title}" onerror="this.src='../images/placeholder.png'">
+        <div class="recipe-info">
+            <h3>${recipe.title}</h3>
+            <p>${recipe.description}</p>
+            <div class="recipe-meta">
+                <span class="prep-time">${recipe.prepTime}</span>
+                <span class="servings">${recipe.servings} servings</span>
+            </div>
+            <button class="view-recipe-btn" onclick="viewRecipe(${recipe.id})">View Recipe</button>
+        </div>
+    `;
+    
+    container.appendChild(recipeCard);
+}
+
+/*Animate recipe cards entrance*/
+function animateRecipeCards() {
+    if (typeof gsap !== 'undefined') {
+        gsap.from('.recipe-card', {
+            duration: 0.6,
+            opacity: 0,
+            y: 30,
+            stagger: 0.1,
+            ease: "back.out(1.2)",
+            delay: 0.5
+        });
+    }
+}
+
+/*Navigate to recipe details page*/
 function viewRecipe(recipeId) {
     sessionStorage.setItem('currentRecipeId', recipeId);
-    sessionStorage.setItem('recipeSource', 'local'); 
+    sessionStorage.setItem('recipeSource', 'local');
     window.location.href = 'recipedetails.html';
 }
+
+
+// ===== EVENT LISTENERS AND INITIALIZATION =====
+// Initialize favorites when page loads
+document.addEventListener('DOMContentLoaded', loadFavorites);
 
 // Refresh favorites when storage changes (from other tabs)
 window.addEventListener('storage', function(e) {
@@ -493,7 +522,7 @@ window.addEventListener('storage', function(e) {
     }
 });
 
-// Also listen for messages from other tabs
+// Listen for messages from other tabs
 window.addEventListener('message', function(event) {
     if (event.data && event.data.type === 'favoritesUpdated') {
         console.log('Received favorites update message, reloading...');

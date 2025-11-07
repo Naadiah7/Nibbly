@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeFilterSystem();
 });
 
-// Scroll-to-top function
+// ===== SCROLL TO TOP FUNCTION =====
 function initializeScrollToTop() {
     const scrollBtn = document.getElementById("scrollTopBtn");
 
@@ -24,7 +24,7 @@ function initializeScrollToTop() {
     }
 }
 
-// API Configuration
+// ===== API CONFIGURATION =====
 const API_CONFIG = {
     spoonacular: {
         apiKey: 'e9838f3986ce447287b5664a1145662a',
@@ -37,7 +37,7 @@ const API_CONFIG = {
     }
 };
 
-// Enhanced recipe data with basic info only (fallback data)
+// ===== ENHANCED RECIPE DATA =====
 const enhancedLocalRecipes = {
     cakes: [
         {
@@ -159,7 +159,7 @@ const enhancedLocalRecipes = {
     ]
 };
 
-// API Functions
+// ===== API SERVICE CLASS =====
 class RecipeAPIService {
     // Spoonacular API - Search recipes
     static async searchSpoonacularRecipes(query, filters = {}) {
@@ -189,185 +189,184 @@ class RecipeAPIService {
         }
     }
 
-// Edamam API - Search recipes
-static async searchEdamamRecipes(query, filters = {}) {
-    try {
-        const params = new URLSearchParams({
-            app_id: API_CONFIG.edamam.appId,
-            app_key: API_CONFIG.edamam.appKey,
-            q: query,
-            type: 'public',
-            random: true
-        });
+    // Edamam API - Search recipes
+    static async searchEdamamRecipes(query, filters = {}) {
+        try {
+            const params = new URLSearchParams({
+                app_id: API_CONFIG.edamam.appId,
+                app_key: API_CONFIG.edamam.appKey,
+                q: query,
+                type: 'public',
+                random: true
+            });
 
-        // Add filters
-        if (filters.diet) params.append('health', filters.diet);
-        if (filters.mealType) params.append('mealType', filters.mealType);
+            // Add filters
+            if (filters.diet) params.append('health', filters.diet);
+            if (filters.mealType) params.append('mealType', filters.mealType);
 
-        const response = await fetch(`${API_CONFIG.edamam.baseUrl}?${params}`);
-        
-        if (!response.ok) throw new Error('Edamam API request failed');
-        
-        const data = await response.json();
-        return this.formatEdamamRecipes(data.hits);
-    } catch (error) {
-        console.error('Edamam API Error:', error);
-        return [];
-    }
-}
-
-// Get recipe details from Spoonacular
-static async getRecipeDetails(recipeId, source) {
-    try {
-        if (source === 'spoonacular') {
-            const response = await fetch(
-                `${API_CONFIG.spoonacular.baseUrl}/${recipeId}/information?apiKey=${API_CONFIG.spoonacular.apiKey}`
-            );
-            if (!response.ok) throw new Error('Failed to fetch recipe details');
+            const response = await fetch(`${API_CONFIG.edamam.baseUrl}?${params}`);
+            
+            if (!response.ok) throw new Error('Edamam API request failed');
+            
             const data = await response.json();
-            return this.formatSpoonacularRecipeDetails(data);
+            return this.formatEdamamRecipes(data.hits);
+        } catch (error) {
+            console.error('Edamam API Error:', error);
+            return [];
         }
-        // For local recipes, use existing data
-        return null;
-    } catch (error) {
-        console.error('Error fetching recipe details:', error);
-        return null;
     }
-}
 
-// Format Spoonacular recipes
-static formatSpoonacularRecipes(recipes) {
-    return recipes.map(recipe => ({
-        id: recipe.id,
-        title: recipe.title,
-        description: recipe.summary ? recipe.summary.replace(/<[^>]*>/g, '').substring(0, 150) + '...' : 'No description available',
-        image: recipe.image,
-        totalTime: recipe.readyInMinutes || 30,
-        category: this.mapSpoonacularCategory(recipe.dishTypes),
-        diet: this.mapSpoonacularDiets(recipe.diets),
-        difficulty: this.mapDifficulty(recipe.readyInMinutes),
-        servings: recipe.servings || 4,
-        source: 'spoonacular',
-        spoonacularId: recipe.id
-    }));
-}
+    // Get recipe details from Spoonacular
+    static async getRecipeDetails(recipeId, source) {
+        try {
+            if (source === 'spoonacular') {
+                const response = await fetch(
+                    `${API_CONFIG.spoonacular.baseUrl}/${recipeId}/information?apiKey=${API_CONFIG.spoonacular.apiKey}`
+                );
+                if (!response.ok) throw new Error('Failed to fetch recipe details');
+                const data = await response.json();
+                return this.formatSpoonacularRecipeDetails(data);
+            }
+            // For local recipes, use existing data
+            return null;
+        } catch (error) {
+            console.error('Error fetching recipe details:', error);
+            return null;
+        }
+    }
 
-// Format Edamam recipes 
-static formatEdamamRecipes(recipes) {
-    return recipes.map(hit => {
-        const recipe = hit.recipe;
-        return {
-            id: `edamam_${recipe.uri.split('_').pop()}`,
-            title: recipe.label,
-            description: recipe.ingredientLines ? `A delicious dessert with ${recipe.ingredientLines.length} ingredients` : 'A tasty dessert recipe',
+    // Format Spoonacular recipes
+    static formatSpoonacularRecipes(recipes) {
+        return recipes.map(recipe => ({
+            id: recipe.id,
+            title: recipe.title,
+            description: recipe.summary ? recipe.summary.replace(/<[^>]*>/g, '').substring(0, 150) + '...' : 'No description available',
             image: recipe.image,
-            totalTime: recipe.totalTime || 30,
-            category: this.mapEdamamCategory(recipe.mealType),
-            diet: this.mapEdamamDiets(recipe.healthLabels),
-            difficulty: this.mapDifficulty(recipe.totalTime),
-            servings: recipe.yield || 4,
-            source: 'edamam',
-            edamamUri: recipe.uri
-        };
-    });
-}
-
-// Format detailed recipe from Spoonacular
-static formatSpoonacularRecipeDetails(recipe) {
-    return {
-        id: recipe.id,
-        title: recipe.title,
-        description: recipe.summary ? recipe.summary.replace(/<[^>]*>/g, '') : 'No description available',
-        image: recipe.image,
-        prepTime: `${recipe.preparationMinutes || 15} mins`,
-        cookTime: `${recipe.cookingMinutes || 15} mins`,
-        totalTime: recipe.readyInMinutes,
-        category: this.mapSpoonacularCategory(recipe.dishTypes),
-        diet: this.mapSpoonacularDiets(recipe.diets),
-        difficulty: this.mapDifficulty(recipe.readyInMinutes),
-        servings: recipe.servings,
-        ingredients: recipe.extendedIngredients?.map(ing => ing.original) || [],
-        instructions: recipe.analyzedInstructions?.[0]?.steps?.map(step => step.step) || ['No instructions available'],
-        tags: recipe.dishTypes || [],
-        source: 'spoonacular'
-    };
-}
-
-// Helper methods for mapping categories and diets
-// Helper methods for mapping categories and diets
-static mapSpoonacularCategory(dishTypes) {
-    if (!dishTypes || dishTypes.length === 0) return 'cakes'; // Default to cakes for desserts
-    
-    const types = dishTypes.map(type => type.toLowerCase());
-    
-    // Expanded dessert category mapping
-    if (types.some(type => 
-        ['dessert', 'cake', 'pastry', 'pie', 'tart', 'cookie', 'biscuit', 
-         'pudding', 'sweet', 'candy', 'chocolate', 'bakery', 'baking'].includes(type)
-    )) {
-        // More specific mapping
-        if (types.some(t => ['cake', 'cupcake', 'cheesecake', 'sponge'].includes(t))) return 'cakes';
-        if (types.some(t => ['cookie', 'biscuit', 'shortbread'].includes(t))) return 'cakes'; // Map to cakes since we don't have cookies category
-        if (types.some(t => ['meringue', 'pavlova', 'souffle'].includes(t))) return 'meringues';
-        if (types.some(t => ['indian', 'asian', 'middle eastern'].includes(t))) return 'indian-sweets';
-        if (types.some(t => ['breakfast', 'pancake', 'waffle', 'muffin', 'doughnut'].includes(t))) return 'breakfast';
-        
-        return 'cakes'; // default to cakes for other desserts
+            totalTime: recipe.readyInMinutes || 30,
+            category: this.mapSpoonacularCategory(recipe.dishTypes),
+            diet: this.mapSpoonacularDiets(recipe.diets),
+            difficulty: this.mapDifficulty(recipe.readyInMinutes),
+            servings: recipe.servings || 4,
+            source: 'spoonacular',
+            spoonacularId: recipe.id
+        }));
     }
-    
-    if (types.some(t => ['breakfast', 'brunch', 'pancake', 'waffle', 'muffin'].includes(t))) return 'breakfast';
-    
-    return 'cakes'; // Default to cakes for unknown types
-}
 
-static mapEdamamCategory(mealType) {
-    if (!mealType || mealType.length === 0) return 'cakes';
-    
-    const types = mealType.map(type => type.toLowerCase());
-    
-    if (types.some(t => ['breakfast', 'brunch'].includes(t))) return 'breakfast';
-    if (types.some(t => ['dessert', 'snack', 'teatime'].includes(t))) return 'cakes';
-    if (types.some(t => ['lunch', 'dinner'].includes(t))) return 'cakes'; // Map main meals to cakes for dessert search
-    
-    return 'cakes'; // Default to cakes
-}
+    // Format Edamam recipes 
+    static formatEdamamRecipes(recipes) {
+        return recipes.map(hit => {
+            const recipe = hit.recipe;
+            return {
+                id: `edamam_${recipe.uri.split('_').pop()}`,
+                title: recipe.label,
+                description: recipe.ingredientLines ? `A delicious dessert with ${recipe.ingredientLines.length} ingredients` : 'A tasty dessert recipe',
+                image: recipe.image,
+                totalTime: recipe.totalTime || 30,
+                category: this.mapEdamamCategory(recipe.mealType),
+                diet: this.mapEdamamDiets(recipe.healthLabels),
+                difficulty: this.mapDifficulty(recipe.totalTime),
+                servings: recipe.yield || 4,
+                source: 'edamam',
+                edamamUri: recipe.uri
+            };
+        });
+    }
 
-static mapSpoonacularDiets(diets) {
-    if (!diets) return ['vegetarian']; // Default to vegetarian for desserts
-    return diets.map(diet => diet.toLowerCase().replace(/ /g, ''));
-}
+    // Format detailed recipe from Spoonacular
+    static formatSpoonacularRecipeDetails(recipe) {
+        return {
+            id: recipe.id,
+            title: recipe.title,
+            description: recipe.summary ? recipe.summary.replace(/<[^>]*>/g, '') : 'No description available',
+            image: recipe.image,
+            prepTime: `${recipe.preparationMinutes || 15} mins`,
+            cookTime: `${recipe.cookingMinutes || 15} mins`,
+            totalTime: recipe.readyInMinutes,
+            category: this.mapSpoonacularCategory(recipe.dishTypes),
+            diet: this.mapSpoonacularDiets(recipe.diets),
+            difficulty: this.mapDifficulty(recipe.readyInMinutes),
+            servings: recipe.servings,
+            ingredients: recipe.extendedIngredients?.map(ing => ing.original) || [],
+            instructions: recipe.analyzedInstructions?.[0]?.steps?.map(step => step.step) || ['No instructions available'],
+            tags: recipe.dishTypes || [],
+            source: 'spoonacular'
+        };
+    }
 
-static mapEdamamDiets(healthLabels) {
-    if (!healthLabels) return ['vegetarian'];
-    
-    const dietMap = {
-        'vegetarian': 'vegetarian',
-        'vegan': 'vegan', 
-        'gluten-free': 'glutenFree',
-        'dairy-free': 'dairyFree',
-        'nut-free': 'nutFree',
-        'egg-free': 'eggFree'
-    };
-    
-    const diets = [];
-    healthLabels.forEach(label => {
-        const normalizedLabel = label.toLowerCase().replace(/ /g, '');
-        if (dietMap[normalizedLabel]) {
-            diets.push(dietMap[normalizedLabel]);
+    // Helper methods for mapping categories and diets
+    static mapSpoonacularCategory(dishTypes) {
+        if (!dishTypes || dishTypes.length === 0) return 'cakes';
+        
+        const types = dishTypes.map(type => type.toLowerCase());
+        
+        // Expanded dessert category mapping
+        if (types.some(type => 
+            ['dessert', 'cake', 'pastry', 'pie', 'tart', 'cookie', 'biscuit', 
+             'pudding', 'sweet', 'candy', 'chocolate', 'bakery', 'baking'].includes(type)
+        )) {
+            // More specific mapping
+            if (types.some(t => ['cake', 'cupcake', 'cheesecake', 'sponge'].includes(t))) return 'cakes';
+            if (types.some(t => ['cookie', 'biscuit', 'shortbread'].includes(t))) return 'cakes';
+            if (types.some(t => ['meringue', 'pavlova', 'souffle'].includes(t))) return 'meringues';
+            if (types.some(t => ['indian', 'asian', 'middle eastern'].includes(t))) return 'indian-sweets';
+            if (types.some(t => ['breakfast', 'pancake', 'waffle', 'muffin', 'doughnut'].includes(t))) return 'breakfast';
+            
+            return 'cakes';
         }
-    });
-    
-    return diets.length > 0 ? diets : ['vegetarian'];
+        
+        if (types.some(t => ['breakfast', 'brunch', 'pancake', 'waffle', 'muffin'].includes(t))) return 'breakfast';
+        
+        return 'cakes';
+    }
+
+    static mapEdamamCategory(mealType) {
+        if (!mealType || mealType.length === 0) return 'cakes';
+        
+        const types = mealType.map(type => type.toLowerCase());
+        
+        if (types.some(t => ['breakfast', 'brunch'].includes(t))) return 'breakfast';
+        if (types.some(t => ['dessert', 'snack', 'teatime'].includes(t))) return 'cakes';
+        if (types.some(t => ['lunch', 'dinner'].includes(t))) return 'cakes';
+        
+        return 'cakes';
+    }
+
+    static mapSpoonacularDiets(diets) {
+        if (!diets) return ['vegetarian'];
+        return diets.map(diet => diet.toLowerCase().replace(/ /g, ''));
+    }
+
+    static mapEdamamDiets(healthLabels) {
+        if (!healthLabels) return ['vegetarian'];
+        
+        const dietMap = {
+            'vegetarian': 'vegetarian',
+            'vegan': 'vegan', 
+            'gluten-free': 'glutenFree',
+            'dairy-free': 'dairyFree',
+            'nut-free': 'nutFree',
+            'egg-free': 'eggFree'
+        };
+        
+        const diets = [];
+        healthLabels.forEach(label => {
+            const normalizedLabel = label.toLowerCase().replace(/ /g, '');
+            if (dietMap[normalizedLabel]) {
+                diets.push(dietMap[normalizedLabel]);
+            }
+        });
+        
+        return diets.length > 0 ? diets : ['vegetarian'];
+    }
+
+    static mapDifficulty(totalTime) {
+        if (!totalTime || totalTime <= 30) return 'easy';
+        if (totalTime <= 60) return 'medium';
+        return 'hard';
+    }
 }
 
-static mapDifficulty(totalTime) {
-    if (!totalTime || totalTime <= 30) return 'easy';
-    if (totalTime <= 60) return 'medium';
-    return 'hard';
-}
-}
-
-// Recipe Search and Filtering Function with API 
+// ===== RECIPE SEARCH AND FILTERING =====
 function initializeRecipeSearch() {
     // Favorites from localStorage
     let favorites = JSON.parse(localStorage.getItem('nibblyFavorites')) || [];
@@ -375,87 +374,57 @@ function initializeRecipeSearch() {
     // Recently Viewed Recipes
     let recentlyViewed = JSON.parse(localStorage.getItem('nibblyRecentlyViewed')) || [];
 
-    // Function to add recipe to recently viewed
+    // ===== RECENTLY VIEWED FUNCTIONS =====
     function addToRecentlyViewed(recipe) {
         const recentKey = `${recipe.source}_${recipe.id}`;
         
         // Remove if already exists
-        recentlyViewed = recentlyViewed.filter(item => 
-            item.key !== recentKey
-        );   
+        recentlyViewed = recentlyViewed.filter(item => item.key !== recentKey);
 
         // Add to beginning of array
-    recentlyViewed.unshift({
-        key: recentKey,
-        recipe: recipe,
-        timestamp: new Date().toISOString()
-    });
-    
-    // Keep only last 10 items
-    if (recentlyViewed.length > 10) {
-        recentlyViewed = recentlyViewed.slice(0, 10);
+        recentlyViewed.unshift({
+            key: recentKey,
+            recipe: recipe,
+            timestamp: new Date().toISOString()
+        });
+        
+        // Keep only last 10 items
+        if (recentlyViewed.length > 10) {
+            recentlyViewed = recentlyViewed.slice(0, 10);
+        }
+        
+        localStorage.setItem('nibblyRecentlyViewed', JSON.stringify(recentlyViewed));
     }
-    
-    localStorage.setItem('nibblyRecentlyViewed', JSON.stringify(recentlyViewed));
-}
 
-// Function to get recently viewed recipes
-function getRecentlyViewedRecipes() {
-    return recentlyViewed.map(item => item.recipe);
-}
-
-// Function to display recently viewed recipes
-function displayRecentlyViewed() {
-    const recentRecipes = getRecentlyViewedRecipes();
-    const resultsTitle = document.getElementById('results-title');
-    const recipeGrid = document.getElementById('recipeGrid');
-    
-    if (resultsTitle && recipeGrid && recentRecipes.length > 0) {
-        resultsTitle.textContent = "Recently Viewed Recipes";
-        currentRecipes = recentRecipes;
-        isCategoryView = false;
-        currentCategory = '';
-        displayRecipesPage(currentRecipes, 1);
-        updateLoadMoreButton();
+    function getRecentlyViewedRecipes() {
+        return recentlyViewed.map(item => item.recipe);
     }
-}
 
-// Update viewRecipe function to track recently viewed
-window.viewRecipe = function(recipeId, source = 'local') {
-    console.log('View Recipe clicked:', { recipeId, source });
-    
-    // Find the recipe in currentRecipes or search for it
-    let recipe = currentRecipes.find(r => r.id == recipeId && r.source === source);
-    
-    if (!recipe) {
-        // If not found in current recipes, search in local data
-        const allRecipes = getAllRecipesFlat();
-        recipe = allRecipes.find(r => r.id == recipeId && (!source || r.source === source));
+    function displayRecentlyViewed() {
+        const recentRecipes = getRecentlyViewedRecipes();
+        const resultsTitle = document.getElementById('results-title');
+        const recipeGrid = document.getElementById('recipeGrid');
+        
+        if (resultsTitle && recipeGrid && recentRecipes.length > 0) {
+            resultsTitle.textContent = "Recently Viewed Recipes";
+            currentRecipes = recentRecipes;
+            isCategoryView = false;
+            currentCategory = '';
+            displayRecipesPage(currentRecipes, 1);
+            updateLoadMoreButton();
+        }
     }
-    
-    if (recipe) {
-        addToRecentlyViewed(recipe);
-    }
-    
-    // Store the recipe ID and source for the recipe details page
-    sessionStorage.setItem('currentRecipeId', recipeId.toString());
-    sessionStorage.setItem('recipeSource', source);
-    
-    // Navigate to recipe details page
-    window.location.href = 'recipedetails.html';
-};
 
-// Display recently viewed when page loads if no search/category is active
-function checkAndDisplayRecentlyViewed() {
-    const searchTerm = recipeSearch ? recipeSearch.value.trim() : '';
-    const hasActiveFilters = Object.values(currentFilters).some(val => val);
-    
-    if (!searchTerm && !hasActiveFilters && !isCategoryView) {
-        displayRecentlyViewed();
+    function checkAndDisplayRecentlyViewed() {
+        const searchTerm = recipeSearch ? recipeSearch.value.trim() : '';
+        const hasActiveFilters = Object.values(currentFilters).some(val => val);
+        
+        if (!searchTerm && !hasActiveFilters && !isCategoryView) {
+            displayRecentlyViewed();
+        }
     }
-};
 
-    // DOM Elements
+    // ===== DOM ELEMENTS =====
     const categoryCards = document.querySelectorAll('.category-card');
     const recipeSearch = document.getElementById('recipeSearch');
     const searchBtn = document.getElementById('searchBtn');
@@ -465,16 +434,14 @@ function checkAndDisplayRecentlyViewed() {
     const categoriesPage = document.getElementById('categories-page');
     const recipesPage = document.getElementById('recipes-page');
 
-    // Pagination
+    // ===== PAGINATION VARIABLES =====
     let currentPage = 1;
     const recipesPerPage = 8;
     let currentRecipes = [];
     let isCategoryView = false;
     let currentCategory = '';
 
-    // Initialize event listeners
-    initializeEventListeners();
-
+    // ===== EVENT LISTENERS =====
     function initializeEventListeners() {
         // Category card click event
         categoryCards.forEach(card => {
@@ -502,8 +469,9 @@ function checkAndDisplayRecentlyViewed() {
         if (loadMoreBtn) {
             loadMoreBtn.addEventListener('click', loadMoreRecipes);
         }
-    };
+    }
 
+    // ===== UTILITY FUNCTIONS =====
     function getAllRecipesFlat() {
         const allRecipes = [];
         Object.values(enhancedLocalRecipes).forEach(category => {
@@ -520,39 +488,6 @@ function checkAndDisplayRecentlyViewed() {
     function showCategoriesPage() {
         if (categoriesPage) categoriesPage.style.display = 'block';
         if (recipesPage) recipesPage.style.display = 'none';
-    }
-
-    // filterByCategory function
-    async function filterByCategory(category) {
-        if (!resultsTitle || !recipeGrid) return;
-
-        showLoading(recipeGrid);
-        showRecipesPage();
-
-        try {
-            let categoryRecipes = [];
-            
-            // Use local data for category filtering
-            categoryRecipes = enhancedLocalRecipes[category] || [];
-
-            const categoryName = getCategoryDisplayName(category);
-            
-            resultsTitle.textContent = `${categoryName}`;
-            currentRecipes = categoryRecipes;
-            isCategoryView = true;
-            currentCategory = category;
-
-        displayRecipesPage(currentRecipes, 1);
-        updateLoadMoreButton();
-        
-        // Show error message if no recipes in category
-        if (categoryRecipes.length === 0) {
-            showNoResultsMessage(`No ${categoryName} recipes found.`);
-        }
-    } catch (error) {
-            console.error('Category filter error:', error);
-            showNoResultsMessage('Failed to load recipes. Please try again.');
-        }
     }
 
     function getCategorySearchQuery(category) {
@@ -573,6 +508,39 @@ function checkAndDisplayRecentlyViewed() {
             'breakfast': 'Breakfast Desserts'
         };
         return names[category] || category;
+    }
+
+    // ===== MAIN SEARCH FUNCTIONS =====
+    async function filterByCategory(category) {
+        if (!resultsTitle || !recipeGrid) return;
+
+        showLoading(recipeGrid);
+        showRecipesPage();
+
+        try {
+            let categoryRecipes = [];
+            
+            // Use local data for category filtering
+            categoryRecipes = enhancedLocalRecipes[category] || [];
+
+            const categoryName = getCategoryDisplayName(category);
+            
+            resultsTitle.textContent = `${categoryName}`;
+            currentRecipes = categoryRecipes;
+            isCategoryView = true;
+            currentCategory = category;
+
+            displayRecipesPage(currentRecipes, 1);
+            updateLoadMoreButton();
+            
+            // Show error message if no recipes in category
+            if (categoryRecipes.length === 0) {
+                showNoResultsMessage(`No ${categoryName} recipes found.`);
+            }
+        } catch (error) {
+            console.error('Category filter error:', error);
+            showNoResultsMessage('Failed to load recipes. Please try again.');
+        }
     }
 
     async function performBasicSearch() {
@@ -603,26 +571,26 @@ function checkAndDisplayRecentlyViewed() {
             searchResults = [...spoonacularResults, ...edamamResults];
 
             // Fallback to local search if no API results
-        if (searchResults.length === 0) {
-            console.log('No API results, falling back to local search');
-            searchResults = searchLocalRecipes(searchTerm);
-            
             if (searchResults.length === 0) {
-                // Try broader local search
-                searchResults = broaderLocalSearch(searchTerm);
+                console.log('No API results, falling back to local search');
+                searchResults = searchLocalRecipes(searchTerm);
+                
+                if (searchResults.length === 0) {
+                    // Try broader local search
+                    searchResults = broaderLocalSearch(searchTerm);
+                }
             }
-        }
 
-        resultsTitle.textContent = `Search Results for "${searchTerm}"`;
-        currentRecipes = searchResults;
-        isCategoryView = false;
-        currentCategory = '';
-        displayRecipesPage(currentRecipes, 1);
-        updateLoadMoreButton();
+            resultsTitle.textContent = `Search Results for "${searchTerm}"`;
+            currentRecipes = searchResults;
+            isCategoryView = false;
+            currentCategory = '';
+            displayRecipesPage(currentRecipes, 1);
+            updateLoadMoreButton();
 
             // Show error if no results
             if (searchResults.length === 0) {
-                showNoResultsMessage(`No recipes found for "${searchTerm}". Try different keywordslike "cake", "cookies", or "pudding".`);
+                showNoResultsMessage(`No recipes found for "${searchTerm}". Try different keywords like "cake", "cookies", or "pudding".`);
             }
 
         } catch (error) {
@@ -630,7 +598,7 @@ function checkAndDisplayRecentlyViewed() {
             // Fallback to local search
             const searchResults = searchLocalRecipes(searchTerm);
             if (searchResults.length === 0) {
-            searchResults = broaderLocalSearch(searchTerm);
+                searchResults = broaderLocalSearch(searchTerm);
             }
             currentRecipes = searchResults;
             displayRecipesPage(currentRecipes, 1);
@@ -641,27 +609,27 @@ function checkAndDisplayRecentlyViewed() {
         }
     }
 
-function searchLocalRecipes(query) {
+    function searchLocalRecipes(query) {
         const allRecipes = getAllRecipesFlat();
         const searchTerms = query.toLowerCase().split(' ');
 
-    return allRecipes.filter(recipe => {
-        const recipeText = (recipe.title + ' ' + recipe.description + ' ' + recipe.category).toLowerCase();
-        return searchTerms.some(term => recipeText.includes(term));
-    });
-}
+        return allRecipes.filter(recipe => {
+            const recipeText = (recipe.title + ' ' + recipe.description + ' ' + recipe.category).toLowerCase();
+            return searchTerms.some(term => recipeText.includes(term));
+        });
+    }
 
+    function broaderLocalSearch(query) {
+        const allRecipes = getAllRecipesFlat();
+        const searchTerms = query.toLowerCase().split(' ');
+        
+        return allRecipes.filter(recipe => {
+            const recipeText = (recipe.title + ' ' + recipe.description + ' ' + recipe.category).toLowerCase();
+            return searchTerms.some(term => recipeText.includes(term));
+        });
+    }
 
-function broaderLocalSearch(query) {
-    const allRecipes = getAllRecipesFlat();
-    const searchTerms = query.toLowerCase().split(' ');
-    
-    return allRecipes.filter(recipe => {
-        const recipeText = (recipe.title + ' ' + recipe.description + ' ' + recipe.category).toLowerCase();
-        return searchTerms.some(term => recipeText.includes(term));
-    });
-}
-
+    // ===== DISPLAY FUNCTIONS =====
     function displayRecipesPage(recipes, page) {
         if (!recipeGrid) return;
 
@@ -702,7 +670,7 @@ function broaderLocalSearch(query) {
             </div>
         `).join('');
 
-        // To update results count
+        // Update results count
         updateResultsCount(recipes.length, recipesToShow.length);
         
         // Animate new cards
@@ -726,7 +694,7 @@ function broaderLocalSearch(query) {
             loadMoreBtn.style.display = 'none';
         }
         
-        // To update results count
+        // Update results count
         updateResultsCount(0, 0);
     }
 
@@ -792,6 +760,8 @@ function broaderLocalSearch(query) {
         }
     }
 
+    // ===== INITIALIZATION =====
+    initializeEventListeners();
     setTimeout(checkAndDisplayRecentlyViewed, 100);
     
     // Make functions available globally for filter system
@@ -804,8 +774,7 @@ function broaderLocalSearch(query) {
     window.showNoResultsMessage = showNoResultsMessage;
 }
 
-
-// --- Filter System Function ---
+// ===== FILTER SYSTEM FUNCTION =====
 function initializeFilterSystem() {
     // DOM Elements
     const applyFiltersBtn = document.getElementById('applyFiltersBtn');
@@ -819,7 +788,7 @@ function initializeFilterSystem() {
         time: ''
     };
 
-    // Initialize event listeners
+    // ===== EVENT LISTENERS =====
     if (applyFiltersBtn) {
         applyFiltersBtn.addEventListener('click', applyFilters);
     }
@@ -836,6 +805,7 @@ function initializeFilterSystem() {
         });
     });
 
+    // ===== FILTER FUNCTIONS =====
     function applyFilters() {
         // Get current filter values
         currentFilters = {
@@ -999,7 +969,7 @@ function initializeFilterSystem() {
                     window.showNoResultsMessage("No recipes match your current filters.");
                 }
             } else if (Object.values(filters).some(val => val)) {
-                resultsTitle.textContent = "Filtered Recipes";
+                resultsTitle.textContent = " Recipes";
             } else if (window.isCategoryView && window.currentCategory) {
                 const categoryName = getCategoryDisplayName(window.currentCategory);
                 resultsTitle.textContent = categoryName;
@@ -1022,9 +992,9 @@ function initializeFilterSystem() {
     // Make functions globally available
     window.filterRecipes = filterRecipes;
     window.clearAllFilters = clearAllFilters;
-};
+}
 
-// Global functions for recipe interaction
+// ===== GLOBAL FUNCTIONS FOR RECIPE INTERACTION =====
 window.toggleFavorite = function(recipeId, button, source) {
     let favorites = JSON.parse(localStorage.getItem('nibblyFavorites')) || [];
     const favoriteKey = `${source}_${recipeId}`;
@@ -1040,8 +1010,8 @@ window.toggleFavorite = function(recipeId, button, source) {
     localStorage.setItem('nibblyFavorites', JSON.stringify(favorites));
 };
 
-    //viewRecipe function to handle API sources
-    window.viewRecipe = function(recipeId, source = 'local') {
+// View recipe function to handle API sources
+window.viewRecipe = function(recipeId, source = 'local') {
     console.log('View Recipe clicked:', { recipeId, source });
     
     // Store the recipe ID and source for the recipe details page
@@ -1051,5 +1021,3 @@ window.toggleFavorite = function(recipeId, button, source) {
     // Navigate to recipe details page
     window.location.href = 'recipedetails.html';
 };
-
-

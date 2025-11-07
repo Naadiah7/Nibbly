@@ -1,15 +1,4 @@
-// To share the link of the website
-function copyPageLink() {
-    // Get the current page URL
-    const pageUrl = window.location.href;
-    
-    // Copy to clipboard
-    navigator.clipboard.writeText(pageUrl).then(() => {
-        // Show success message
-        alert('Link copied to clipboard! You can now share it.');
-    });
-}
-
+// =====INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', function() {
     cleanNavigationBar();
     initializeRecipeDetails();
@@ -17,6 +6,17 @@ document.addEventListener('DOMContentLoaded', function() {
     setupFavoriteButton();
 });
 
+// ===== UTILITY FUNCTIONS =====
+/*Copy current page URL to clipboard for sharing*/
+function copyPageLink() {
+    const pageUrl = window.location.href;
+    
+    navigator.clipboard.writeText(pageUrl).then(() => {
+        alert('Link copied to clipboard! You can now share it.');
+    });
+}
+
+/*Clean navigation bar by removing numeric text nodes*/
 function cleanNavigationBar() {
     const brand = document.querySelector('.brand');
     if (brand) {
@@ -37,7 +37,15 @@ function cleanNavigationBar() {
     }
 }
 
-// Scroll-to-top function
+/*Get URL parameter value by name*/
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    const results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+// ===== SCROLL TO TOP FUNCTION =====
 function initializeScrollToTop() {
     const scrollBtn = document.getElementById("scrollTopBtn");
 
@@ -56,86 +64,7 @@ function initializeScrollToTop() {
     }
 }
 
-function getUrlParameter(name) {
-  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-  const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-  const results = regex.exec(location.search);
-  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-}
-
-// Main function to initialize recipe details
-async function initializeRecipeDetails() {
-    // First check for URL parameter
-    const urlRecipeId = getUrlParameter('id');
-    
-    // If URL parameter exists, use it and store in sessionStorage
-    if (urlRecipeId) {
-        // Check if it's a blog recipe (starts with 'blog')
-        if (urlRecipeId.startsWith('blog')) {
-            const numericId = urlRecipeId.replace('blog', '');
-            sessionStorage.setItem('currentRecipeId', numericId);
-            sessionStorage.setItem('recipeSource', 'local');
-        } else {
-            sessionStorage.setItem('currentRecipeId', urlRecipeId);
-            sessionStorage.setItem('recipeSource', 'local');
-        }
-    }
-    
-    // Then get recipe ID and source from sessionStorage
-    const recipeId = sessionStorage.getItem('currentRecipeId');
-    const recipeSource = sessionStorage.getItem('recipeSource') || 'local';
-    
-    if (!recipeId) {
-        showErrorMessage("No recipe selected. Please select a recipe.");
-        return;
-    }
-
-    showLoading();
-
-    try {
-        let recipe;
-        
-        if (recipeSource === 'spoonacular') {
-            // Fetch recipe details from Spoonacular API
-            recipe = await RecipeAPIService.getRecipeDetails(recipeId, 'spoonacular');
-        } else if (recipeSource === 'edamam') {
-            // For Edamam, they don't have a direct details endpoint for free
-            showErrorMessage("Detailed recipe information not available for this recipe.");
-            return;
-        } else {
-            // Use local recipe data
-            recipe = completeRecipeData[Number(recipeId)];
-        }
-        
-        if (!recipe) {
-            showErrorMessage("Recipe not found. Please select a valid recipe.");
-            return;
-        }
-
-        // Display recipe details
-        displayRecipeDetails(recipe);
-
-    } catch (error) {
-        console.error('Error loading recipe details:', error);
-        showErrorMessage("Failed to load recipe details. Please try again.");
-    }
-}
-
-// Function to show loading state
-function showLoading() {
-    const recipeDetails = document.getElementById('recipeDetails');
-    if (recipeDetails) {
-        recipeDetails.innerHTML = `
-            <div class="loading">
-                <i class="fas fa-spinner fa-spin"></i>
-                <p>Loading recipe details...</p>
-            </div>
-        `;
-    }
-}
-
-
-// Complete recipe data with full details
+// ===== RECIPE DATA STORAGE =====
 const completeRecipeData = {
     1: {
         id: 1,
@@ -489,24 +418,75 @@ const completeRecipeData = {
     }
 };
 
-// Function to store recipe ID and navigate to details page
-function viewRecipe(recipeId, source = 'local') {
-    sessionStorage.setItem('currentRecipeId', recipeId);
-    sessionStorage.setItem('recipeSource', source);
-    window.location.href = 'recipedetails.html';
+// ===== RECIPE DETAILS MANAGEMENT =====
+/*Main function to initialize recipe details*/
+async function initializeRecipeDetails() {
+    // First check for URL parameter
+    const urlRecipeId = getUrlParameter('id');
+    
+    // If URL parameter exists, use it and store in sessionStorage
+    if (urlRecipeId) {
+        if (urlRecipeId.startsWith('blog')) {
+            const numericId = urlRecipeId.replace('blog', '');
+            sessionStorage.setItem('currentRecipeId', numericId);
+            sessionStorage.setItem('recipeSource', 'local');
+        } else {
+            sessionStorage.setItem('currentRecipeId', urlRecipeId);
+            sessionStorage.setItem('recipeSource', 'local');
+        }
+    }
+    
+    // Then get recipe ID and source from sessionStorage
+    const recipeId = sessionStorage.getItem('currentRecipeId');
+    const recipeSource = sessionStorage.getItem('recipeSource') || 'local';
+    
+    if (!recipeId) {
+        showErrorMessage("No recipe selected. Please select a recipe.");
+        return;
+    }
+
+    showLoading();
+
+    try {
+        let recipe;
+        
+        if (recipeSource === 'spoonacular') {
+            recipe = await RecipeAPIService.getRecipeDetails(recipeId, 'spoonacular');
+        } else if (recipeSource === 'edamam') {
+            showErrorMessage("Detailed recipe information not available for this recipe.");
+            return;
+        } else {
+            recipe = completeRecipeData[Number(recipeId)];
+        }
+        
+        if (!recipe) {
+            showErrorMessage("Recipe not found. Please select a valid recipe.");
+            return;
+        }
+
+        displayRecipeDetails(recipe);
+
+    } catch (error) {
+        console.error('Error loading recipe details:', error);
+        showErrorMessage("Failed to load recipe details. Please try again.");
+    }
 }
 
-// Function to view recipe from blog
-function viewRecipeFromBlog(recipeId) {
-    sessionStorage.setItem('currentRecipeId', recipeId);
-    sessionStorage.setItem('recipeSource', 'local');
-    window.location.href = 'recipedetails.html';
+/*Show loading state while recipe details are being fetched*/
+function showLoading() {
+    const recipeDetails = document.getElementById('recipeDetails');
+    if (recipeDetails) {
+        recipeDetails.innerHTML = `
+            <div class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading recipe details...</p>
+            </div>
+        `;
+    }
 }
 
+/*Display recipe details on the page*/
 function displayRecipeDetails(recipe) {
-
-    //console.log('Displaying recipe:', recipe.id, recipe.title);
-    //console.log('Recipe object:', recipe);
     // Update page title
     document.title = `${recipe.title} - Nibbly`;
     
@@ -536,8 +516,8 @@ function displayRecipeDetails(recipe) {
                     <h1>${recipe.title}</h1>
                     <p>${recipe.description}</p>
                     <div class="recipe-image">
-                    <img src="${recipe.image}" alt="${recipe.title}" />
-                </div>
+                        <img src="${recipe.image}" alt="${recipe.title}" />
+                    </div>
                     <div class="recipe-meta-details">
                         <div class="meta-item">
                             <span class="meta-label">Prep Time:</span>
@@ -585,6 +565,7 @@ function displayRecipeDetails(recipe) {
     updateFavoriteButton(recipe.id);
 }
 
+/*Update banner metadata with recipe information*/
 function updateBannerMetadata(recipe) {
     const metaBanner = document.querySelector('.recipe-meta-banner');
     if (metaBanner) {
@@ -613,7 +594,23 @@ function updateBannerMetadata(recipe) {
     }
 }
 
-// --- Favourite toggle system ---
+/*Show error message when recipe loading fails*/
+function showErrorMessage(message) {
+    const recipeDetails = document.querySelector('.recipe-details');
+    
+    if (recipeDetails) {
+        recipeDetails.innerHTML = `
+            <div class="error-message">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>${message}</h3>
+                <button class="view-recipe-btn" onclick="window.history.back()">Go Back</button>
+            </div>
+        `;
+    }
+}
+
+// ===== FAVORITES MANAGEMENT =====
+/*Setup favorite button event listener*/
 function setupFavoriteButton() {
     const favoriteBtn = document.getElementById('favourite-btn');
     if (favoriteBtn) {
@@ -621,6 +618,7 @@ function setupFavoriteButton() {
     }
 }
 
+/*Update favorite button state based on current recipe*/
 function updateFavoriteButton(recipeId) {
     const recipeSource = sessionStorage.getItem('recipeSource') || 'local';
     const favorites = JSON.parse(localStorage.getItem('nibblyFavorites')) || [];
@@ -639,6 +637,7 @@ function updateFavoriteButton(recipeId) {
     }
 }
 
+/*Toggle favorite status for current recipe*/
 function toggleFavorite() {
     const recipeId = sessionStorage.getItem('currentRecipeId');
     const recipeSource = sessionStorage.getItem('recipeSource') || 'local';
@@ -678,8 +677,8 @@ function toggleFavorite() {
     window.dispatchEvent(new Event('storage'));
 }
 
+/*Show visual feedback when favorite status changes*/
 function showFavoriteFeedback(added) {
-    // Create a temporary feedback message
     const feedback = document.createElement('div');
     feedback.style.cssText = `
         position: fixed;
@@ -710,68 +709,27 @@ function showFavoriteFeedback(added) {
     }, 2000);
 }
 
-// Add CSS for animations
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideIn {
-        from { transform: translateX(100%); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-    }
-    @keyframes slideOut {
-        from { transform: translateX(0); opacity: 1; }
-        to { transform: translateX(100%); opacity: 0; }
-    }
-`;
-document.head.appendChild(style);
-
-function showErrorMessage(message) {
-    const recipeDetails = document.querySelector('.recipe-details');
-    
-    if (recipeDetails) {
-        recipeDetails.innerHTML = `
-            <div class="error-message">
-                <i class="fas fa-exclamation-triangle"></i>
-                <h3>${message}</h3>
-                <button class="view-recipe-btn" onclick="window.history.back()">Go Back</button>
-            </div>
-        `;
-    }
+// ===== RECIPE NAVIGATION FUNCTIONS =====
+/*Store recipe ID and navigate to details page*/
+function viewRecipe(recipeId, source = 'local') {
+    sessionStorage.setItem('currentRecipeId', recipeId);
+    sessionStorage.setItem('recipeSource', source);
+    window.location.href = 'recipedetails.html';
 }
 
-// Debug function to check favorites (temporary)
-function debugFavorites() {
-    const favorites = JSON.parse(localStorage.getItem('nibblyFavorites')) || [];
-    console.log('Current favorites in localStorage:', favorites);
-    alert('Current favorites: ' + JSON.stringify(favorites));
+/*View recipe from blog*/
+function viewRecipeFromBlog(recipeId) {
+    sessionStorage.setItem('currentRecipeId', recipeId);
+    sessionStorage.setItem('recipeSource', 'local');
+    window.location.href = 'recipedetails.html';
 }
 
-// Global functions for recipe details page
-window.printRecipe = function() {
-    window.print();
-};
-
-window.shareRecipe = function() {
-    copyPageLink();
-};
-
-// Listen for favorites updates from other tabs/windows
-window.addEventListener('message', function(event) {
-    if (event.data && event.data.type === 'favoritesUpdated') {
-        // Update the favorite button if this recipe is affected
-        const recipeId = sessionStorage.getItem('currentRecipeId');
-        if (recipeId) {
-            updateFavoriteButton(parseInt(recipeId));
-        }
-    }
-});
-
-
-// API Service for fetching recipes
+// ===== API SERVICE =====
 const RecipeAPIService = {
+    /*Get detailed recipe information from Spoonacular API*/
     async getRecipeDetails(recipeId, source) {
         if (source === 'spoonacular') {
-            // Spoonacular API implementation
-            const apiKey = 'YOUR_SPOONACULAR_API_KEY'; // Replace with your actual API key
+            const apiKey = 'YOUR_SPOONACULAR_API_KEY';
             const response = await fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`);
             
             if (!response.ok) {
@@ -780,7 +738,6 @@ const RecipeAPIService = {
             
             const data = await response.json();
             
-            // Transform Spoonacular data to match our format
             return {
                 id: data.id,
                 title: data.title,
@@ -791,7 +748,7 @@ const RecipeAPIService = {
                 totalTime: data.readyInMinutes || 0,
                 category: data.dishTypes && data.dishTypes.length > 0 ? data.dishTypes[0] : 'dessert',
                 diet: this.mapDiets(data),
-                difficulty: 'medium', // Spoonacular doesn't provide difficulty
+                difficulty: 'medium',
                 servings: data.servings || 4,
                 ingredients: data.extendedIngredients ? data.extendedIngredients.map(ing => ing.original) : [],
                 instructions: data.analyzedInstructions && data.analyzedInstructions.length > 0 
@@ -804,6 +761,7 @@ const RecipeAPIService = {
         throw new Error(`Unsupported recipe source: ${source}`);
     },
     
+    /*Map API diet information to standardized format*/
     mapDiets(data) {
         const diets = [];
         if (data.vegetarian) diets.push('vegetarian');
@@ -814,9 +772,32 @@ const RecipeAPIService = {
     }
 };
 
-// Make functions globally available
-window.viewRecipe = viewRecipe;
-window.viewRecipeFromBlog = viewRecipeFromBlog;
+// ===== GLOBAL FUNCTIONS AND EVENT LISTENERS =====
+// Global functions for recipe details page
+window.printRecipe = function() {
+    window.print();
+};
+
+window.shareRecipe = function() {
+    copyPageLink();
+};
+
+// Debug function to check favorites (temporary)
+function debugFavorites() {
+    const favorites = JSON.parse(localStorage.getItem('nibblyFavorites')) || [];
+    console.log('Current favorites in localStorage:', favorites);
+    alert('Current favorites: ' + JSON.stringify(favorites));
+}
+
+// Listen for favorites updates from other tabs/windows
+window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'favoritesUpdated') {
+        const recipeId = sessionStorage.getItem('currentRecipeId');
+        if (recipeId) {
+            updateFavoriteButton(parseInt(recipeId));
+        }
+    }
+});
 
 // Refresh favorites when storage changes (from other tabs)
 window.addEventListener('storage', function(e) {
@@ -831,3 +812,21 @@ window.addEventListener('message', function(event) {
         loadFavorites();
     }
 });
+
+// Add CSS for animations
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOut {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
+
+// Make functions globally available
+window.viewRecipe = viewRecipe;
+window.viewRecipeFromBlog = viewRecipeFromBlog;
