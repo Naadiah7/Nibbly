@@ -231,11 +231,11 @@ body {
 .recipe-image img {
   width: 100%;
   max-width: 600px;
-  height: 400px;
+  height: 350px;
   object-fit: cover;
   border-radius: 15px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  margin: 0 auto;
+  margin: auto;
   display: block;
 }
 
@@ -246,7 +246,7 @@ body {
 
 .recipe-info h1 {
   font-family: 'Berkshire Swash', cursive;
-  font-size: 36px;
+  font-size: 30px;
   margin-bottom: 15px;
   color: #333;
 }
@@ -264,17 +264,21 @@ body {
 }
 
 .recipe-content {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: 10px auto;
+  padding: 0 20px;
 }
 
 .ingredients-section,
 .instructions-section {
   background-color: white;
-  padding: 25px;
+  padding: 20px;
   border-radius: 15px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  width: 100%;
 }
 
 .ingredients-section h2,
@@ -299,14 +303,6 @@ body {
   font-size: 16px;
 }
 
-#ingredientsList li:before {
-  content: "•";
-  color: #E9C4F9;
-  font-weight: bold;
-  position: absolute;
-  left: 0;
-}
-
 #instructionsList {
   padding-left: 20px;
 }
@@ -316,24 +312,6 @@ body {
   font-family: 'Palatino Linotype', serif;
   font-size: 16px;
   line-height: 1.6;
-}
-
-#instructionsList li:before {
-  content: counter(step);
-  counter-increment: step;
-  position: absolute;
-  left: 0;
-  top: 12px;
-  background: #E9C4F9;
-  color: #000;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  font-weight: bold;
 }
 
 .no-results {
@@ -355,26 +333,8 @@ body {
   grid-column: 1 / -1;
 }
 
-/* API BADGES & LOADING STATES */
-.api-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(93, 213, 201, 0.9);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 12px;
-    font-family: 'Orelega One', sans-serif;
-    font-weight: bold;
-    z-index: 10;
-}
 
-.badge-api {
-    background: rgba(255, 193, 7, 0.9) !important;
-    color: #333;
-}
-
+/*loading styles*/
 .loading {
     text-align: center;
     padding: 50px;
@@ -396,14 +356,6 @@ body {
     font-family: 'Palatino Linotype', serif;
 }
 
-/* Recipe image container for positioning the API badge */
-.recipe-card {
-    position: relative;
-}
-
-.recipe-card .recipe-img-container {
-    position: relative;
-}
 
 /* Footer */
 footer {
