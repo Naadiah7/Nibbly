@@ -88,7 +88,7 @@ window.viewRecipeFromBlog = function(recipeId) {
     sessionStorage.setItem('recipeSource', 'local');
     
     // Navigate to recipe details page
-    window.location.href = 'Recipedetails.html';
+    window.location.href = 'recipedetails.html';
 };
 
 // Function to create blog banner content

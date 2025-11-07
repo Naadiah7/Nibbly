@@ -964,7 +964,7 @@ window.toggleFavorite = function(recipeId, button, source) {
     sessionStorage.setItem('recipeSource', source);
     
     // Navigate to recipe details page
-    window.location.href = 'Recipedetails.html';
+    window.location.href = 'recipedetails.html';
 };
 
 
