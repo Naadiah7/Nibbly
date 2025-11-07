@@ -15,6 +15,18 @@ if (scrollBtn) {
   });
 }
 
+// To share the link of the website
+function copyPageLink() {
+    // Get the current page URL
+    const pageUrl = window.location.href;
+    
+    // Copy to clipboard
+    navigator.clipboard.writeText(pageUrl).then(() => {
+        // Show success message
+        alert('Link copied to clipboard! You can now share it.');
+    });
+}
+
 // Blog data object containing all blog details
 const blogData = {
   blog1: {
@@ -172,7 +184,16 @@ function initializeBlogDetails() {
   if (document.getElementById(selectedBlogId + '-banner')) {
     document.getElementById(selectedBlogId + '-banner').classList.remove('hidden');
   }
+
+  const shareButton = document.querySelector('.share');
+  if (shareButton) {
+    shareButton.style.display = 'block';
+  }
 }
+
+window.shareRecipe = function() {
+    copyPageLink();
+};
 
 // Function to get URL parameters - BlogDetails Page
 function getUrlParameter(name) {

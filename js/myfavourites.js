@@ -377,18 +377,26 @@ function loadFavorites() {
     const favoritesContainer = document.getElementById('favoritesContainer');
     const emptyState = document.getElementById('emptyState');
     
-    //console.log('Loading favorites:', favorites);  Debug log
+    console.log('Loading favorites:', favorites); // Debug log
     
     if (favorites.length === 0) {
-        if (favoritesContainer) favoritesContainer.style.display = 'none';
-        if (emptyState) emptyState.style.display = 'block';
+        if (favoritesContainer) {
+            favoritesContainer.style.display = 'none';
+            favoritesContainer.innerHTML = ''; // Clear any existing content
+        }
+        if (emptyState) {
+            emptyState.style.display = 'block'; // Show empty state
+        }
         
         // Animate empty state
-        if (typeof gsap !== 'undefined') {
-            gsap.from('.empty-state', {
-                duration: 0.8,
+        if (typeof gsap !== 'undefined' && emptyState) {
+            gsap.fromTo(emptyState, {
                 opacity: 0,
-                scale: 0.8,
+                scale: 0.8
+            }, {
+                duration: 0.8,
+                opacity: 1,
+                scale: 1,
                 ease: "back.out(1.5)",
                 delay: 0.6
             });
@@ -396,19 +404,40 @@ function loadFavorites() {
         return;
     }
     
+    // Hide empty state and show favorites
     if (emptyState) emptyState.style.display = 'none';
-    if (favoritesContainer) favoritesContainer.style.display = 'grid';
-    
-    // Clear container
     if (favoritesContainer) {
+        favoritesContainer.style.display = 'grid';
         favoritesContainer.innerHTML = '';
         
+        let hasValidFavorites = false;
+        
         // Add favorite recipes
-        favorites.forEach(recipeId => {
-            const numericRecipeId = parseInt(recipeId);
-            const recipe = completeRecipeData[numericRecipeId];
+        favorites.forEach(favId => {
+            let numericId;
             
-            if (recipe) {
+            // Parse the favorite ID - handle both "local_5" format and numeric IDs
+            if (typeof favId === 'number') {
+                numericId = favId;
+            } else if (typeof favId === 'string') {
+                if (favId.includes('_')) {
+                    const parts = favId.split('_');
+                    // Only process local recipes for now
+                    if (parts[0] === 'local') {
+                        numericId = parseInt(parts[1]);
+                    } else {
+                        console.log('Skipping non-local recipe:', favId);
+                        return; // Skip this iteration for API recipes
+                    }
+                } else {
+                    // Handle case where it's just a string number
+                    numericId = parseInt(favId);
+                }
+            }
+            
+            // Check if we have a valid numeric ID and the recipe exists
+            if (!isNaN(numericId) && completeRecipeData[numericId]) {
+                const recipe = completeRecipeData[numericId];
                 const recipeCard = document.createElement('div');
                 recipeCard.className = 'recipe-card';
                 recipeCard.innerHTML = `
@@ -424,10 +453,18 @@ function loadFavorites() {
                     </div>
                 `;
                 favoritesContainer.appendChild(recipeCard);
+                hasValidFavorites = true;
             } else {
-                console.warn('Recipe not found for ID:', recipeId, 'Available IDs:', Object.keys(completeRecipeData));
+                console.warn('Recipe not found for ID:', favId, 'Numeric ID:', numericId, 'Available IDs:', Object.keys(completeRecipeData));
             }
         });
+        
+        // If no valid favorites were found after processing, show empty state
+        if (!hasValidFavorites) {
+            if (emptyState) emptyState.style.display = 'block';
+            favoritesContainer.style.display = 'none';
+            return;
+        }
         
         // Animate recipe cards
         if (typeof gsap !== 'undefined') {
@@ -442,18 +479,24 @@ function loadFavorites() {
         }
     }
 }
-
 function viewRecipe(recipeId) {
     sessionStorage.setItem('currentRecipeId', recipeId);
     sessionStorage.setItem('recipeSource', 'local'); 
     window.location.href = 'recipedetails.html';
 }
 
-// Debug function to check what's in localStorage
-function debugLocalStorage() {
-    console.log('nibblyFavorites:', JSON.parse(localStorage.getItem('nibblyFavorites')));
-    console.log('All localStorage:', { ...localStorage });
-}
+// Refresh favorites when storage changes (from other tabs)
+window.addEventListener('storage', function(e) {
+    if (e.key === 'nibblyFavorites') {
+        console.log('Storage changed, reloading favorites...');
+        loadFavorites();
+    }
+});
 
-// Make it available globally for debugging
-window.debugLocalStorage = debugLocalStorage;
+// Also listen for messages from other tabs
+window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'favoritesUpdated') {
+        console.log('Received favorites update message, reloading...');
+        loadFavorites();
+    }
+});

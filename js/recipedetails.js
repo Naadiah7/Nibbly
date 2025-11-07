@@ -580,7 +580,6 @@ function displayRecipeDetails(recipe) {
             </div>
         `;
     }
-
     
     // Update favorite button state
     updateFavoriteButton(recipe.id);
@@ -623,47 +622,49 @@ function setupFavoriteButton() {
 }
 
 function updateFavoriteButton(recipeId) {
+    const recipeSource = sessionStorage.getItem('recipeSource') || 'local';
     const favorites = JSON.parse(localStorage.getItem('nibblyFavorites')) || [];
-    const isFavorite = favorites.includes(parseInt(recipeId));
+    const favoriteKey = `${recipeSource}_${recipeId}`;
+    const isFavorite = favorites.includes(favoriteKey);
     
     const emptyHeart = document.getElementById('empty-heart');
     const fullHeart = document.getElementById('full-heart');
     
     if (isFavorite) {
-        emptyHeart.style.display = 'none';
-        fullHeart.style.display = 'block';
+        if (emptyHeart) emptyHeart.style.display = 'none';
+        if (fullHeart) fullHeart.style.display = 'block';
     } else {
-        emptyHeart.style.display = 'block';
-        fullHeart.style.display = 'none';
+        if (emptyHeart) emptyHeart.style.display = 'block';
+        if (fullHeart) fullHeart.style.display = 'none';
     }
 }
 
 function toggleFavorite() {
     const recipeId = sessionStorage.getItem('currentRecipeId');
+    const recipeSource = sessionStorage.getItem('recipeSource') || 'local';
+    
     if (!recipeId) {
         console.error('No recipe ID found in sessionStorage');
         return;
     }
     
     let favorites = JSON.parse(localStorage.getItem('nibblyFavorites')) || [];
-    const numericRecipeId = parseInt(recipeId);
+    const favoriteKey = `${recipeSource}_${recipeId}`;
     
-    console.log('Current favorites:', favorites);
-    console.log('Recipe ID to toggle:', numericRecipeId);
+    console.log('Toggling favorite:', { recipeId, recipeSource, favoriteKey, currentFavorites: favorites });
     
-    const isFavorite = favorites.includes(numericRecipeId);
+    const isFavorite = favorites.includes(favoriteKey);
     
     if (isFavorite) {
-        favorites = favorites.filter(id => id !== numericRecipeId);
+        favorites = favorites.filter(id => id !== favoriteKey);
         console.log('Removed from favorites');
     } else {
-        // Ensure we're adding the numeric ID
-        favorites.push(numericRecipeId);
+        favorites.push(favoriteKey);
         console.log('Added to favorites');
     }
     
     localStorage.setItem('nibblyFavorites', JSON.stringify(favorites));
-    updateFavoriteButton(numericRecipeId);
+    updateFavoriteButton(recipeId);
     
     // Show feedback to user
     showFavoriteFeedback(!isFavorite);
@@ -672,6 +673,9 @@ function toggleFavorite() {
     if (window.opener) {
         window.opener.postMessage({ type: 'favoritesUpdated' }, '*');
     }
+    
+    // Also dispatch storage event to sync across tabs
+    window.dispatchEvent(new Event('storage'));
 }
 
 function showFavoriteFeedback(added) {
@@ -813,3 +817,17 @@ const RecipeAPIService = {
 // Make functions globally available
 window.viewRecipe = viewRecipe;
 window.viewRecipeFromBlog = viewRecipeFromBlog;
+
+// Refresh favorites when storage changes (from other tabs)
+window.addEventListener('storage', function(e) {
+    if (e.key === 'nibblyFavorites') {
+        loadFavorites();
+    }
+});
+
+// Also listen for messages from other tabs
+window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'favoritesUpdated') {
+        loadFavorites();
+    }
+});

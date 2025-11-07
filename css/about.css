@@ -108,9 +108,11 @@ body {
   justify-content: flex-start;
   padding: 0 20px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .banner img {
+  position: relative;
   width: 40px;
   height: 40px;
   margin-left: 15px;
@@ -118,6 +120,7 @@ body {
 }
 
 .banner h2 {
+  position: relative;
   color: #000;
   font-family: 'Beth Ellen', cursive;
   font-size: 25px;
@@ -127,6 +130,7 @@ body {
 
 /* --- Social Links --- */
 .social-links {
+  position: relative;
   display: flex;
   justify-content: flex-end;
   flex-grow: 1;
@@ -334,15 +338,18 @@ footer {
   box-shadow: 0 6px 12px rgba(0,0,0,0.4);
 }
 
-/* Animation Elements */
+/* Floating Cookies Animation */
 .floating-cookie {
   position: absolute;
-  width: 30px;
-  height: 30px;
-  background: #71C9FF;
-  border-radius: 50%;
-  opacity: 0;
+  opacity: 0.7;
   pointer-events: none;
+  z-index: 5;
+}
+
+.floating-cookie circle {
+  fill: #71C9FF;
+  stroke: #308fcb;
+  stroke-width: 10;
 }
 
 /* Burger Menu Hidden (for desktop) */

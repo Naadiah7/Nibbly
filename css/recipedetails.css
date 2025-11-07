@@ -96,20 +96,7 @@ body {
   transform: scale(1.07);
 }
 
-/* Recipe Banner 
-.recipe-banner {
-  position: relative;
-  display: flex;
-  width: 100%;
-  height: 110px;
-  margin: 0 auto;
-  background-color: #B6FFF8;
-  border-radius: 15px;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0 20px;
-  flex-wrap: wrap;
-}*/
+/* Recipe Banner */
 
 .recipe-banner-content {
   position: relative;
@@ -123,9 +110,11 @@ body {
   justify-content: center;
   padding: 0 20px;
   flex-wrap: wrap;
+  overflow: hidden;
 }
 
 .recipe-banner-content img {
+  position: relative;
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -133,6 +122,7 @@ body {
 }
 
 .recipe-banner-content h2 {
+  position: relative;
   color: #000;
   font-family: 'Berkshire Swash', cursive;
   text-decoration: underline;
@@ -143,6 +133,7 @@ body {
 
 /* Recipe Metadata in Banner */
 .recipe-meta-banner {
+  position: relative;
   display: grid;
   grid-template-rows: repeat(2, 1fr);
   flex-grow: 1;
@@ -158,6 +149,7 @@ body {
 }
 
 .meta-item {
+  position: relative;
   padding: 5px 35px;
   border-radius: 10px;
   align-items: center;
@@ -166,11 +158,12 @@ body {
 
 /* --- Links --- */
 .links {
-    display: flex;
-    justify-content: flex-end;
-    flex-grow: 1;
-    margin-right: 20px;
-    cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+  margin-right: 20px;
+  cursor: pointer;
 }
 
 .favourite img {
@@ -419,15 +412,18 @@ footer {
   box-shadow: 0 6px 12px rgba(0,0,0,0.4);
 }
 
-/* Animation Elements */
+/* Floating Cookies Animation */
 .floating-cookie {
   position: absolute;
-  width: 30px;
-  height: 30px;
-  background: #5DD5C9;
-  border-radius: 50%;
-  opacity: 0;
+  opacity: 0.7;
   pointer-events: none;
+  z-index: 5;
+}
+
+.floating-cookie circle {
+  fill: #5DD5C9;
+  stroke: #22a497;
+  stroke-width: 10;
 }
 
 /* Burger Menu Hidden (for desktop) */
