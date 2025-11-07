@@ -24,7 +24,7 @@ const completeRecipeData = {
         id: 1,
         title: "Classic Cheesecake",
         description: "Creamy and rich cheesecake with a buttery biscuit base.",
-        image: "../Images/Cheesecake.png",
+        image: "../images/cheesecake.png",
         prepTime: "30 mins",
         cookTime: "60 mins",
         totalTime: 90,
@@ -57,7 +57,7 @@ const completeRecipeData = {
         id: 2,
         title: "Chocolate Brownie",
         description: "Fudgy, decadent chocolate brownies with a crackly top.",
-        image: "../Images/Brownie.png",
+        image: "../images/brownie.png",
         prepTime: "15 mins",
         cookTime: "25 mins",
         totalTime: 40,
@@ -90,7 +90,7 @@ const completeRecipeData = {
         id: 3,
         title: "Red Velvet Cake",
         description: "Stunning red velvet cake with cream cheese frosting.",
-        image: "../Images/Redvelvet.png",
+        image: "../images/redvelvet.png",
         prepTime: "30 mins",
         cookTime: "35 mins",
         totalTime: 65,
@@ -128,7 +128,7 @@ const completeRecipeData = {
         id: 4,
         title: "Lemon Meringue",
         description: "Tangy lemon curd topped with fluffy toasted meringue.",
-        image: "../Images/LMeringue.png",
+        image: "../images/lMeringue.png",
         prepTime: "45 mins",
         cookTime: "20 mins",
         totalTime: 65,
@@ -162,7 +162,7 @@ const completeRecipeData = {
         id: 5,
         title: "Pavlova",
         description: "Crisp meringue shell with soft center, topped with cream and fruit.",
-        image: "../Images/Pavlova.png",
+        image: "../images/pavlova.png",
         prepTime: "25 mins",
         cookTime: "90 mins",
         totalTime: 115,
@@ -196,7 +196,7 @@ const completeRecipeData = {
         id: 6,
         title: "Gulab Jamun",
         description: "Soft, melt-in-your-mouth milk balls in fragrant sugar syrup.",
-        image: "../Images/Gulab.png",
+        image: "../images/gulab.png",
         prepTime: "30 mins",
         cookTime: "25 mins",
         totalTime: 55,
@@ -232,7 +232,7 @@ const completeRecipeData = {
         id: 7,
         title: "Burfee",
         description: "Rich, fudge-like sweet made with milk and sugar.",
-        image: "../Images/Burfee.png",
+        image: "../images/burfee.png",
         prepTime: "15 mins",
         cookTime: "30 mins",
         totalTime: 45,
@@ -266,7 +266,7 @@ const completeRecipeData = {
         id: 8,
         title: "Chana Magaj",
         description: "Traditional gram flour sweet with ghee and sugar.",
-        image: "../Images/Magaj.png",
+        image: "../images/magaj.png",
         prepTime: "20 mins",
         cookTime: "40 mins",
         totalTime: 60,
@@ -301,7 +301,7 @@ const completeRecipeData = {
         id: 9,
         title: "Classic Pancakes",
         description: "Fluffy, golden pancakes perfect for weekend breakfast.",
-        image: "../Images/Pancakes2.png",
+        image: "../images/pancakes2.png",
         prepTime: "10 mins",
         cookTime: "15 mins",
         totalTime: 25,
@@ -336,7 +336,7 @@ const completeRecipeData = {
         id: 10,
         title: "Cappuccino Muffins",
         description: "Coffee-flavored muffins with a sweet streusel topping.",
-        image: "../Images/Capmuffin.png",
+        image: "../images/capmuffin.png",
         prepTime: "15 mins",
         cookTime: "20 mins",
         totalTime: 35,
@@ -412,7 +412,7 @@ function loadFavorites() {
                 const recipeCard = document.createElement('div');
                 recipeCard.className = 'recipe-card';
                 recipeCard.innerHTML = `
-                    <img src="${recipe.image}" alt="${recipe.title}" onerror="this.src='../Images/placeholder.png'">
+                    <img src="${recipe.image}" alt="${recipe.title}" onerror="this.src='../images/placeholder.png'">
                     <div class="recipe-info">
                         <h3>${recipe.title}</h3>
                         <p>${recipe.description}</p>

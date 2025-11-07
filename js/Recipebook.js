@@ -44,7 +44,7 @@ const enhancedLocalRecipes = {
             id: 1,
             title: "Classic Cheesecake",
             description: "Creamy and rich cheesecake with a buttery biscuit base.",
-            image: "../Images/Cheesecake.png",
+            image: "../images/cheesecake.png",
             totalTime: 90,
             category: "cakes",
             diet: ["vegetarian"],
@@ -55,7 +55,7 @@ const enhancedLocalRecipes = {
             id: 2,
             title: "Chocolate Brownie",
             description: "Fudgy, decadent chocolate brownies with a crackly top.",
-            image: "../Images/Brownie.png",
+            image: "../images/brownie.png",
             totalTime: 40,
             category: "cakes",
             diet: ["vegetarian"],
@@ -66,7 +66,7 @@ const enhancedLocalRecipes = {
             id: 3,
             title: "Red Velvet Cake",
             description: "Stunning red velvet cake with cream cheese frosting.",
-            image: "../Images/Redvelvet.png",
+            image: "../images/redvelvet.png",
             totalTime: 65,
             category: "cakes",
             diet: ["vegetarian"],
@@ -79,7 +79,7 @@ const enhancedLocalRecipes = {
             id: 4,
             title: "Lemon Meringue",
             description: "Tangy lemon curd topped with fluffy toasted meringue.",
-            image: "../Images/LMeringue.png",
+            image: "../images/lMeringue.png",
             totalTime: 65,
             category: "meringues",
             diet: ["vegetarian"],
@@ -90,7 +90,7 @@ const enhancedLocalRecipes = {
             id: 5,
             title: "Pavlova",
             description: "Crisp meringue shell with soft center, topped with cream and fruit.",
-            image: "../Images/Pavlova.png",
+            image: "../images/pavlova.png",
             totalTime: 115,
             category: "meringues",
             diet: ["vegetarian"],
@@ -103,7 +103,7 @@ const enhancedLocalRecipes = {
             id: 6,
             title: "Gulab Jamun",
             description: "Soft, melt-in-your-mouth milk balls in fragrant sugar syrup.",
-            image: "../Images/Gulab.png",
+            image: "../images/gulab.png",
             totalTime: 55,
             category: "indian-sweets",
             diet: ["vegetarian"],
@@ -114,7 +114,7 @@ const enhancedLocalRecipes = {
             id: 7,
             title: "Burfee",
             description: "Rich, fudge-like sweet made with milk and sugar.",
-            image: "../Images/Burfee.png",
+            image: "../images/burfee.png",
             totalTime: 45,
             category: "indian-sweets",
             diet: ["vegetarian"],
@@ -125,7 +125,7 @@ const enhancedLocalRecipes = {
             id: 8,
             title: "Chana Magaj",
             description: "Traditional gram flour sweet with ghee and sugar.",
-            image: "../Images/Magaj.png",
+            image: "../images/magaj.png",
             totalTime: 60,
             category: "indian-sweets",
             diet: ["vegetarian"],
@@ -138,7 +138,7 @@ const enhancedLocalRecipes = {
             id: 9,
             title: "Classic Pancakes",
             description: "Fluffy, golden pancakes perfect for weekend breakfast.",
-            image: "../Images/Pancakes2.png",
+            image: "../images/pancakes2.png",
             totalTime: 25,
             category: "breakfast",
             diet: ["vegetarian"],
@@ -149,7 +149,7 @@ const enhancedLocalRecipes = {
             id: 10,
             title: "Cappuccino Muffins",
             description: "Coffee-flavored muffins with a sweet streusel topping.",
-            image: "../Images/Capmuffin.png",
+            image: "../images/capmuffin.png",
             totalTime: 35,
             category: "breakfast",
             diet: ["vegetarian"],
@@ -601,7 +601,7 @@ function broaderLocalSearch(query) {
                     <span class="recipe-badge badge-difficulty">${recipe.difficulty}</span>
                     ${recipe.source !== 'local' ? `<span class="recipe-badge badge-api">API</span>` : ''}
                 </div>
-                <img src="${recipe.image}" alt="${recipe.title}" class="recipe-img" onerror="this.src='../Images/placeholder-recipe.jpg'">
+                <img src="${recipe.image}" alt="${recipe.title}" class="recipe-img" onerror="this.src='../images/placeholder-recipe.png'">
                 <div class="recipe-info">
                     <h3 class="recipe-title">${recipe.title}</h3>
                     <p class="recipe-description">${recipe.description}</p>
