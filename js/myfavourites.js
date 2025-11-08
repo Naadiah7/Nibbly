@@ -399,22 +399,6 @@ function handleEmptyFavorites(favoritesContainer, emptyState) {
     }
 }
 
-/*Animate empty state appearance*/
-function animateEmptyState(emptyState) {
-    if (typeof gsap !== 'undefined' && emptyState) {
-        gsap.fromTo(emptyState, 
-            { opacity: 0, scale: 0.8 },
-            { 
-                duration: 0.8, 
-                opacity: 1, 
-                scale: 1, 
-                ease: "back.out(1.5)", 
-                delay: 0.6 
-            }
-        );
-    }
-}
-
 /*Display favorite recipes in the container*/
 function displayFavorites(favorites, favoritesContainer, emptyState) {
     if (emptyState) {

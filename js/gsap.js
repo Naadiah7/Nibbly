@@ -1132,12 +1132,15 @@ function initializeMyFavouritesAnimations() {
     const emptyState = document.querySelector('.empty-state');
     if (emptyState) {
         gsap.from(emptyState, {
-            duration: 0.8,
-            opacity: 0,
-            scale: 0.8,
-            ease: "back.out(1.5)",
-            delay: 0.6
-        });
+            opacity: 0, scale: 0.8 },
+            { 
+                duration: 0.8, 
+                opacity: 1, 
+                scale: 1, 
+                ease: "back.out(1.5)", 
+                delay: 0.6 
+            }
+        );
     }
 
     // Check if recipe cards exist
