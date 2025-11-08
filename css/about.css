@@ -343,8 +343,8 @@ footer {
   transition: all 0.3s ease;
   background: none;
   border: none;
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
 }
 
 .checkbtn:hover {
@@ -353,8 +353,8 @@ footer {
 }
 
 .burger-icon {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   object-fit: contain;
 }
 
@@ -367,9 +367,9 @@ footer {
   position: fixed;
   top: 0;
   left: -100%;
-  width: 300px;
+  width: 380px;
   height: 100vh;
-  background: linear-gradient(135deg, #f6f2ff 0%, #e9c4f9 100%);
+  background: #fafafa;
   box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;
   z-index: 1001;
@@ -387,7 +387,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 25px 30px;
   background-color: #E9C4F9;
   border-bottom: 2px solid #ccc;
 }
@@ -395,18 +395,18 @@ footer {
 .sidebar-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 }
 
 .sidebar-brand img {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
 }
 
 .sidebar-brand h2 {
   font-family: 'Berkshire Swash', cursive;
-  font-size: 24px;
+  font-size: 25px;
   color: #000;
   margin: 0;
 }
@@ -422,8 +422,8 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
 }
 
 .close-btn:hover {
@@ -438,6 +438,7 @@ footer {
 }
 
 /* Sidebar Navigation */
+
 .sidebar-nav {
   flex: 1;
   padding: 20px 0;
@@ -451,6 +452,11 @@ footer {
 
 .sidebar-nav li {
   margin-bottom: 5px;
+}
+
+.nav-icon{
+  width: 25px;
+  height: 25px;
 }
 
 .sidebar-nav a {
@@ -467,8 +473,8 @@ footer {
 }
 
 .sidebar-nav a:hover {
-  background-color: #B6FFF8;
-  border-left-color: #5DD5C9;
+  background-color: #E9C4F9;
+  border-left-color: #555;
   color: #000;
 }
 
@@ -479,8 +485,8 @@ footer {
 }
 
 .sidebar-nav a.active {
-  background-color: #B6FFF8;
-  border-left-color: #5DD5C9;
+  background-color: #E9C4F9;
+  border-left-color: #555;
   color: #000;
 }
 
@@ -488,14 +494,14 @@ footer {
 .sidebar-footer {
   padding: 20px;
   text-align: center;
-  background-color: #f6f2ff;
+  background-color: #555;
   border-top: 1px solid #ccc;
 }
 
 .sidebar-footer p {
-  font-family: 'Palatino Linotype', serif;
+  font-family: 'Berkshire Swash', cursive;
   font-size: 14px;
-  color: #666;
+  color: white;
   margin: 0;
   line-height: 1.4;
 }
@@ -518,6 +524,7 @@ footer {
   opacity: 1;
   visibility: visible;
 }
+
 /* ===== MEDIA QUERIES FOR SIDEBAR ===== */
 
 /* Tablet Styles (834px and below) */
@@ -542,10 +549,17 @@ footer {
     padding: 14px 20px;
   }
   
+  .checkbtn,
+  .close-btn {
+    width: 48px;
+    height: 48px;
+    padding: 10px;
+  }
+  
   .burger-icon,
   .close-icon {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
   }
 }
 
@@ -592,15 +606,16 @@ footer {
   
   .burger-icon,
   .close-icon {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
   
   .checkbtn,
   .close-btn {
-    width: 40px;
-    height: 40px;
-  }
+    width: 46px;
+    height: 46px;
+    padding: 10px;
+  } 
 }
 
 /* Small Mobile Styles (below 360px) */
