@@ -405,6 +405,34 @@ footer {
   stroke-width: 10;
 }
 
+/* ===== BURGER MENU (Hidden for desktop) ===== */
+.checkbtn {
+  display: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  background: none;
+  border: none;
+  width: 50px;
+  height: 50px;
+}
+
+.checkbtn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: scale(1.1);
+}
+
+.burger-icon {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+#check {
+  display: none;
+}
+
 /* ===== SIDEBAR STYLES ===== */
 .sidebar {
   position: fixed;
