@@ -603,99 +603,151 @@ function showErrorMessage(message) {
 /*Setup favorite button event listener*/
 function setupFavoriteButton() {
     const favoriteBtn = document.getElementById('favourite-btn');
+    console.log('Setting up favorite button:', favoriteBtn);
+    
     if (favoriteBtn) {
+        // Remove any existing listeners and re-add
+        favoriteBtn.onclick = null;
         favoriteBtn.addEventListener('click', toggleFavorite);
+        console.log('Favorite button event listener added successfully');
+        
+        // Update initial state
+        const recipeId = sessionStorage.getItem('currentRecipeId');
+        if (recipeId) {
+            updateFavoriteButton(parseInt(recipeId));
+        }
+    } else {
+        console.error('Favorite button element not found!');
     }
 }
 
 /*Update favorite button state based on current recipe*/
 function updateFavoriteButton(recipeId) {
-    const recipeSource = sessionStorage.getItem('recipeSource') || 'local';
     const favorites = JSON.parse(localStorage.getItem('nibblyFavorites')) || [];
-    const favoriteKey = `${recipeSource}_${recipeId}`;
-    const isFavorite = favorites.includes(favoriteKey);
+    const isFavorite = favorites.includes(recipeId.toString());
     
     const emptyHeart = document.getElementById('empty-heart');
     const fullHeart = document.getElementById('full-heart');
     
-    if (isFavorite) {
-        if (emptyHeart) emptyHeart.style.display = 'none';
-        if (fullHeart) fullHeart.style.display = 'block';
-    } else {
-        if (emptyHeart) emptyHeart.style.display = 'block';
-        if (fullHeart) fullHeart.style.display = 'none';
+    console.log('Updating favorite button state:', { 
+        recipeId, 
+        isFavorite,
+        favorites 
+    });
+    
+    if (emptyHeart && fullHeart) {
+        if (isFavorite) {
+            emptyHeart.style.display = 'none';
+            fullHeart.style.display = 'block';
+        } else {
+            emptyHeart.style.display = 'block';
+            fullHeart.style.display = 'none';
+        }
     }
 }
 
 /*Toggle favorite status for current recipe*/
-function toggleFavorite() {
+function toggleFavorite(event) {
+    console.log('=== FAVORITE TOGGLE CLICKED ===');
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    
     const recipeId = sessionStorage.getItem('currentRecipeId');
-    const recipeSource = sessionStorage.getItem('recipeSource') || 'local';
     
     if (!recipeId) {
         console.error('No recipe ID found in sessionStorage');
+        alert('Error: No recipe selected');
         return;
     }
     
     let favorites = JSON.parse(localStorage.getItem('nibblyFavorites')) || [];
-    const favoriteKey = `${recipeSource}_${recipeId}`;
+    const recipeIdStr = recipeId.toString();
     
-    console.log('Toggling favorite:', { recipeId, recipeSource, favoriteKey, currentFavorites: favorites });
+    console.log('Before toggle:', favorites);
     
-    const isFavorite = favorites.includes(favoriteKey);
+    const isCurrentlyFavorite = favorites.includes(recipeIdStr);
     
-    if (isFavorite) {
-        favorites = favorites.filter(id => id !== favoriteKey);
-        console.log('Removed from favorites');
+    if (isCurrentlyFavorite) {
+        // Remove from favorites
+        favorites = favorites.filter(id => id !== recipeIdStr);
+        console.log('Removed from favorites:', recipeIdStr);
     } else {
-        favorites.push(favoriteKey);
-        console.log('Added to favorites');
+        // Add to favorites
+        favorites.push(recipeIdStr);
+        console.log('Added to favorites:', recipeIdStr);
     }
     
+    // Save to localStorage
     localStorage.setItem('nibblyFavorites', JSON.stringify(favorites));
-    updateFavoriteButton(recipeId);
+    console.log('After toggle:', favorites);
     
-    // Show feedback to user
-    showFavoriteFeedback(!isFavorite);
+    // Update button appearance
+    updateFavoriteButton(parseInt(recipeId));
     
-    // Force refresh favorites page if it's open
-    if (window.opener) {
-        window.opener.postMessage({ type: 'favoritesUpdated' }, '*');
-    }
+    // Show visual feedback
+    showFavoriteFeedback(!isCurrentlyFavorite);
     
-    // Also dispatch storage event to sync across tabs
-    window.dispatchEvent(new Event('storage'));
+    // Notify other tabs/windows
+    window.dispatchEvent(new StorageEvent('storage', {
+        key: 'nibblyFavorites',
+        newValue: JSON.stringify(favorites)
+    }));
 }
 
 /*Show visual feedback when favorite status changes*/
 function showFavoriteFeedback(added) {
-    const feedback = document.createElement('div');
-    feedback.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: ${added ? '#77d17aff' : '#f3746aff'};
-        color: white;
-        padding: 15px 20px;
-        border-radius: 5px;
-        font-family: 'Orelega One', sans-serif;
-        z-index: 10000;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        animation: slideIn 0.3s ease-out;
-    `;
+    // Create or update feedback element
+    let feedback = document.getElementById('favorite-feedback');
+    if (!feedback) {
+        feedback = document.createElement('div');
+        feedback.id = 'favorite-feedback';
+        feedback.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${added ? '#77d17a' : '#ff6b6b'};
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-family: 'Orelega One', sans-serif;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border: 2px solid #000;
+        `;
+        document.body.appendChild(feedback);
+    }
     
-    feedback.textContent = added ? '✓ Added to favorites!' : '✗ Removed from favorites';
+    feedback.textContent = added ? '❤️ Added to favorites!' : '💔 Removed from favorites';
+    feedback.style.background = added ? '#77d17a' : '#ff6b6b';
     
-    document.body.appendChild(feedback);
+    // Animate in
+    if (typeof gsap !== 'undefined') {
+        gsap.fromTo(feedback, 
+            { opacity: 0, y: -50 },
+            { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.7)" }
+        );
+    }
     
     // Remove after 2 seconds
     setTimeout(() => {
-        feedback.style.animation = 'slideOut 0.3s ease-in';
-        setTimeout(() => {
-            if (feedback.parentNode) {
+        if (feedback.parentNode) {
+            if (typeof gsap !== 'undefined') {
+                gsap.to(feedback, {
+                    opacity: 0,
+                    y: -50,
+                    duration: 0.3,
+                    onComplete: () => {
+                        if (feedback.parentNode) {
+                            feedback.parentNode.removeChild(feedback);
+                        }
+                    }
+                });
+            } else {
                 feedback.parentNode.removeChild(feedback);
             }
-        }, 300);
+        }
     }, 2000);
 }
 
@@ -792,31 +844,14 @@ window.addEventListener('message', function(event) {
 // Refresh favorites when storage changes (from other tabs)
 window.addEventListener('storage', function(e) {
     if (e.key === 'nibblyFavorites') {
-        loadFavorites();
+        const recipeId = sessionStorage.getItem('currentRecipeId');
+        if (recipeId) {
+            updateFavoriteButton(parseInt(recipeId));
+        }
     }
 });
-
-// Also listen for messages from other tabs
-window.addEventListener('message', function(event) {
-    if (event.data && event.data.type === 'favoritesUpdated') {
-        loadFavorites();
-    }
-});
-
-// Add CSS for animations
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideIn {
-        from { transform: translateX(100%); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-    }
-    @keyframes slideOut {
-        from { transform: translateX(0); opacity: 1; }
-        to { transform: translateX(100%); opacity: 0; }
-    }
-`;
-document.head.appendChild(style);
 
 // Make functions globally available
 window.viewRecipe = viewRecipe;
 window.viewRecipeFromBlog = viewRecipeFromBlog;
+window.debugFavorites = debugFavorites;

@@ -1,5 +1,4 @@
-
-// ===== SCROLL-TO-TOP FUNCTIONALITY =====
+// ===== SCROLL-TO-TOP FUNCTION ===== 
 const scrollBtn = document.getElementById("scrollTopBtn");
 
 window.onscroll = function() {
@@ -418,7 +417,9 @@ function animateEmptyState(emptyState) {
 
 /*Display favorite recipes in the container*/
 function displayFavorites(favorites, favoritesContainer, emptyState) {
-    if (emptyState) emptyState.style.display = 'none';
+    if (emptyState) {
+        emptyState.style.display = 'none';
+    }
     
     if (favoritesContainer) {
         favoritesContainer.style.display = 'grid';
@@ -432,6 +433,8 @@ function displayFavorites(favorites, favoritesContainer, emptyState) {
             if (isValidRecipe(numericId)) {
                 createRecipeCard(numericId, favoritesContainer);
                 hasValidFavorites = true;
+            } else {
+                console.log('Invalid recipe ID skipped:', favId);
             }
         });
         
@@ -446,16 +449,28 @@ function displayFavorites(favorites, favoritesContainer, emptyState) {
 
 /*Parse favorite ID from various formats*/
 function parseFavoriteId(favId) {
+    console.log('Parsing favorite ID:', favId);
+    
     if (typeof favId === 'number') {
         return favId;
     }
     
     if (typeof favId === 'string') {
+        // Handle simple numeric strings (new format)
+        const numericId = parseInt(favId);
+        if (!isNaN(numericId)) {
+            return numericId;
+        }
+        
+        // Handle old format with underscores
         if (favId.includes('_')) {
             const parts = favId.split('_');
-            return parts[0] === 'local' ? parseInt(parts[1]) : NaN;
+            if (parts[0] === 'local') {
+                return parseInt(parts[1]);
+            }
+            // For API recipes, return NaN since we don't have data
+            return NaN;
         }
-        return parseInt(favId);
     }
     
     return NaN;
@@ -481,7 +496,9 @@ function createRecipeCard(recipeId, container) {
                 <span class="prep-time">${recipe.prepTime}</span>
                 <span class="servings">${recipe.servings} servings</span>
             </div>
-            <button class="view-recipe-btn" onclick="viewRecipe(${recipe.id})">View Recipe</button>
+            <button class="view-recipe-btn" onclick="viewRecipeFromFavorites(${recipe.id})">
+                View Recipe
+            </button>
         </div>
     `;
     
@@ -491,14 +508,22 @@ function createRecipeCard(recipeId, container) {
 /*Animate recipe cards entrance*/
 function animateRecipeCards() {
     if (typeof gsap !== 'undefined') {
-        gsap.from('.recipe-card', {
-            duration: 0.6,
-            opacity: 0,
-            y: 30,
-            stagger: 0.1,
-            ease: "back.out(1.2)",
-            delay: 0.5
-        });
+        const recipeCards = document.querySelectorAll('.recipe-card');
+        console.log('Animating recipe cards:', recipeCards.length);
+        
+        if (recipeCards.length > 0) {
+            gsap.fromTo(recipeCards, {
+                opacity: 1,
+                y: 30
+            }, {
+                duration: 0.6,
+                opacity: 1,
+                y: 0,
+                stagger: 0.1,
+                ease: "back.out(1.2)",
+                delay: 0.5
+            });
+        }
     }
 }
 
@@ -509,8 +534,26 @@ function viewRecipe(recipeId) {
     window.location.href = 'recipedetails.html';
 }
 
+/*View recipe from favorites*/
+function viewRecipeFromFavorites(recipeId) {
+    console.log('Viewing recipe from favorites:', recipeId);
+    sessionStorage.setItem('currentRecipeId', recipeId.toString());
+    sessionStorage.setItem('recipeSource', 'local');
+    window.location.href = 'recipedetails.html';
+}
+
+// Debug function
+function debugFavorites() {
+    const favorites = JSON.parse(localStorage.getItem('nibblyFavorites')) || [];
+    console.log('=== FAVORITES DEBUG ===');
+    console.log('All favorites:', favorites);
+    console.log('Favorites container:', document.getElementById('favoritesContainer'));
+    console.log('Empty state:', document.getElementById('emptyState'));
+}
+
 
 // ===== EVENT LISTENERS AND INITIALIZATION =====
+
 // Initialize favorites when page loads
 document.addEventListener('DOMContentLoaded', loadFavorites);
 
@@ -529,3 +572,8 @@ window.addEventListener('message', function(event) {
         loadFavorites();
     }
 });
+
+// Make functions globally available
+window.viewRecipe = viewRecipe;
+window.viewRecipeFromFavorites = viewRecipeFromFavorites;
+window.debugFavorites = debugFavorites;
