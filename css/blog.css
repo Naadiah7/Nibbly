@@ -918,10 +918,12 @@ body:has(.go-back) .scroll-top {
   .checkbtn {
     display: flex;
     order: 2;
+    align-items: center;
+    justify-content: center;
   }
   
   .search-btn {
-    display: none; /* Hide search button */
+    display: none;
     order: 3;
   }
   
@@ -948,5 +950,187 @@ body:has(.go-back) .scroll-top {
     display: block;
     padding: 15px;
     font-size: 18px;
+  }
+  
+  /* Blog content adjustments */
+  .blog-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .blog-post {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .post-text {
+    padding-right: 0;
+    margin-bottom: 15px;
+  }
+  
+  .banner-subtitle p {
+    font-size: 18px;
+  }
+  
+  /* Sidebar adjustments */
+  .sidebar {
+    width: 280px;
+  }
+  
+  .sidebar-nav a {
+    font-size: 17px;
+    padding: 14px 20px;
+  }
+  
+  .checkbtn,
+  .close-btn {
+    width: 48px;
+    height: 48px;
+    padding: 10px;
+  }
+  
+  .burger-icon,
+  .close-icon {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* Mobile Styles (412px and below) */
+@media (max-width: 412px) {
+  .search-btn {
+    display: none;
+  }
+  
+  .checkbtn {
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 100%;
+    left: -100%;
+  }
+  
+  .sidebar-header {
+    padding: 15px;
+  }
+  
+  .sidebar-brand img {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .sidebar-brand h2 {
+    font-size: 22px;
+  }
+  
+  .sidebar-nav a {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+  
+  .sidebar-footer {
+    padding: 15px;
+  }
+  
+  .sidebar-footer p {
+    font-size: 13px;
+  }
+  
+  .burger-icon,
+  .close-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .checkbtn,
+  .close-btn {
+    width: 46px;
+    height: 46px;
+    padding: 10px;
+  }
+  
+  /* Blog mobile adjustments */
+  .banner-subtitle p {
+    font-size: 16px;
+  }
+  
+  .banner h2 {
+    font-size: 22px;
+  }
+  
+  .banner-subtitle {
+    left: 10%;
+  }
+  
+  .blog-heading {
+    font-size: 24px;
+  }
+  
+  .post-title {
+    font-size: 20px;
+  }
+}
+
+/* Small Mobile Styles (below 360px) */
+@media (max-width: 360px) {
+  .search-btn {
+    display: none;
+  }
+  
+  .checkbtn {
+    display: flex;
+  }
+  
+  .sidebar-header {
+    padding: 12px;
+  }
+  
+  .sidebar-brand h2 {
+    font-size: 20px;
+  }
+  
+  .sidebar-nav a {
+    font-size: 15px;
+    padding: 10px 15px;
+  }
+  
+  .burger-icon,
+  .close-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .checkbtn,
+  .close-btn {
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+  }
+  
+  /* Blog small mobile adjustments */
+  .banner-subtitle p {
+    font-size: 14px;
+  }
+  
+  .banner h2 {
+    font-size: 20px;
+  }
+  
+  .banner-subtitle {
+    left: 5%;
+  }
+  
+  .blog-heading {
+    font-size: 22px;
+  }
+  
+  .post-title {
+    font-size: 18px;
+  }
+  
+  .read-more-btn {
+    font-size: 16px;
+    padding: 12px 12px;
   }
 }
