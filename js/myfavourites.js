@@ -399,22 +399,6 @@ function handleEmptyFavorites(favoritesContainer, emptyState) {
     }
 }
 
-/*Animate empty state appearance*/
-function animateEmptyState(emptyState) {
-    if (typeof gsap !== 'undefined' && emptyState) {
-        gsap.fromTo(emptyState, 
-            { opacity: 0, scale: 0.8 },
-            { 
-                duration: 0.8, 
-                opacity: 1, 
-                scale: 1, 
-                ease: "back.out(1.5)", 
-                delay: 0.6 
-            }
-        );
-    }
-}
-
 /*Display favorite recipes in the container*/
 function displayFavorites(favorites, favoritesContainer, emptyState) {
     if (emptyState) {
@@ -505,27 +489,6 @@ function createRecipeCard(recipeId, container) {
     container.appendChild(recipeCard);
 }
 
-/*Animate recipe cards entrance*/
-function animateRecipeCards() {
-    if (typeof gsap !== 'undefined') {
-        const recipeCards = document.querySelectorAll('.recipe-card');
-        console.log('Animating recipe cards:', recipeCards.length);
-        
-        if (recipeCards.length > 0) {
-            gsap.fromTo(recipeCards, {
-                opacity: 1,
-                y: 30
-            }, {
-                duration: 0.6,
-                opacity: 1,
-                y: 0,
-                stagger: 0.1,
-                ease: "back.out(1.2)",
-                delay: 0.5
-            });
-        }
-    }
-}
 
 /*Navigate to recipe details page*/
 function viewRecipe(recipeId) {
