@@ -1,4 +1,4 @@
-html{
+html {
   scroll-behavior: smooth;
 }
 
@@ -18,35 +18,37 @@ body {
   text-align: center;
 }
 
-/* Navigation Bar */
+/* ===== NAVIGATION BAR ===== */
 #Navtop {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: #f6f2ff;
-  padding-right: 20px;
+  padding: 0 20px;
   border-bottom: 2px solid #ccc;
+  position: relative;
 }
 
 .brand {
   display: flex;
-  align-items:center;
+  align-items: center;
   gap: 10px;
   background-color: #E9C4F9;
-  padding: 4px 20px; 
+  padding: 4px 20px;
 }
 
 #logo {
   width: 65px;
   height: 65px;
   object-fit: cover;
-  border-radius: 50% black;
+  border-radius: 50%;
 }
 
 .site-title {
   font-size: 25px;
   color: #000;
 }
+
 
 #Navtop ul {
   list-style: none;
@@ -59,9 +61,8 @@ body {
   text-decoration: none;
   color: #000;
   font-size: 20px;
-  padding: 0.5rem 1rem; 
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  margin: 0;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -71,7 +72,7 @@ body {
   background: linear-gradient(135deg, #FFC9E2 0%, #B1FAC7 100%);
 }
 
-/* --- Search Button --- */
+/* ===== SEARCH BUTTON ===== */
 .search-btn {
   display: flex;
   align-items: center;
@@ -95,7 +96,7 @@ body {
   transform: scale(1.07);
 }
 
-/* Banner */
+/* ===== SEARCH PAGE LAYOUT ===== */
 .search-page {
   position: relative;
   width: 100%;
@@ -106,11 +107,10 @@ body {
   align-items: center;
   justify-content: flex-start;
   padding: 0 20px;
-  box-sizing: border-box;
   overflow: hidden;
 }
 
-/* Search Section */
+/* ===== SEARCH BAR ===== */
 .search-bar {
   padding: 20px;
 }
@@ -140,8 +140,8 @@ body {
   font-family: 'Orelega One', sans-serif;
   font-size: 16px;
   border-radius: 2px;
-  cursor: pointer;
   box-shadow: 2px 2px 0px #000;
+  transition: all 0.3s ease;
 }
 
 #searchBtn:hover {
@@ -150,7 +150,7 @@ body {
   box-shadow: 2px 2px 0px #000;
 }
 
-/* Filter System */
+/* ===== FILTER SYSTEM ===== */
 .filter-section {
   display: flex;
   flex-wrap: wrap;
@@ -176,10 +176,9 @@ body {
   margin-bottom: 10px;
   font-size: 16px;
   color: #333;
-  display: block;
 }
 
-.filter-select, .filter-input {
+.filter-select {
   padding: 10px 15px;
   border-radius: 10px;
   border: 2px solid #fff;
@@ -204,8 +203,8 @@ body {
   font-family: 'Orelega One', sans-serif;
   font-size: 16px;
   border-radius: 2px;
-  cursor: pointer;
   box-shadow: 2px 2px 0px #000;
+  transition: all 0.3s ease;
 }
 
 .filter-button:hover {
@@ -214,7 +213,7 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
-/* Active Filters*/
+/* ===== ACTIVE FILTERS ===== */
 .active-filters {
   display: flex;
   flex-wrap: wrap;
@@ -238,7 +237,12 @@ body {
   animation: slideIn 0.3s ease;
 }
 
-/* Recipe Results Section */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== RECIPE RESULTS ===== */
 .recipe-results {
   padding: 20px 40px;
   background-color: #f9f9f9;
@@ -252,6 +256,7 @@ body {
   display: inline-block;
   padding: 10px 20px;
   border-radius: 10px;
+  margin: 20px 0;
 }
 
 .recipe-grid {
@@ -269,6 +274,7 @@ body {
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   transition: transform 0.3s, box-shadow 0.3s;
   margin-top: 30px;
+  position: relative;
 }
 
 .recipe-card:hover {
@@ -334,23 +340,24 @@ body {
   box-shadow: 4px 4px #000;
 }
 
-/*Recipe Badges */
+/* Recipe Badges */
 .recipe-badges {
   position: absolute;
-  top: 8px;
-  left: 8px;
+  top: 10px;
+  left: 10px;
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 5px;
 }
 
 .recipe-badge {
   background: rgba(255, 255, 255, 0.9);
-  padding: 3px 6px;
-  border-radius: 8px;
-  font-size: 9px;
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-size: 10px;
   font-family: 'Orelega One', sans-serif;
   color: #333;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .badge-diet {
@@ -362,7 +369,7 @@ body {
 }
 
 .badge-difficulty {
-    background: rgba(255, 201, 226, 0.9);
+  background: rgba(255, 201, 226, 0.9);
 }
 
 /* Results Header */
@@ -388,7 +395,7 @@ body {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Load More Button */
+/* ===== LOAD MORE BUTTON ===== */
 .load-more-container {
   display: flex;
   justify-content: center;
@@ -415,13 +422,9 @@ body {
 }
 
 .load-more-btn:hover {
-  background-color:linear-gradient(135deg, #FFA4CE 0%, #6EDF90 100%);
+  background: linear-gradient(135deg, #FFA4CE 0%, #6EDF90 100%);
   transform: translate(1px, 1px);
   box-shadow: 4px 4px #000;
-}
-
-.load-more-btn:active {
-  transform: translateY(-1px);
 }
 
 .load-more-btn:disabled {
@@ -430,22 +433,35 @@ body {
   transform: none;
 }
 
-/*No Results*/
+/* ===== ERROR & NO RESULTS STATES ===== */
 .no-results {
   font-family: 'Orelega One', sans-serif;
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 30px;
-    color: #666;
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 30px;
+  color: #666;
+  font-size: 18px;
 }
 
 .no-results i {
-    font-size: 40px;
-    margin-bottom: 15px;
-    color: #ccc;
+  font-size: 40px;
+  margin-bottom: 15px;
+  color: #ccc;
 }
 
-/* Scroll Top Image Button */
+/* ===== FOOTER ===== */
+footer {
+  background-color: #555;
+  color: white;
+  padding: 1px 1px;
+  font-size: 16px;
+  align-items: center;
+  margin: 0;
+  margin-top: 10px;
+  position: relative;
+}
+
+/* ===== SCROLL TO TOP BUTTON ===== */
 .scroll-top {
   position: fixed;
   bottom: 30px;
@@ -465,19 +481,7 @@ body {
   box-shadow: 0 6px 12px rgba(0,0,0,0.4);
 }
 
-/* Footer */
-footer {
-  background-color: #555;
-  color: white;
-  padding: 1px 1px;
-  font-size: 16px;
-  align-items: center;
-  margin: 0;
-  margin-top: 10px;
-  position: relative;
-}
-
-/* Animation Elements */
+/* ===== ANIMATIONS ===== */
 @keyframes colorShift {
   0%   { background: #E19CFF; }
   25%  { background: #5DD5C9; }
@@ -499,25 +503,309 @@ footer {
   stroke-width: 50;
 }
 
-/* Burger Menu Hidden (for desktop) */
+/* ===== BURGER MENU (Hidden for desktop) ===== */
 .checkbtn {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+#check {
   display: none;
 }
 
+/* ===== MEDIA QUERIES ===== */
 
-/* Responsive Design for Recent Recipes */
-@media (max-width: 768px) {
-    .recent-recipes-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .recent-recipes-section {
-        padding: 20px;
-    }
+/* Tablet Styles (834px and below) */
+@media (max-width: 834px) {
+  /* Navigation */
+  #Navtop {
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+  
+  .brand {
+    order: 1;
+    flex: 1;
+  }
+  
+  .checkbtn {
+    display: block;
+    order: 2;
+  }
+  
+  .search-btn {
+    order: 3;
+  }
+  
+  #Navtop ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    order: 4;
+    background-color: #f6f2ff;
+    padding: 20px 0;
+    border-top: 2px solid #ccc;
+  }
+  
+  #check:checked ~ ul {
+    display: flex;
+  }
+  
+  #Navtop ul li {
+    width: 100%;
+    text-align: center;
+  }
+  
+  #Navtop ul li a {
+    display: block;
+    padding: 15px;
+    font-size: 18px;
+  }
+  
+  /* Search Page */
+  .search-page {
+    padding: 0 15px;
+    min-height: 500px;
+  }
+  
+  /* Search Bar */
+  .search-bar {
+    padding: 15px;
+  }
+  
+  #recipeSearch {
+    width: 65%;
+    font-size: 15px;
+  }
+  
+  /* Filters */
+  .filter-section {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    margin: 10px 15px;
+  }
+  
+  .filter-group {
+    min-width: 100%;
+  }
+  
+  .filter-actions {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .filter-button {
+    padding: 10px 15px;
+    font-size: 15px;
+  }
+  
+  /* Recipe Results */
+  .recipe-results {
+    padding: 15px 20px;
+  }
+  
+  .recipe-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .recipe-results h2 {
+    font-size: 22px;
+    padding: 8px 16px;
+  }
+  
+  .recipe-card {
+    margin-top: 20px;
+  }
+  
+  .recipe-title {
+    font-size: 18px;
+  }
+  
+  .recipe-description {
+    font-size: 13px;
+  }
+  
+  .view-recipe-btn {
+    font-size: 14px;
+    padding: 12px 12px;
+    min-width: 100px;
+  }
+  
+  /* Active Filters */
+  .active-filters {
+    padding: 0 15px;
+  }
+  
+  /* Scroll to top */
+  .scroll-top {
+    bottom: 20px;
+    right: 20px;
+  }
 }
 
-@media (max-width: 480px) {
-    .recent-recipes-container {
-        grid-template-columns: 1fr;
-    }
+/* Mobile Styles (412px and below) */
+@media (max-width: 412px) {
+  /* Navigation */
+  #Navtop {
+    padding: 5px;
+  }
+  
+  .brand {
+    padding: 2px 10px;
+  }
+  
+  #logo {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .site-title {
+    font-size: 20px;
+  }
+  
+  .searchButton img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  /* Search Page */
+  .search-page {
+    padding: 0 10px;
+    min-height: 450px;
+  }
+  
+  /* Search Bar */
+  .search-bar {
+    padding: 10px;
+  }
+  
+  .search-box {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #recipeSearch {
+    width: 100%;
+    border-radius: 25px;
+    font-size: 14px;
+  }
+  
+  #searchBtn {
+    border-radius: 25px;
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  /* Filters */
+  .filter-section {
+    margin: 10px;
+    padding: 15px;
+  }
+  
+  .filter-button {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+  
+  /* Recipe Results */
+  .recipe-results {
+    padding: 10px 15px;
+  }
+  
+  .recipe-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .recipe-results h2 {
+    font-size: 20px;
+    padding: 6px 12px;
+  }
+  
+  .recipe-card {
+    margin-top: 15px;
+  }
+  
+  .recipe-img {
+    height: 130px;
+  }
+  
+  .recipe-title {
+    font-size: 16px;
+  }
+  
+  .recipe-description {
+    font-size: 12px;
+  }
+  
+  .recipe-meta {
+    font-size: 12px;
+  }
+  
+  .view-recipe-btn {
+    font-size: 13px;
+    padding: 10px 10px;
+    min-width: 90px;
+  }
+  
+  /* Active Filters */
+  .active-filters {
+    padding: 0 10px;
+  }
+  
+  .active-filter-tag {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  
+  /* Footer */
+  footer {
+    font-size: 14px;
+    padding: 15px 5px;
+  }
+  
+  .footerbottom p {
+    margin: 5px 0;
+  }
+  
+  /* Scroll to top */
+  .scroll-top {
+    width: 35px;
+    height: 35px;
+    bottom: 15px;
+    right: 15px;
+  }
+}
+
+/* Small Mobile Styles (below 360px) */
+@media (max-width: 360px) {
+  .recipe-results h2 {
+    font-size: 18px;
+  }
+  
+  .recipe-title {
+    font-size: 15px;
+  }
+  
+  .recipe-description {
+    font-size: 11px;
+  }
+  
+  .view-recipe-btn {
+    font-size: 12px;
+    padding: 8px 8px;
+  }
+  
+  .filter-group label {
+    font-size: 14px;
+  }
+  
+  .filter-select {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
 }
