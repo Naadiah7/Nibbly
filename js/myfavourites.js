@@ -426,8 +426,6 @@ function displayFavorites(favorites, favoritesContainer, emptyState) {
             handleEmptyFavorites(favoritesContainer, emptyState);
             return;
         }
-        
-        animateRecipeCards();
     }
 }
 
