@@ -252,7 +252,7 @@ footer {
 
 /* ===== BURGER MENU (Hidden for desktop) ===== */
 .checkbtn {
-  display: none; /* Hidden by default */
+  display: none;
   cursor: pointer;
   padding: 8px;
   border-radius: 50%;
