@@ -211,24 +211,8 @@ function showSelectionButton(text) {
     }, 100);
 }
 
-// ===== INITIALIZATION =====
-document.addEventListener('DOMContentLoaded', function() {
-    addSpeechButton();
-    addTextSelectionFeature();
-    
-    // Add keyboard shortcut (Ctrl+Shift+S)
-    document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && e.shiftKey && e.key === 'S') {
-            e.preventDefault();
-            speakWebsiteContent();
-        }
-    });
-});
-
-
-// ===== SIDEBAR FUNCTION =====
 // ===== SIDEBAR FUNCTIONALITY =====
-document.addEventListener('DOMContentLoaded', function() {
+function initializeSidebar() {
     // Get elements
     const sidebar = document.getElementById('sidebar');
     const checkBtn = document.querySelector('.checkbtn');
@@ -271,6 +255,21 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', function() {
         if (window.innerWidth > 834) {
             closeSidebar();
+        }
+    });
+}
+
+// ===== INITIALIZATION =====
+document.addEventListener('DOMContentLoaded', function() {
+    addSpeechButton();
+    addTextSelectionFeature();
+    initializeSidebar();
+    
+    // Add keyboard shortcut (Ctrl+Shift+S)
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.shiftKey && e.key === 'S') {
+            e.preventDefault();
+            speakWebsiteContent();
         }
     });
 });
