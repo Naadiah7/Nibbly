@@ -8,9 +8,9 @@
   <meta name="author" content="Naadirah Karim">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link rel="stylesheet" href="../css/normalize.css" />
-  <link rel="stylesheet" href="../css/recipebook.css"/>
-  <link rel="shortcut icon" href="../images/logo.png">
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/recipebook.css">
+  <link rel="shortcut icon" href="../images/logo.png" type="image/png">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Beth+Ellen&family=Orelega+One&display=swap" rel="stylesheet">
@@ -22,11 +22,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>  
 
-  <title>Recipe Book</title>
+  <title>Nibbly - Recipe Book</title>
 </head>
 <body>
 
-<!-- Header Navigation -->
+  <!-- Header Navigation -->
   <header>
     <nav id="Navtop">
       <label for="check" class="checkbtn">
@@ -35,24 +35,24 @@
 
       <div class="brand">
         <a href="../index.html">
-            <img src="../images/logo.png" alt="Nibbly Logo" id="logo" />
+          <img src="../images/logo.png" alt="Nibbly Logo" id="logo">
         </a>
         <h1 class="site-title">Nibbly</h1>
       </div>
 
-<!--Navigation Bar-->
-    <ul>
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../pages/recipebook.html" class="active">Recipe Book</a></li>
-      <li><a href="../pages/myfavourites.html">My Favourites</a></li>
-      <li><a href="../pages/blog.html">Blog</a></li>
-      <li><a href="../pages/about.html">About</a></li>
-    </ul>
+      <!-- Navigation Bar -->
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../pages/recipebook.html" class="active">Recipe Book</a></li>
+        <li><a href="../pages/myfavourites.html">My Favourites</a></li>
+        <li><a href="../pages/blog.html">Blog</a></li>
+        <li><a href="../pages/about.html">About</a></li>
+      </ul>
 
-    <!-- Search button -->
+      <!-- Search button -->
       <div class="search-btn">
-        <a href="../pages/search.html" class="searchButton" >
-          <img src="../images/search.png" alt="Search" />
+        <a href="../pages/search.html" class="searchButton">
+          <img src="../images/search.png" alt="Search">
         </a>
       </div>
     </nav>
@@ -91,7 +91,7 @@
       <div class="filter-group">
         <label for="typeFilter">Dessert Type</label>
         <select id="typeFilter" class="filter-select">
-          <option value=""> Type</option>
+          <option value="">Type</option>
           <option value="cakes">Cakes</option>
           <option value="indian-sweets">Indian Sweets</option>
           <option value="meringues">Meringues</option>
@@ -99,8 +99,8 @@
         </select>
       </div>
 
-        <div class="filter-group">
-        <label for="timeFilter"> Max Prep Time</label>
+      <div class="filter-group">
+        <label for="timeFilter">Max Prep Time</label>
         <select id="timeFilter" class="filter-select">
           <option value="">Time</option>
           <option value="30">30 min or less</option>
@@ -114,7 +114,8 @@
         <button id="applyFiltersBtn" class="filter-button apply-btn">
           <i class="fas fa-filter"></i> Apply Filters
         </button>
-        <button id="clearFiltersBtn" class="filter-button clear-btn"> Clear All
+        <button id="clearFiltersBtn" class="filter-button clear-btn">
+          Clear All
         </button>
       </div>
     </section>
@@ -124,38 +125,38 @@
       <!-- Active filters will be displayed here -->
     </section>
 
-  <!-- Dessert Categories-->
-  <section id="categories-page" class="categories">
-    <h2>Desserts</h2>
-    <div class="category-grid">
-      <a href="#" class="category-card" data-category="cakes">
-        <img src="../images/brownie.png" alt="Cakes">
-        <h3>Cakes</h3>
-        <p>Delicious cakes for every occasion</p>
-      </a>
-      <a href="#" class="category-card" data-category="indian-sweets">
-        <img src="../images/sweet.png" alt="Indian Sweet Meats">
-        <h3>Indian sweets</h3>
-        <p>Traditional Indian sweets recipes</p>
-      </a>
-      <a href="#" class="category-card" data-category="meringues">
-        <img src="../images/lMeringue.png" alt="Meringues">
-        <h3>Meringues</h3>
-        <p>Classic and light meringue recipes</p>
-      </a>
-      <a href="#" class="category-card" data-category="breakfast">
-        <img src="../images/pancakes.png" alt="Breakfast Desserts">
-        <h3>Breakfast Desserts</h3>
-        <p>Sweet treats to start your day</p>
-      </a>
-    </div>
-  </section>
+    <!-- Dessert Categories -->
+    <section id="categories-page" class="categories">
+      <h2>Desserts</h2>
+      <div class="category-grid">
+        <a href="#" class="category-card" data-category="cakes">
+          <img src="../images/brownie.png" alt="Cakes">
+          <h3>Cakes</h3>
+          <p>Delicious cakes for every occasion</p>
+        </a>
+        <a href="#" class="category-card" data-category="indian-sweets">
+          <img src="../images/sweet.png" alt="Indian Sweet Meats">
+          <h3>Indian Sweets</h3>
+          <p>Traditional Indian sweets recipes</p>
+        </a>
+        <a href="#" class="category-card" data-category="meringues">
+          <img src="../images/lMeringue.png" alt="Meringues">
+          <h3>Meringues</h3>
+          <p>Classic and light meringue recipes</p>
+        </a>
+        <a href="#" class="category-card" data-category="breakfast">
+          <img src="../images/pancakes.png" alt="Breakfast Desserts">
+          <h3>Breakfast Desserts</h3>
+          <p>Sweet treats to start your day</p>
+        </a>
+      </div>
+    </section>
 
-  <!-- Recipe Results Page -->
-  <section id="recipes-page" class="recipe-results" style="display: none;">
-    <h2 id="results-title">Recipes</h2>
-    <div class="recipe-grid" id="recipeGrid">
-      <!-- Recipes will be dynamically populated here -->
+    <!-- Recipe Results Page -->
+    <section id="recipes-page" class="recipe-results" style="display: none;">
+      <h2 id="results-title">Recipes</h2>
+      <div class="recipe-grid" id="recipeGrid">
+      <!-- Recipes will be generated by JavaScript -->
       </div>
       <div class="load-more-container">
         <button id="loadMoreBtn" class="load-more-btn">
@@ -174,13 +175,13 @@
 
   <!-- Go Back Button -->
   <a href="../pages/recipebook.html" class="go-back">
-    <img src="../images/back.png" alt="Go back to blog" />
+    <img src="../images/back.png" alt="Go back to recipe book">
   </a>
 
   <!-- Scroll to Top -->
   <img src="../images/up.png" alt="Scroll to top" id="scrollTopBtn" class="scroll-top">
 
-    <script src="../js/recipebook.js"></script>   
-    <script src="../js/gsap.js"></script> 
+  <script src="../js/recipebook.js"></script>   
+  <script src="../js/gsap.js"></script> 
 </body>
 </html>

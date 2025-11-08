@@ -10,10 +10,10 @@
 
   <link rel="stylesheet" href="css/normalize.css" />
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="shortcut icon" href="images/logo.png" type="image of logo/png" />
+  <link rel="shortcut icon" href="images/logo.png" type="image/png" />
 
   <!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Beth+Ellen&family=Orelega+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Beth+Ellen&family=Orelega+One&display=swap" rel="stylesheet">
 
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
@@ -24,20 +24,21 @@
 </head>
 <body>
 
-<!-- Header Navigation -->
+  <!-- Header Navigation -->
   <header>
     <nav id="Navtop">
       <label for="check" class="checkbtn">
         <i class="fas fa-bars"></i>
       </label>
+      
       <div class="brand">
         <a href="index.html">
-            <img src="images/logo.png" alt="Nibbly Logo" id="logo" />
+          <img src="images/logo.png" alt="Nibbly Logo" id="logo" />
         </a>
         <h1 class="site-title">Nibbly</h1>
       </div>
 
-<!--Navigation Bar-->
+      <!-- Navigation Bar -->
       <ul>
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="pages/recipebook.html">Recipe Book</a></li>
@@ -46,7 +47,7 @@
         <li><a href="pages/about.html">About</a></li>
       </ul>
 
-    <!-- Search button -->
+      <!-- Search button -->
       <div class="search-btn">
         <a class="searchButton" href="pages/search.html">
           <img src="images/search.png" alt="Search" />
@@ -56,17 +57,18 @@
   </header>
 
   <main>
-
     <!-- Banner -->
     <section class="banner">
       <img src="images/banner.png" alt="Tiny Bites Big Delights Banner">
       <h2 class="banner-title">Tiny Bites, Big Delights</h2>
     </section>
 
-    <!-- Featured Recipes + Recipe Cards + Recipe Buttons-->
-<section class="featured">
+    <!-- Featured Recipes + Recipe Cards + Recipe Buttons -->
+    <section class="featured">
       <h3>Featured Recipes</h3>
+      
       <div class="recipe-container">
+        <!-- Pavlova Recipe Card -->
         <div class="recipe-card">
           <img src="images/pavlova.png" alt="Pavlova">
           <div class="recipe-content">
@@ -75,6 +77,7 @@
           </div>
         </div>
 
+        <!-- Brownies Recipe Card -->
         <div class="recipe-card">
           <img src="images/brownie.png" alt="Brownies">
           <div class="recipe-content">
@@ -83,16 +86,16 @@
           </div>
         </div>
 
+        <!-- Burfee Recipe Card -->
         <div class="recipe-card">
           <img src="images/burfee.png" alt="Burfee">
           <div class="recipe-content">
-            <p class="recipe-description">A Soft Indian Sweet Meat .</p>
+            <p class="recipe-description">A Soft Indian Sweet Meat.</p>
             <a class="recipe-btn" href="pages/recipedetails.html?id=7">Burfee Recipe</a>
           </div>
         </div>
       </div>
     </section>
-
   </main>
 
   <!-- Footer -->
@@ -102,12 +105,8 @@
     </section>
   </footer>
 
-  <!-- Speechify 
-  <button id="speakBtn">Listen to Page</button>
--->
-
   <!-- Scroll to Top -->
-    <!-- <img src="/Images/up.png" alt="Scroll to top" id="scrollTopBtn" class="scroll-top">-->
+  <!-- <img src="/Images/up.png" alt="Scroll to top" id="scrollTopBtn" class="scroll-top"> -->
 
   <script src="js/app.js"></script>
   <script src="js/gsap.js"></script>
