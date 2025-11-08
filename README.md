@@ -14,7 +14,7 @@ The recipes are recipes I use in my own household. I added 2-3 recipes for each 
 # Apis
 I used the free spoonacular API and the free Edamam API for dessert types and recipes
 
-The speechify Api was changed to playHT as the speechify requires ...whereas playHT is more easier to use for text to speech accessibility.
+The speechify Api was changed to playHT as the speechify requires ...whereas Elevenlabs Api, the free version is more easier to use for text to speech accessibility.
 
 # Gsap Animations
 I decides that using drawSVG for the title banner's were more difficult then I thought but to still keep the SVG in my website, I added "floating cookies".

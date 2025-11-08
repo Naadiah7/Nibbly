@@ -503,18 +503,6 @@ footer {
   stroke-width: 50;
 }
 
-/* ===== BURGER MENU (Hidden for desktop) ===== */
-.checkbtn {
-  display: none;
-  font-size: 30px;
-  cursor: pointer;
-  padding: 10px;
-}
-
-#check {
-  display: none;
-}
-
 /* ===== SIDEBAR STYLES ===== */
 .sidebar {
   position: fixed;
@@ -564,19 +552,54 @@ footer {
   margin: 0;
 }
 
+/* Close Button with Image */
 .close-btn {
   background: none;
   border: none;
-  font-size: 24px;
   cursor: pointer;
-  color: #000;
-  padding: 5px;
-  transition: transform 0.3s ease;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
 }
 
 .close-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
   transform: scale(1.1);
-  color: #333;
+}
+
+.close-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* Burger Menu Button with Image */
+.checkbtn {
+  display: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  background: none;
+  border: none;
+  width: 44px;
+  height: 44px;
+}
+
+.checkbtn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: scale(1.1);
+}
+
+.burger-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
 
 /* Sidebar Navigation */
@@ -661,20 +684,6 @@ footer {
   visibility: visible;
 }
 
-/* Burger Menu Button */
-.checkbtn {
-  display: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #000;
-  padding: 10px;
-  transition: transform 0.3s ease;
-}
-
-.checkbtn:hover {
-  transform: scale(1.1);
-}
-
 #check {
   display: none;
 }
@@ -684,7 +693,9 @@ footer {
 /* Tablet Styles (834px and below) */
 @media (max-width: 834px) {
   .checkbtn {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .sidebar {
@@ -694,6 +705,12 @@ footer {
   .sidebar-nav a {
     font-size: 17px;
     padding: 14px 20px;
+  }
+  
+  .burger-icon,
+  .close-icon {
+    width: 22px;
+    height: 22px;
   }
 }
 
@@ -729,6 +746,18 @@ footer {
   .sidebar-footer p {
     font-size: 13px;
   }
+  
+  .burger-icon,
+  .close-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .checkbtn,
+  .close-btn {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 /* Small Mobile Styles (below 360px) */
@@ -746,8 +775,17 @@ footer {
     padding: 10px 15px;
   }
   
-  .sidebar-nav a i {
-    font-size: 18px;
+  .burger-icon,
+  .close-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .checkbtn,
+  .close-btn {
+    width: 36px;
+    height: 36px;
+    padding: 6px;
   }
 }
 

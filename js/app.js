@@ -227,33 +227,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // ===== SIDEBAR FUNCTION =====
+// ===== SIDEBAR FUNCTIONALITY =====
 document.addEventListener('DOMContentLoaded', function() {
-    const closeBtn = document.querySelector(".close-btn");
-    const toggleBtn = document.querySelector(".checkbtn");
-    const sidebar = document.querySelector(".sidebar");
-    const overlay = document.querySelector(".sidebar-overlay");
-
-    closeBtn.addEventListener("click", function () {
-        sidebar.classList.remove("show-sidebar");
-        overlay.classList.remove("show-overlay");
+    // Get elements
+    const sidebar = document.getElementById('sidebar');
+    const checkBtn = document.querySelector('.checkbtn');
+    const closeBtn = document.getElementById('closeSidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+    
+    // Function to open sidebar
+    function openSidebar() {
+        sidebar.classList.add('show-sidebar');
+        overlay.classList.add('show-overlay');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    // Function to close sidebar
+    function closeSidebar() {
+        sidebar.classList.remove('show-sidebar');
+        overlay.classList.remove('show-overlay');
         document.body.style.overflow = '';
+    }
+    
+    // Event listeners
+    checkBtn.addEventListener('click', openSidebar);
+    closeBtn.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+    
+    // Close sidebar when clicking on links
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', closeSidebar);
     });
-
-    toggleBtn.addEventListener("click", function () {
-        sidebar.classList.toggle("show-sidebar");
-        overlay.classList.toggle("show-overlay");
-        
-        if (sidebar.classList.contains("show-sidebar")) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
+    
+    // Close sidebar with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeSidebar();
         }
     });
-
-    // Close sidebar when clicking overlay
-    overlay.addEventListener("click", function () {
-        sidebar.classList.remove("show-sidebar");
-        overlay.classList.remove("show-overlay");
-        document.body.style.overflow = '';
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 834) {
+            closeSidebar();
+        }
     });
 });
