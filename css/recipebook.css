@@ -658,35 +658,6 @@ footer {
   stroke-width: 10;
 }
 
-
-/* ===== BURGER MENU (Hidden for desktop) ===== */
-.checkbtn {
-  display: none;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  background: none;
-  border: none;
-  width: 50px;
-  height: 50px;
-}
-
-.checkbtn:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-  transform: scale(1.1);
-}
-
-.burger-icon {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-}
-
-#check {
-  display: none;
-}
-
 /* ===== SIDEBAR STYLES ===== */
 .sidebar {
   position: fixed;
@@ -763,7 +734,6 @@ footer {
 }
 
 /* Sidebar Navigation */
-
 .sidebar-nav {
   flex: 1;
   padding: 20px 0;
@@ -779,7 +749,7 @@ footer {
   margin-bottom: 5px;
 }
 
-.nav-icon{
+.nav-icon {
   width: 25px;
   height: 25px;
 }
@@ -848,136 +818,6 @@ footer {
 .sidebar-overlay.show-overlay {
   opacity: 1;
   visibility: visible;
-}
-
-/* ===== MEDIA QUERIES FOR SIDEBAR ===== */
-
-/* Tablet Styles (834px and below) */
-@media (max-width: 834px) {
-  /* Hide search button and show burger menu */
-  .search-btn {
-    display: none;
-  }
-  
-  .checkbtn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .sidebar {
-    width: 280px;
-  }
-  
-  .sidebar-nav a {
-    font-size: 17px;
-    padding: 14px 20px;
-  }
-  
-  .checkbtn,
-  .close-btn {
-    width: 48px;
-    height: 48px;
-    padding: 10px;
-  }
-  
-  .burger-icon,
-  .close-icon {
-    width: 26px;
-    height: 26px;
-  }
-}
-
-/* Mobile Styles (412px and below) */
-@media (max-width: 412px) {
-  .search-btn {
-    display: none;
-  }
-  
-  .checkbtn {
-    display: flex;
-  }
-  
-  .sidebar {
-    width: 100%;
-    left: -100%;
-  }
-  
-  .sidebar-header {
-    padding: 15px;
-  }
-  
-  .sidebar-brand img {
-    width: 45px;
-    height: 45px;
-  }
-  
-  .sidebar-brand h2 {
-    font-size: 22px;
-  }
-  
-  .sidebar-nav a {
-    font-size: 16px;
-    padding: 12px 20px;
-  }
-  
-  .sidebar-footer {
-    padding: 15px;
-  }
-  
-  .sidebar-footer p {
-    font-size: 13px;
-  }
-  
-  .burger-icon,
-  .close-icon {
-    width: 24px;
-    height: 24px;
-  }
-  
-  .checkbtn,
-  .close-btn {
-    width: 46px;
-    height: 46px;
-    padding: 10px;
-  } 
-}
-
-/* Small Mobile Styles (below 360px) */
-@media (max-width: 360px) {
-  .search-btn {
-    display: none;
-  }
-  
-  .checkbtn {
-    display: flex;
-  }
-  
-  .sidebar-header {
-    padding: 12px;
-  }
-  
-  .sidebar-brand h2 {
-    font-size: 20px;
-  }
-  
-  .sidebar-nav a {
-    font-size: 15px;
-    padding: 10px 15px;
-  }
-  
-  .burger-icon,
-  .close-icon {
-    width: 18px;
-    height: 18px;
-  }
-  
-  .checkbtn,
-  .close-btn {
-    width: 36px;
-    height: 36px;
-    padding: 6px;
-  }
 }
 
 /* ===== MEDIA QUERIES ===== */
@@ -1199,7 +1039,7 @@ footer {
   }
   
   .active-filters {
-    padding: 0 10px;
+    padding: 0 5px;
   }
 }
 
