@@ -1,5 +1,5 @@
-html{
-    scroll-behavior: smooth;
+html {
+  scroll-behavior: smooth;
 }
 
 @font-face {
@@ -18,7 +18,7 @@ body {
   text-align: center;
 }
 
-/* Navigation Bar */
+/* ===== NAVIGATION BAR ===== */
 #Navtop {
   display: flex;
   align-items: center;
@@ -30,17 +30,17 @@ body {
 
 .brand {
   display: flex;
-  align-items:center;
+  align-items: center;
   gap: 10px;
   background-color: #E9C4F9;
-  padding: 4px 20px; 
+  padding: 4px 20px;
 }
 
 #logo {
   width: 65px;
   height: 65px;
   object-fit: cover;
-  border-radius: 50% black;
+  border-radius: 50%;
 }
 
 .site-title {
@@ -59,7 +59,7 @@ body {
   text-decoration: none;
   color: #000;
   font-size: 20px;
-  padding: 0.5rem 1rem; 
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   margin: 0;
   transition: background-color 0.3s, color 0.3s;
@@ -71,7 +71,7 @@ body {
   background-color: #B0E1FF;
 }
 
-/* --- Search Button --- */
+/* ===== SEARCH BUTTON ===== */
 .search-btn {
   display: flex;
   align-items: center;
@@ -95,7 +95,7 @@ body {
   transform: scale(1.07);
 }
 
-/* Banner */
+/* ===== BANNER ===== */
 .banner {
   position: relative;
   display: flex;
@@ -128,7 +128,7 @@ body {
   margin-left: 20px;
 }
 
-/* --- Social Links --- */
+/* ===== SOCIAL LINKS ===== */
 .social-links {
   position: relative;
   display: flex;
@@ -136,9 +136,10 @@ body {
   flex-grow: 1;
   margin-right: 20px;
   cursor: pointer;
+  gap: 15px;
 }
 
-.email img{
+.social-links a img {
   width: 40px;
   height: 40px;
   background-color: #fff;
@@ -148,141 +149,121 @@ body {
   transition: all 0.3s ease;
 }
 
-.instagram img{
-  width: 40px;
-  height: 40px;
-  background-color: #fff;
-  padding: 5px;
-  border-radius: 5px;
-  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+.social-links a:hover img {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-.tiktok img{
-  width: 40px;
-  height: 40px;
-  background-color: #fff;
-  padding: 5px;
-  border-radius: 5px;
-  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+/* ===== ABOUT CONTENT ===== */
+.about-content {
+  display: flex;
+  gap: 30px;
+  margin: 40px auto;
+  align-items: flex-start;
+  max-width: 1200px;
+  padding: 0 20px;
 }
 
-.email .instagram .tiktok:hover {
-    transform: scale(1.1) translateY(-2px);
-    box-shadow: 0 rgba(0, 0, 0, 0.2);
-}
-
-
-/* --- About Content --- */
-.about-content{
-    display: flex;
-    gap: 30px;
-    margin: 40px auto;
-    align-items: flex-start;
-    max-width: 1200px;
-    padding: 0 20px;
-}
-
-.about-content  .text-block {
-    flex-grow: 1;
-    max-width: 100%;
-    text-align: left;
+.about-content .text-block {
+  flex-grow: 1;
+  max-width: 100%;
+  text-align: left;
 }
 
 .about-heading {
-    font-size: 30px;
-    color: #000;
-    font-family: 'Berkshire Swash', cursive;
-    text-decoration: underline;
-    margin-top: 0;
-    margin-bottom: 20px;
-    opacity: 0; /* For animation */
+  font-size: 30px;
+  color: #000;
+  font-family: 'Berkshire Swash', cursive;
+  text-decoration: underline;
+  margin-top: 0;
+  margin-bottom: 20px;
+  opacity: 0; /* For animation */
 }
 
 .about-text {
-    font-family: 'Palatino Linotype', Arial;
-    line-height: 1.6;
-    font-size: 17px;
-    margin-bottom: 20px;
-    opacity: 0; /* For animation */
-    transform: translateY(20px);
+  font-family: 'Palatino Linotype', Arial;
+  line-height: 1.6;
+  font-size: 17px;
+  margin-bottom: 20px;
+  opacity: 0; /* For animation */
+  transform: translateY(20px);
 }
 
 .offer-heading {
-    font-size: 24px;
-    color: #000;
-    font-family: 'Berkshire Swash', cursive;
-    margin-top: 30px;
-    margin-bottom: 5px;
-    opacity: 0; /* For animation */
+  font-size: 24px;
+  color: #000;
+  font-family: 'Berkshire Swash', cursive;
+  margin-top: 30px;
+  margin-bottom: 5px;
+  opacity: 0; /* For animation */
 }
 
-/* --- Subscribe Section --- */
+/* ===== SUBSCRIBE SECTION ===== */
 .subscribe-content {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-    background-color: #ceecff;
-    padding: 40px 20px;
-    border-radius: 15px;
-    margin: 40px auto;
-    max-width: 1200px;
-    text-align: left;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  background-color: #ceecff;
+  padding: 40px 20px;
+  border-radius: 15px;
+  margin: 40px auto;
+  max-width: 1200px;
+  text-align: left;
 }
 
 .subscribe-content .text-block {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
 .subscribe-heading {
-    font-size: 28px;
-    color: #000;
-    font-family: 'Berkshire Swash', cursive;
-    text-decoration: none;
-    margin-top: 0;
-    margin-bottom: 15px;
-    opacity: 0; /* For animation */
+  font-size: 28px;
+  color: #000;
+  font-family: 'Berkshire Swash', cursive;
+  text-decoration: none;
+  margin-top: 0;
+  margin-bottom: 15px;
+  opacity: 0; /* For animation */
 }
 
 .subscribe-text {
-    font-family: 'Palatino Linotype';
-    line-height: 1.6;
-    font-size: 16px;
-    margin-bottom: 25px;
-    opacity: 0; /* For animation */
-    transform: translateY(20px);
+  font-family: 'Palatino Linotype';
+  line-height: 1.6;
+  font-size: 16px;
+  margin-bottom: 25px;
+  opacity: 0; /* For animation */
+  transform: translateY(20px);
 }
 
-/* Subscribe Form */
+/* ===== SUBSCRIBE FORM ===== */
 .subscribe-form {
-    max-width: 400px;
+  max-width: 400px;
 }
 
 .form-group {
-    margin-bottom: 15px;
-    opacity: 0; /* For animation */
-    transform: translateX(-30px);
+  margin-bottom: 15px;
+  opacity: 0; /* For animation */
+  transform: translateX(-30px);
 }
 
 .form-group input {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #71C9FF;
-    border-radius: 8px;
-    font-family: 'Palatino Linotype';
-    font-size: 16px;
-    background-color: #fff;
-    transition: all 0.3s ease;
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #71C9FF;
+  border-radius: 8px;
+  font-family: 'Palatino Linotype';
+  font-size: 16px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .form-group input:focus {
-    outline: none;
-    border-color: #71C9FF;
-    box-shadow: 0 0 8px rgba(113, 201, 255, 0.3);
+  outline: none;
+  border-color: #71C9FF;
+  box-shadow: 0 0 8px rgba(113, 201, 255, 0.3);
 }
 
-/* --- Join Button --- */
+/* ===== JOIN BUTTON ===== */
 .join-btn {
   background-color: #B0E1FF;
   color: #000;
@@ -298,15 +279,16 @@ body {
   box-shadow: 4px 4px 0px #000;
   opacity: 0; /* For animation */
   transform: scale(0.8);
+  transition: all 0.3s ease;
 }
 
 .join-btn:hover {
   background-color: #71C9FF;
-  transform: translate(1px, 1px);
+  transform: translate(1px, 1px) scale(0.8);
   box-shadow: 2px 2px 0px #000;
 }
 
-/* Footer */
+/* ===== FOOTER ===== */
 footer {
   background-color: #555;
   color: white;
@@ -318,7 +300,7 @@ footer {
   margin-top: auto;
 }
 
-/* Scroll Top Image Button */
+/* ===== SCROLL TOP BUTTON ===== */
 .scroll-top {
   position: fixed;
   bottom: 30px;
@@ -338,7 +320,7 @@ footer {
   box-shadow: 0 6px 12px rgba(0,0,0,0.4);
 }
 
-/* Floating Cookies Animation */
+/* ===== FLOATING COOKIES ANIMATION ===== */
 .floating-cookie {
   position: absolute;
   opacity: 0.7;
@@ -352,49 +334,292 @@ footer {
   stroke-width: 10;
 }
 
-/* Burger Menu Hidden (for desktop) */
+/* ===== BURGER MENU (Hidden for desktop) ===== */
 .checkbtn {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+#check {
   display: none;
 }
 
-/*Media Queries*/
-@media (max-width: 768px) {
-  #Navtop ul {
-    flex-direction: column;
-    display: none;
+/* ===== MEDIA QUERIES ===== */
+
+/* Tablet Styles (834px and below) */
+@media (max-width: 834px) {
+  /* Navigation */
+  #Navtop {
+    flex-wrap: wrap;
+    padding: 10px;
   }
+  
+  .brand {
+    order: 1;
+    flex: 1;
+  }
+  
+  .checkbtn {
+    display: block;
+    order: 2;
+  }
+  
+  .search-btn {
+    order: 3;
+  }
+  
+  #Navtop ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    order: 4;
+    background-color: #f6f2ff;
+    padding: 20px 0;
+    border-top: 2px solid #ccc;
+  }
+  
   #check:checked ~ ul {
     display: flex;
   }
-  .checkbtn {
-    display: block;
-    font-size: 30px;
-    cursor: pointer;
+  
+  #Navtop ul li {
+    width: 100%;
+    text-align: center;
   }
+  
+  #Navtop ul li a {
+    display: block;
+    padding: 15px;
+    font-size: 18px;
+  }
+  
+  /* Banner */
+  .banner {
+    flex-direction: row;
+    height: 90px;
+    padding: 0 15px;
+  }
+  
+  .banner h2 {
+    font-size: 22px;
+    margin-left: 15px;
+  }
+  
+  .banner img {
+    width: 35px;
+    height: 35px;
+    margin-left: 10px;
+  }
+  
+  .social-links {
+    margin-right: 15px;
+    gap: 10px;
+  }
+  
+  .social-links a img {
+    width: 35px;
+    height: 35px;
+  }
+  
+  /* About Content */
+  .about-content {
+    flex-direction: column;
+    margin: 30px auto;
+    padding: 0 15px;
+    gap: 20px;
+  }
+  
+  .about-heading {
+    font-size: 26px;
+  }
+  
+  .offer-heading {
+    font-size: 22px;
+  }
+  
+  .about-text {
+    font-size: 16px;
+  }
+  
+  /* Subscribe Section */
+  .subscribe-content {
+    flex-direction: column;
+    margin: 30px auto;
+    padding: 30px 15px;
+    text-align: center;
+  }
+  
+  .subscribe-heading {
+    font-size: 24px;
+  }
+  
+  .subscribe-form {
+    max-width: 100%;
+  }
+  
+  .join-btn {
+    font-size: 18px;
+    padding: 10px 30px;
+  }
+}
 
+/* Mobile Styles (412px and below) */
+@media (max-width: 412px) {
+  /* Navigation */
+  #Navtop {
+    padding: 5px;
+  }
+  
+  .brand {
+    padding: 2px 10px;
+  }
+  
+  #logo {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .site-title {
+    font-size: 20px;
+  }
+  
+  .searchButton img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  /* Banner */
   .banner {
     flex-direction: column;
     height: auto;
     padding: 15px;
     text-align: center;
+    gap: 10px;
   }
-
+  
+  .banner h2 {
+    font-size: 20px;
+    margin: 0;
+    order: 1;
+  }
+  
   .banner img {
-    margin: 10px 0;
+    margin: 0;
+    order: 2;
+    width: 30px;
+    height: 30px;
   }
-
+  
   .social-links {
     justify-content: center;
     margin: 10px 0 0 0;
+    order: 3;
+    gap: 15px;
   }
-
-  .about-content,
+  
+  .social-links a img {
+    width: 30px;
+    height: 30px;
+  }
+  
+  /* About Content */
+  .about-content {
+    margin: 20px auto;
+    padding: 0 10px;
+  }
+  
+  .about-heading {
+    font-size: 22px;
+    text-align: center;
+  }
+  
+  .offer-heading {
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  .about-text {
+    font-size: 15px;
+    text-align: left;
+  }
+  
+  /* Subscribe Section */
   .subscribe-content {
-    flex-direction: column;
+    margin: 20px auto;
     padding: 20px 15px;
+    border-radius: 10px;
   }
+  
+  .subscribe-heading {
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  .subscribe-text {
+    font-size: 15px;
+    text-align: center;
+  }
+  
+  .form-group input {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+  
+  .join-btn {
+    font-size: 16px;
+    padding: 10px 25px;
+    margin: 15px auto 0;
+  }
+  
+  /* Footer */
+  footer {
+    font-size: 14px;
+    padding: 15px 5px;
+  }
+  
+  .footerbottom p {
+    margin: 5px 0;
+  }
+  
+  /* Scroll to top button */
+  .scroll-top {
+    bottom: 20px;
+    right: 20px;
+    width: 35px;
+    height: 35px;
+  }
+}
 
-  .subscribe-form {
-    max-width: 100%;
+/* Small Mobile Styles (below 360px) */
+@media (max-width: 360px) {
+  .banner h2 {
+    font-size: 18px;
+  }
+  
+  .about-heading {
+    font-size: 20px;
+  }
+  
+  .offer-heading {
+    font-size: 18px;
+  }
+  
+  .about-text {
+    font-size: 14px;
+  }
+  
+  .subscribe-heading {
+    font-size: 18px;
+  }
+  
+  .subscribe-text {
+    font-size: 14px;
+  }
+  
+  .join-btn {
+    font-size: 14px;
+    padding: 8px 20px;
   }
 }
