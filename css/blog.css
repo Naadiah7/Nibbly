@@ -1,5 +1,5 @@
-html{
-    scroll-behavior: smooth;
+html {
+  scroll-behavior: smooth;
 }
 
 @font-face {
@@ -18,7 +18,7 @@ body {
   text-align: center;
 }
 
-/* Navigation Bar */
+/* ===== NAVIGATION BAR ===== */
 #Navtop {
   display: flex;
   align-items: center;
@@ -30,17 +30,17 @@ body {
 
 .brand {
   display: flex;
-  align-items:center;
+  align-items: center;
   gap: 10px;
   background-color: #E9C4F9;
-  padding: 4px 20px; 
+  padding: 4px 20px;
 }
 
 #logo {
   width: 65px;
   height: 65px;
   object-fit: cover;
-  border-radius: 50% black;
+  border-radius: 50%;
 }
 
 .site-title {
@@ -59,7 +59,7 @@ body {
   text-decoration: none;
   color: #000;
   font-size: 20px;
-  padding: 0.5rem 1rem; 
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   margin: 0;
   transition: background-color 0.3s, color 0.3s;
@@ -71,7 +71,7 @@ body {
   background-color: #B1FAC7;
 }
 
-/* --- Search Button --- */
+/* ===== SEARCH BUTTON ===== */
 .search-btn {
   display: flex;
   align-items: center;
@@ -95,7 +95,7 @@ body {
   transform: scale(1.07);
 }
 
-/* Banner */
+/* ===== BANNER ===== */
 .banner {
   position: relative;
   display: flex;
@@ -127,7 +127,7 @@ body {
   margin-left: 20px;
 }
 
-.banner-subtitle{
+.banner-subtitle {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -141,16 +141,17 @@ body {
   font-size: 20px;
 }
 
-/* --- Social Links --- */
+/* ===== SOCIAL LINKS ===== */
 .social-links {
   display: flex;
   justify-content: flex-end;
   flex-grow: 1;
   margin-right: 20px;
   cursor: pointer;
+  gap: 15px;
 }
 
-.email img{
+.social-links a img {
   width: 40px;
   height: 40px;
   background-color: #fff;
@@ -160,118 +161,94 @@ body {
   transition: all 0.3s ease;
 }
 
-.instagram img{
-  width: 40px;
-  height: 40px;
-  background-color: #fff;
-  padding: 5px;
-  border-radius: 5px;
-  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+.social-links a:hover img {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-.tiktok img{
-  width: 40px;
-  height: 40px;
-  background-color: #fff;
-  padding: 5px;
-  border-radius: 5px;
-  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.email .instagram .tiktok:hover {
-    transform: scale(1.1) translateY(-2px);
-    box-shadow: 0 rgba(0, 0, 0, 0.2);
-}
-
-/* Blog Page Content Section */
-.blog-content{
-    display: flex;
-    gap: 30px;
-    margin: 40px auto;
-    align-items: flex-start;
-    max-width: 1200px;
-    padding: 0 20px;
+/* ===== BLOG CONTENT ===== */
+.blog-content {
+  display: flex;
+  gap: 30px;
+  margin: 40px auto;
+  align-items: flex-start;
+  max-width: 1200px;
+  padding: 0 20px;
 }
 
 .blog-content .text-block {
-    flex-grow: 1;
-    max-width: 100%;
-    text-align: left;
+  flex-grow: 1;
+  max-width: 100%;
+  text-align: left;
 }
 
 .blog-heading {
-    font-size: 28px;
-    color: #000;
-    font-family: 'Berkshire Swash', cursive;
-    margin-top: 0;
-    margin-bottom: 5px;
-    opacity: 0; /* For animation */
+  font-size: 28px;
+  color: #000;
+  font-family: 'Berkshire Swash', cursive;
+  margin-top: 0;
+  margin-bottom: 5px;
+  opacity: 0; /* For animation */
 }
 
 .blog-intro {
-    font-family: 'Palatino Linotype';
-    line-height: 1.6;
-    font-size: 16px;
-    margin-bottom: 5px;
-    opacity: 0; /* For animation */
-    transform: translateY(20px);
+  font-family: 'Palatino Linotype';
+  line-height: 1.6;
+  font-size: 16px;
+  margin-bottom: 5px;
+  opacity: 0; /* For animation */
+  transform: translateY(20px);
 }
 
-/* Blog Posts Cards*/
+/* ===== BLOG POSTS ===== */
 .horizontal-posts {
-    display: flex;
-    flex-direction: column;
-    max-width: 900px;
-    margin: 20px auto;
-    gap: 25px;
-    padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  margin: 20px auto;
+  gap: 25px;
+  padding: 0 20px;
 }
 
 .blog-post {
-    display: flex;  
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
-    background-color: #d9ffe4;
-    border-radius: 15px;
-    padding: 20px;
-    text-align: left;
-    border: 2px solid #B1FAC7;
-    transition: transform 0.3s ease;
-    opacity: 0; /* For animation */
-    transform: none;
-
-    min-height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #d9ffe4;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: left;
+  border: 2px solid #B1FAC7;
+  transition: transform 0.3s ease;
+  opacity: 0; /* For animation */
+  min-height: 100px;
 }
 
 .blog-post:hover {
-    transform: translateY(-5px);
-    border-color: #6EDF90;
+  transform: translateY(-5px);
+  border-color: #6EDF90;
 }
 
 .post-content {
-    font-family: 'Palatino Linotype';
-    font-size: 14px;
-    line-height: 1.6;
-    color: #333;
-    margin-bottom: 0;
-    opacity: 0; /* For animation */
-    transform: none;
+  font-family: 'Palatino Linotype';
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 0;
+  opacity: 0; /* For animation */
 }
 
 .post-content p {
-    margin-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 .post-date {
-    font-family: 'Orelega One', cursive;
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 10px;
-    opacity: 0; /* For animation */
+  font-family: 'Orelega One', cursive;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+  opacity: 0; /* For animation */
 }
 
 .post-header {
@@ -290,63 +267,61 @@ body {
 }
 
 .post-title {
-    font-family: 'Berkshire Swash', cursive;
-    font-size: 22px;
-    color: #000;
-    margin-top: 0;
-    margin-bottom: 0;
-    opacity: 0; /* For animation */
-    transform: translateX(-20px);
+  font-family: 'Berkshire Swash', cursive;
+  font-size: 22px;
+  color: #000;
+  margin-top: 0;
+  margin-bottom: 0;
+  opacity: 0; /* For animation */
+  transform: translateX(-20px);
 }
 
 .post-recipe {
-    font-family: 'Palatino Linotype';
-    font-size: 16px;
-    color: #000;
-    margin-bottom: 10px;
-    font-weight: bold;
-    opacity: 0; /* For animation */
-    transform: translateX(20px);
+  font-family: 'Palatino Linotype';
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 10px;
+  font-weight: bold;
+  opacity: 0; /* For animation */
+  transform: translateX(20px);
 }
 
 .post-text {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; 
-    padding-right: 20px; 
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding-right: 20px;
 }
 
-
+/* ===== READ MORE BUTTON ===== */
 .read-more-btn {
-    background-color: #B1FAC7; 
-    color: #000;
-    text-decoration: none;
-    font-size: 18px;
-    font-family: 'Orelega One', cursive;
-    padding: 15px 15px;
-    border: 2px solid #000;
-    border-radius: 5px;
-    cursor: pointer;
-    display: inline-block;
-    box-shadow: 4px 4px 0px #000;
-    transition: all 0.3s ease;
-    text-align: center;
-    min-width: 120px;
-    flex-shrink: 0;
-    margin-top: 0;
-    opacity: 0; /* For animation */
-    transform: scale(0.8);
+  background-color: #B1FAC7;
+  color: #000;
+  text-decoration: none;
+  font-size: 18px;
+  font-family: 'Orelega One', cursive;
+  padding: 15px 15px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  box-shadow: 4px 4px 0px #000;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-width: 120px;
+  flex-shrink: 0;
+  margin-top: 0;
+  opacity: 0; /* For animation */
+  transform: scale(0.8);
 }
 
 .read-more-btn:hover {
   background-color: #6EDF90;
-  transform: translate(1px, 1px);
+  transform: translate(1px, 1px) scale(0.8);
   box-shadow: 2px 2px 0px #000;
 }
 
-
-/*Blog Details Page Styling*/
-/* Blog Banner */
+/* ===== BLOG DETAILS PAGE ===== */
 .blog-banner-content {
   position: relative;
   display: flex;
@@ -380,7 +355,7 @@ body {
   margin-left: 20px;
 }
 
-/* --- Link --- */
+/* ===== LINK ===== */
 .link {
   position: absolute;
   top: 26px;
@@ -389,11 +364,11 @@ body {
   cursor: pointer;
 }
 
-.share{
+.share {
   display: none;
 }
 
-.share img{
+.share img {
   width: 40px;
   height: 40px;
   background-color: #fff;
@@ -409,10 +384,10 @@ body {
 
 .share:hover {
   transform: scale(1.1) translateY(-2px);
-  box-shadow: 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Blog Details Container */
+/* ===== BLOG DETAILS CONTAINER ===== */
 .blog-details-container {
   max-width: 900px;
   margin: 40px auto;
@@ -467,35 +442,35 @@ body {
   display: none;
 }
 
-/* Read Recipe Button in Blog Details */
+/* ===== READ RECIPE BUTTON ===== */
 .read-more-recipe-btn {
-    background-color: #B1FAC7; 
-    color: #000;
-    text-decoration: none;
-    font-size: 20px;
-    font-family: 'Orelega One', cursive;
-    padding: 18px 18px;
-    border: 2px solid #000;
-    border-radius: 5px;
-    cursor: pointer;
-    display: inline-block;
-    box-shadow: 4px 4px 0px #000;
-    transition: all 0.3s ease;
-    text-align: center;
-    min-width: 120px;
-    flex-shrink: 0;
-    margin-top: 0;
-    opacity: 0; /* For animation */
-    transform: scale(0.8);
+  background-color: #B1FAC7;
+  color: #000;
+  text-decoration: none;
+  font-size: 20px;
+  font-family: 'Orelega One', cursive;
+  padding: 18px 18px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  box-shadow: 4px 4px 0px #000;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-width: 120px;
+  flex-shrink: 0;
+  margin-top: 0;
+  opacity: 0; /* For animation */
+  transform: scale(0.8);
 }
 
 .read-more-recipe-btn:hover {
   background-color: #6EDF90;
-  transform: translate(1px, 1px);
+  transform: translate(1px, 1px) scale(0.8);
   box-shadow: 2px 2px 0px #000;
 }
 
-/* Footer */
+/* ===== FOOTER ===== */
 footer {
   background-color: #555;
   color: white;
@@ -507,8 +482,8 @@ footer {
   margin-top: auto;
 }
 
-/*Go Back Image Button*/
-.go-back{
+/* ===== GO BACK BUTTON ===== */
+.go-back {
   position: fixed;
   bottom: 30px;
   left: 30px;
@@ -537,7 +512,7 @@ footer {
   box-shadow: 0 6px 12px rgba(0,0,0,0.4);
 }
 
-/* Scroll Top Image Button */
+/* ===== SCROLL TOP BUTTON ===== */
 .scroll-top {
   position: fixed;
   bottom: 30px;
@@ -557,12 +532,12 @@ footer {
   box-shadow: 0 6px 12px rgba(0,0,0,0.4);
 }
 
-/* Both button on the bottom of page*/
+/* ===== BUTTON POSITIONING ===== */
 body:has(.go-back) .scroll-top {
-  bottom: 85px; 
+  bottom: 85px;
 }
 
-/* Floating Cookies Animation */
+/* ===== FLOATING COOKIES ANIMATION ===== */
 .floating-cookie {
   position: absolute;
   opacity: 0.7;
@@ -576,58 +551,176 @@ body:has(.go-back) .scroll-top {
   stroke-width: 10;
 }
 
-/* Burger Menu Hidden (for desktop) */
+/* ===== BURGER MENU (Hidden for desktop) ===== */
 .checkbtn {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+#check {
   display: none;
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
+/* ===== MEDIA QUERIES ===== */
+
+/* Tablet Styles (834px and below) */
+@media (max-width: 834px) {
+  /* Navigation */
   #Navtop {
-    padding-right: 20px;
     flex-wrap: wrap;
+    padding: 10px;
+  }
+  
+  .brand {
+    order: 1;
+    flex: 1;
+  }
+  
+  .checkbtn {
+    display: block;
+    order: 2;
+  }
+  
+  .search-btn {
+    order: 3;
   }
   
   #Navtop ul {
-    flex-direction: column;
     display: none;
+    flex-direction: column;
     width: 100%;
-    order: 3;
-    margin-top: 10px;
+    order: 4;
+    background-color: #f6f2ff;
+    padding: 20px 0;
+    border-top: 2px solid #ccc;
   }
   
   #check:checked ~ ul {
     display: flex;
   }
   
-  .checkbtn {
+  #Navtop ul li {
+    width: 100%;
+    text-align: center;
+  }
+  
+  #Navtop ul li a {
     display: block;
-    font-size: 30px;
-    cursor: pointer;
+    padding: 15px;
+    font-size: 18px;
   }
   
-  .blog-header {
-    padding: 30px 15px;
+  /* Banner */
+  .banner {
+    flex-direction: row;
+    height: 90px;
+    padding: 0 15px;
   }
   
-  .blog-header h2 {
-    font-size: 28px;
+  .banner h2 {
+    font-size: 22px;
+    margin-left: 15px;
+  }
+  
+  .banner img {
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+  }
+  
+  .banner-subtitle p {
+    font-size: 18px;
+  }
+  
+  .social-links {
+    margin-right: 15px;
+    gap: 10px;
+  }
+  
+  .social-links a img {
+    width: 35px;
+    height: 35px;
+  }
+  
+  /* Blog Content */
+  .blog-content {
+    flex-direction: column;
+    margin: 30px auto;
+    padding: 0 15px;
+    gap: 20px;
+  }
+  
+  .blog-heading {
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  .blog-intro {
+    font-size: 15px;
+    text-align: center;
+  }
+  
+  /* Blog Posts */
+  .horizontal-posts {
+    margin: 15px auto;
+    padding: 0 15px;
+    gap: 20px;
   }
   
   .blog-post {
-    padding: 20px;
-    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+    gap: 15px;
   }
   
-  .blog-title {
+  .post-text {
+    padding-right: 0;
+    width: 100%;
+  }
+  
+  .post-header {
+    justify-content: flex-start;
+  }
+  
+  .post-title {
     font-size: 20px;
   }
   
-  .blog-recipe {
+  .post-recipe {
+    font-size: 15px;
+  }
+  
+  .post-content {
+    font-size: 13px;
+  }
+  
+  .read-more-btn {
+    align-self: center;
     font-size: 16px;
+    padding: 12px 20px;
+    min-width: 140px;
+  }
+  
+  /* Blog Details */
+  .blog-banner-content {
+    height: 90px;
+    padding: 0 15px;
+  }
+  
+  .blog-banner-content h2 {
+    font-size: 22px;
+  }
+  
+  .blog-banner-content img {
+    width: 50px;
+    height: 50px;
   }
   
   .blog-details-container {
+    margin: 30px auto;
     padding: 0 15px;
   }
   
@@ -635,7 +728,265 @@ body:has(.go-back) .scroll-top {
     padding: 20px;
   }
   
-  .blog-details-title {
-    font-size: 26px;
+  .blog-details-recipe {
+    font-size: 18px;
+  }
+  
+  .blog-details-text {
+    font-size: 17px;
+  }
+  
+  .read-more-recipe-btn {
+    font-size: 18px;
+    padding: 15px 20px;
+  }
+}
+
+/* Mobile Styles (412px and below) */
+@media (max-width: 412px) {
+  /* Navigation */
+  #Navtop {
+    padding: 5px;
+  }
+  
+  .brand {
+    padding: 2px 10px;
+  }
+  
+  #logo {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .site-title {
+    font-size: 20px;
+  }
+  
+  .searchButton img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  /* Banner */
+  .banner {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+    text-align: center;
+    gap: 10px;
+  }
+  
+  .banner h2 {
+    font-size: 20px;
+    margin: 0;
+    order: 1;
+  }
+  
+  .banner img {
+    margin: 0;
+    order: 2;
+    width: 35px;
+    height: 35px;
+  }
+  
+  .banner-subtitle {
+    position: relative;
+    left: auto;
+    transform: none;
+    order: 3;
+  }
+  
+  .banner-subtitle p {
+    font-size: 16px;
+    margin: 5px 0 0 0;
+  }
+  
+  .social-links {
+    justify-content: center;
+    margin: 10px 0 0 0;
+    order: 4;
+    gap: 15px;
+  }
+  
+  .social-links a img {
+    width: 30px;
+    height: 30px;
+  }
+  
+  /* Blog Content */
+  .blog-content {
+    margin: 20px auto;
+    padding: 0 10px;
+  }
+  
+  .blog-heading {
+    font-size: 22px;
+  }
+  
+  .blog-intro {
+    font-size: 14px;
+  }
+  
+  /* Blog Posts */
+  .horizontal-posts {
+    margin: 10px auto;
+    padding: 0 10px;
+    gap: 15px;
+  }
+  
+  .blog-post {
+    padding: 15px;
+    gap: 12px;
+  }
+  
+  .post-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .post-img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .post-title {
+    font-size: 18px;
+  }
+  
+  .post-recipe {
+    font-size: 14px;
+  }
+  
+  .post-content {
+    font-size: 12px;
+  }
+  
+  .post-date {
+    font-size: 12px;
+  }
+  
+  .read-more-btn {
+    font-size: 14px;
+    padding: 10px 15px;
+    min-width: 120px;
+  }
+  
+  /* Blog Details */
+  .blog-banner-content {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+    gap: 10px;
+  }
+  
+  .blog-banner-content h2 {
+    font-size: 20px;
+    margin: 0;
+    order: 1;
+  }
+  
+  .blog-banner-content img {
+    margin: 0;
+    order: 2;
+    width: 45px;
+    height: 45px;
+  }
+  
+  .link {
+    position: relative;
+    top: auto;
+    right: auto;
+    order: 3;
+    margin-top: 10px;
+  }
+  
+  .blog-details-container {
+    margin: 20px auto;
+    padding: 0 10px;
+  }
+  
+  .blog-details-content {
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  .blog-details-date {
+    font-size: 15px;
+  }
+  
+  .blog-details-recipe {
+    font-size: 16px;
+  }
+  
+  .blog-details-text {
+    font-size: 15px;
+  }
+  
+  .read-more-recipe-btn {
+    font-size: 16px;
+    padding: 12px 18px;
+  }
+  
+  /* Buttons */
+  .go-back {
+    bottom: 20px;
+    left: 20px;
+    width: 35px;
+    height: 35px;
+  }
+  
+  .go-back img {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .scroll-top {
+    bottom: 20px;
+    right: 20px;
+    width: 35px;
+    height: 35px;
+  }
+  
+  body:has(.go-back) .scroll-top {
+    bottom: 65px;
+  }
+}
+
+/* Small Mobile Styles (below 360px) */
+@media (max-width: 360px) {
+  .banner h2 {
+    font-size: 18px;
+  }
+  
+  .banner-subtitle p {
+    font-size: 14px;
+  }
+  
+  .blog-heading {
+    font-size: 20px;
+  }
+  
+  .blog-intro {
+    font-size: 13px;
+  }
+  
+  .post-title {
+    font-size: 16px;
+  }
+  
+  .post-recipe {
+    font-size: 13px;
+  }
+  
+  .read-more-btn {
+    font-size: 13px;
+    padding: 8px 12px;
+    min-width: 110px;
+  }
+  
+  .read-more-recipe-btn {
+    font-size: 14px;
+    padding: 10px 15px;
   }
 }
