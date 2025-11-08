@@ -134,16 +134,16 @@ function addSpeechButton() {
     button.id = 'speech-button';
     button.textContent = '🔊 Read Page';
     button.style.position = 'fixed';
-    button.style.bottom = '200px';
+    button.style.bottom = '5px';
     button.style.right = '20px';
     button.style.zIndex = '1000';
-    button.style.padding = '15px';
+    button.style.padding = '10px';
     button.style.background = '#9e53beff';
     button.style.color = 'white';
     button.style.border = 'none';
     button.style.borderRadius = '5px';
     button.style.cursor = 'pointer';
-    button.style.fontSize = '16px';
+    button.style.fontSize = '15px';
     button.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
     button.style.fontFamily = "'Orelega One', Arial";
     
